@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv8u28p64d1r8"]
+
+[ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://cenas/Main.gd" id="1_dbw6l"]
+[ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://data/ingredients/TESTBENCH.gd" id="1_paifj"]
+[ext_resource type="Script" uid="uid://c5kjxqkev0gc4" path="res://tigelas/FoodBowlUI.gd" id="2_eq24x"]
+[ext_resource type="Texture2D" uid="uid://b57doq3nr5xfh" path="res://gatos/sprites/racao.png" id="7_yjiuj"]
+[ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://tigelas/FoodAttractionSystem.gd" id="10_pclmd"]
+[ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://tigelas/FoodBowlManager.gd" id="12_wd510"]
+
+[node name="MainUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_paifj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BowlContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+script = ExtResource("2_eq24x")
+
+[node name="FillAll" type="Button" parent="HBoxContainer/BowlContainer"]
+layout_mode = 2
+text = "Encher todas as tigelas"
+metadata/index = 999
+
+[node name="FillBowl" type="Button" parent="HBoxContainer/BowlContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Encher tigela"
+icon = ExtResource("7_yjiuj")
+metadata/index = 0
+
+[node name="FillBowl2" type="Button" parent="HBoxContainer/BowlContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Encher tigela"
+icon = ExtResource("7_yjiuj")
+metadata/index = 1
+
+[node name="FillBowl3" type="Button" parent="HBoxContainer/BowlContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Encher tigela"
+icon = ExtResource("7_yjiuj")
+metadata/index = 2
+
+[node name="CraftContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/CraftContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CreateItemButton" type="Button" parent="HBoxContainer/CraftContainer/CenterContainer"]
+layout_mode = 2
+text = "Caldeirão"
+
+[node name="InventoryContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/InventoryContainer"]
+layout_mode = 2
+text = "Ingredientes"
+horizontal_alignment = 1
+
+[node name="IngredientGrid" type="GridContainer" parent="HBoxContainer/InventoryContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 10
+
+[node name="Label2" type="Label" parent="HBoxContainer/InventoryContainer"]
+layout_mode = 2
+text = "Poções"
+horizontal_alignment = 1
+
+[node name="PotionGrid" type="GridContainer" parent="HBoxContainer/InventoryContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 10
+
+[node name="Game" type="Node" parent="."]
+script = ExtResource("1_dbw6l")
+
+[node name="FoodAttractionSystem" type="Node" parent="Game"]
+script = ExtResource("10_pclmd")
+
+[node name="FoodBowlManager" type="Node" parent="Game"]
+script = ExtResource("12_wd510")
+
+[connection signal="pressed" from="HBoxContainer/CraftContainer/CenterContainer/CreateItemButton" to="." method="_on_create_potion_pressed"]

@@ -1,0 +1,27 @@
+{
+  "1": {
+	"id": "1",
+	"display name": "Ração Comum Grande",
+	"fill value": 24
+  },
+  "2": {
+	"id": "2",
+	"display name": "Iscas de Peixe",
+	"fill value": 16
+  },
+  "3": {
+	"id": "3",
+	"display name": "Tropicalíssima",
+	"fill value": 16
+  },
+  "4": {
+	"id": "4",
+	"display name": "Restos de Churrasco",
+	"fill value": 16
+  },
+  "5": {
+	"id": "5",
+	"display name": "Gurjãozinho",
+	"fill value": 16
+  }
+}

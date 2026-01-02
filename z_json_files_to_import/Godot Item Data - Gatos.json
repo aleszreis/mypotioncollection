@@ -1,0 +1,44 @@
+{
+  "1": {
+	"id": "1",
+	"name": "Pescadeiro",
+	"accepted foods": "1, 2",
+	"base travel time": 6,
+	"food efficiency": 1
+  },
+  "2": {
+	"id": "2",
+	"name": "Surfista",
+	"accepted foods": "1, 3",
+	"base travel time": 12,
+	"food efficiency": 1
+  },
+  "3": {
+	"id": "3",
+	"name": "Comilão",
+	"accepted foods": "1, 2, 3, 4, 5",
+	"base travel time": 6,
+	"food efficiency": 4
+  },
+  "4": {
+	"id": "4",
+	"name": "Carnivoire",
+	"accepted foods": "1, 4, 5",
+	"base travel time": 9,
+	"food efficiency": 2
+  },
+  "5": {
+	"id": "5",
+	"name": "Garoto do Rancho",
+	"accepted foods": "1, 5",
+	"base travel time": 6,
+	"food efficiency": 2
+  },
+  "6": {
+	"id": "6",
+	"name": "Princesa",
+	"accepted foods": "2, 3, 4, 5",
+	"base travel time": 12,
+	"food efficiency": 1
+  }
+}

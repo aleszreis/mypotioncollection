@@ -1,0 +1,218 @@
+{
+  "1": {
+    "id": 1,
+    "display_name": "apple",
+    "icon": "res://.godot/imported/apple.png-9d56a0214dc231433701ee22681ef3ed.ctex",
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "2": {
+    "id": 2,
+    "display_name": "avocado",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 2,
+    "base_weight": 0.5,
+    "rules": null
+  },
+  "3": {
+    "id": 3,
+    "display_name": "banana",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "4": {
+    "id": 4,
+    "display_name": "blueberry",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "5": {
+    "id": 5,
+    "display_name": "carrot",
+    "icon": null,
+    "item_type": "Vegetal",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "6": {
+    "id": 6,
+    "display_name": "cherry",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "7": {
+    "id": 7,
+    "display_name": "coconut",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "8": {
+    "id": 8,
+    "display_name": "corn",
+    "icon": null,
+    "item_type": "Vegetal",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "9": {
+    "id": 9,
+    "display_name": "dragonfruit",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 3,
+    "base_weight": 0.25,
+    "rules": null
+  },
+  "10": {
+    "id": 10,
+    "display_name": "eggplant",
+    "icon": null,
+    "item_type": "Vegetal",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "11": {
+    "id": 11,
+    "display_name": "garlic",
+    "icon": null,
+    "item_type": "Especiaria",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "12": {
+    "id": 12,
+    "display_name": "ginger",
+    "icon": null,
+    "item_type": "Especiaria",
+    "rarity": 2,
+    "base_weight": 0.5,
+    "rules": null
+  },
+  "13": {
+    "id": 13,
+    "display_name": "grape",
+    "icon": "res://.godot/imported/grape.png-90723219027ef797fce9c78c235afe65.ctex",
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "14": {
+    "id": 14,
+    "display_name": "green bell pepper",
+    "icon": null,
+    "item_type": "Vegetal",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "15": {
+    "id": 15,
+    "display_name": "kiwi",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 2,
+    "base_weight": 0.5,
+    "rules": null
+  },
+  "16": {
+    "id": 16,
+    "display_name": "onion",
+    "icon": null,
+    "item_type": "Especiaria",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "17": {
+    "id": 17,
+    "display_name": "orange",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "18": {
+    "id": 18,
+    "display_name": "peach",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "19": {
+    "id": 19,
+    "display_name": "pear",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "20": {
+    "id": 20,
+    "display_name": "pineapple",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "21": {
+    "id": 21,
+    "display_name": "red bell pepper",
+    "icon": null,
+    "item_type": "Vegetal",
+    "rarity": 2,
+    "base_weight": 0.5,
+    "rules": null
+  },
+  "22": {
+    "id": 22,
+    "display_name": "tomato",
+    "icon": null,
+    "item_type": "Vegetal",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "23": {
+    "id": 23,
+    "display_name": "watermelon",
+    "icon": null,
+    "item_type": "Fruta",
+    "rarity": 1,
+    "base_weight": 0.75,
+    "rules": null
+  },
+  "24": {
+    "id": 24,
+    "display_name": "yellow bell pepper",
+    "icon": null,
+    "item_type": "Vegetal",
+    "rarity": 2,
+    "base_weight": 0.5,
+    "rules": null
+  }
+}

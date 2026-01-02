@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://dv8u28p64d1r8"]
+
+[ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://cenas/Main.gd" id="1_dbw6l"]
+[ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://data/ingredients/TESTBENCH.gd" id="1_paifj"]
+[ext_resource type="Texture2D" uid="uid://b57doq3nr5xfh" path="res://gatos/sprites/racao.png" id="7_yjiuj"]
+[ext_resource type="Script" uid="uid://c4xi766ls0ava" path="res://cenas/ItemSlotUI.gd" id="8_yjiuj"]
+[ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://tigelas/FoodAttractionSystem.gd" id="10_pclmd"]
+[ext_resource type="Resource" uid="uid://di1mqxa01rneh" path="res://data/ingredient_catalog.tres" id="11_p8qq1"]
+[ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://tigelas/FoodBowlManager.gd" id="12_wd510"]
+
+[node name="MainUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_paifj")
+inventory = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":null)
+
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CatContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="FillAll" type="Button" parent="HBoxContainer/CatContainer"]
+layout_mode = 2
+text = "Encher todas as tigelas"
+
+[node name="Row1" type="HBoxContainer" parent="HBoxContainer/CatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="FillBowl" type="Button" parent="HBoxContainer/CatContainer/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Encher tigela"
+icon = ExtResource("7_yjiuj")
+
+[node name="Label" type="Label" parent="HBoxContainer/CatContainer/Row1"]
+layout_mode = 2
+text = "00:00:00"
+
+[node name="CraftContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/CraftContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CreateItemButton" type="Button" parent="HBoxContainer/CraftContainer/CenterContainer"]
+layout_mode = 2
+text = "Caldeirão"
+
+[node name="InventoryContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InventoryGrid" type="GridContainer" parent="HBoxContainer/InventoryContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 5
+
+[node name="DEBUG ONLY" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemSlot" type="Button" parent="DEBUG ONLY"]
+visible = false
+layout_mode = 2
+offset_right = 44.0
+offset_bottom = 24.0
+script = ExtResource("8_yjiuj")
+
+[node name="Game" type="Node" parent="."]
+script = ExtResource("1_dbw6l")
+
+[node name="FoodAttractionSystem" type="Node" parent="Game" node_paths=PackedStringArray("inventory")]
+script = ExtResource("10_pclmd")
+inventory = NodePath("../Inventory")
+ingredient_catalog = ExtResource("11_p8qq1")
+
+[node name="FoodBowlManager" type="Node" parent="Game"]
+script = ExtResource("12_wd510")
+
+[node name="Inventory" type="Node" parent="Game"]
+
+[connection signal="pressed" from="HBoxContainer/CatContainer/Row1/FillBowl" to="." method="_create_debug_bowl"]
+[connection signal="pressed" from="HBoxContainer/CraftContainer/CenterContainer/CreateItemButton" to="." method="_on_create_pressed"]
