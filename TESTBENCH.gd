@@ -17,7 +17,7 @@ func _ready() -> void:
 	add_child(selector)
 	
 	selector.selection_changed.connect(_on_selection_changed)
-	SignalBus.item_acquired.connect(_update_inventory_ui)
+	SignalBus.changed_item.connect(_update_inventory_ui)
 	
 	_build_inventory_ui()
 
@@ -26,13 +26,20 @@ func _build_inventory_ui() -> void:
 		_update_inventory_ui(item['data'])
 
 func _update_inventory_ui(item: IngredientData) -> void:
-	if slots_by_item_id.get(item.id):
+	# Se item já existe e quantidade continua maior que 0
+	if slots_by_item_id.get(item.id) and inventory.get_item_count(item) > 0:
 		slots_by_item_id[item.id].update_quantity()
-		return
-	var slot := ui_slot_scene.instantiate()
-	item_grid.add_child(slot)
-	slot.setup_ui_slot(item, selector)
-	slots_by_item_id[item.id] = slot
+	
+	# Se item existia, mas quantidade agora é 0
+	elif slots_by_item_id.get(item.id) and inventory.get_item_count(item) <= 0:
+		slots_by_item_id[item.id].queue_free()
+	
+	# Se item não existia
+	elif not slots_by_item_id.get(item.id):
+		var slot := ui_slot_scene.instantiate()
+		item_grid.add_child(slot)
+		slot.setup_ui_slot(item, selector)
+		slots_by_item_id[item.id] = slot
 
 func _on_create_potion_pressed() -> void:
 	if not selector.has_selection():
@@ -47,10 +54,11 @@ func _on_create_potion_pressed() -> void:
 	var signature := SelectionNormalizer.make_signature(items)
 	var created := CreationRegistry.get_or_create(signature)
 	
+	inventory.remove_items(items)
 	inventory.add_created_item(created)
+	selector.clear()
 	
 	print("Criado:", created.id, "|", created.display_name)
-
 
 func _on_selection_changed(items: Array[IngredientData]) -> void:
 	var selected_ids := {}

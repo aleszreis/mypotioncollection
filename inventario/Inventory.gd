@@ -8,9 +8,9 @@ func add_base_item(item: IngredientData) -> void:
 		ingredients[item.id] = {"data": item, "count": 1}
 	else:
 		ingredients[item.id]['count'] += 1
-		
-	SignalBus.item_acquired.emit(item)
-	print(item.display_name + " adicionado ao inventário")
+	
+	SignalBus.changed_item.emit(item)
+	print("Inventory.gd: %s adicionado ao inventário" % item.display_name)
 
 func add_created_item(item: PotionData) -> void:
 	if potions.has(item):
@@ -18,4 +18,13 @@ func add_created_item(item: PotionData) -> void:
 	potions[item.id] = item
 
 func get_item_count(item: IngredientData):
-	return ingredients[item.id]['count']
+	return ingredients[item.id]['count'] if ingredients.get(item.id) else 0
+	
+func remove_items(items: Array[IngredientData]):
+	for item in items:
+		if get_item_count(item) > 1:
+			ingredients[item.id]['count'] -= 1
+		else:
+			ingredients.erase(item.id)
+		SignalBus.changed_item.emit(item)
+		print("Inventory.gd: %s removido do inventário" % item.display_name)

@@ -1,3 +1,3 @@
 extends Node
 
-signal item_acquired(item)
+signal changed_item(item)
