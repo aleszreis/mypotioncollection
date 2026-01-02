@@ -40,5 +40,19 @@
 	"accepted foods": "2, 3, 4, 5",
 	"base travel time": 12,
 	"food efficiency": 1
+  },
+  "7": {
+	"id": "7",
+	"name": "Flash",
+	"accepted foods": "1, 2, 3, 4, 5, 6",
+	"base travel time": 3,
+	"food efficiency": 2
+  },
+  "8": {
+	"id": "8",
+	"name": "Bachelor",
+	"accepted foods": "6",
+	"base travel time": 6,
+	"food efficiency": 2
   }
 }
