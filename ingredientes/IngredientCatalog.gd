@@ -12,7 +12,7 @@ func _populate_entries():
 		item_data.id = item.id
 		item_data.display_name = item.display_name
 		item_data.icon = load(item.icon)
-		item_data.item_type = item.item_type
+		item_data.item_type = ItemTypes.Ingredient[item.item_type.to_upper()]
 		item_data.rarity = item.rarity
 		
 		var entry = IngredientEntry.new()

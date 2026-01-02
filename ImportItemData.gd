@@ -4,6 +4,8 @@ extends Node
 @export var cats_data: Dictionary = {}
 @export var foods_data: Dictionary = {}
 
+@export var MOCK_ITEM_DATA_LIST: Array[IngredientData]
+
 var FOLDER_PATH = "res://z_json_files_to_import/Godot Item Data - "
 var ITEMS_FILE_NAME = "ingredientes.json"
 var CATS_FILE_NAME = "gatos.json"
@@ -27,7 +29,7 @@ func _format_items_data():
 	# Format ingredients data (IngredientCatalog will properly format as IngredientEntry and store IngredientData later)
 	for item_id in ingredients_data.keys():
 		ingredients_data[item_id]['id'] = str(item_id)
-		ingredients_data[item_id]['icon'] = "res://ingredientes/sprites/" + ingredients_data[item_id]['display_name'] + ".png"
+		ingredients_data[item_id]['icon'] = "res://ingredientes/sprites/" + ingredients_data[item_id]['icon_name'] + ".png"
 		ingredients_data[item_id]['rules'] = [] if ingredients_data[item_id]['rules'] == null else ingredients_data[item_id]['rules']
 
 func _format_cats_data():

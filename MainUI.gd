@@ -52,7 +52,7 @@ func _on_create_potion_pressed() -> void:
 		return
 	
 	var signature := SelectionNormalizer.make_signature(items)
-	var potion := CreationRegistry.get_or_create(signature)
+	var potion := CreationRegistry.get_or_create(signature, items)
 	
 	inventory.remove_items(items)
 	inventory.add_created_item(potion)
