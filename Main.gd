@@ -36,7 +36,7 @@ func _spawn_initial_cats() -> void:
 # --------------------------------------------------
 
 func _create_debug_bowl() -> void:
-	print("Criando tigela...")
+	print("Main.gd: Criando tigela...")
 	bowl_manager.add_bowl()
 	bowl_manager.add_bowl()
 	bowl_manager.add_bowl()
