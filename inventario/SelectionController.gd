@@ -3,30 +3,32 @@ extends Node
 
 signal selection_changed(selected_items: Array[IngredientData])
 
-var _selected: Dictionary = {} # id -> BaseItemData
+var _selected: Array[IngredientData] = []
 
-func toggle_item(item: IngredientData) -> void:
-	if _selected.has(item.id):
-		_selected.erase(item.id)
-	else:
-		_selected[item.id] = item
+func move_item(item: IngredientData) -> void:
+	_selected.append(item)
+	Inventory.remove_items([item])
 	
 	_emit_change()
 
 func clear() -> void:
 	_selected.clear()
-	_emit_change()
 
 func get_selected_items() -> Array[IngredientData]:
-	var result: Array[IngredientData] = []
-	
-	for item in _selected.values():
-		result.append(item)
-	
-	return result
+	return _selected
+	#var result: Array[IngredientData] = []
+	#
+	#for item in _selected.values():
+		#result.append(item)
+	#
+	#return result
 
 func has_selection() -> bool:
 	return not _selected.is_empty()
 	
 func _emit_change() -> void:
-	selection_changed.emit(get_selected_items())
+	selection_changed.emit(_selected[-1])
+
+func remove_from_selection(item: IngredientData):
+	var item_index = _selected.find(item)
+	_selected.pop_at(item_index)

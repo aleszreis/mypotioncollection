@@ -5,11 +5,15 @@ var inventory := Inventory
 @onready var item_grid: GridContainer = $HBoxContainer/InventoryContainer/IngredientGrid
 @onready var create_button: TextureButton = $HBoxContainer/CraftContainer/CenterContainer/CreateItemButton
 @onready var bowls: VBoxContainer = $HBoxContainer/BowlContainer
+@onready var selected_grid: GridContainer = $HBoxContainer/CraftContainer/SelectedIngredientsGrid
 
 @onready var bowl_manager: FoodBowlManager = $Game/FoodBowlManager
 
-var ui_slot_scene = preload("res://cenas/inv_slot_ui.tscn")
-var slots_by_item_id: Dictionary = {}
+var inventory_slot_scene = preload("res://cenas/inv_slot_ui.tscn")
+var inventory_slots_by_item: Dictionary = {}
+
+var selection_slot_scene = preload("res://cenas/selec_slot_ui.tscn")
+var selection_slots_by_item: Dictionary = {}
 
 var selector := SelectionController.new()
 
@@ -27,19 +31,19 @@ func _build_inventory_ui() -> void:
 
 func _update_inventory_ui(item: IngredientData) -> void:
 	# Se item já existe e quantidade continua maior que 0, atualiza label
-	if slots_by_item_id.get(item.id) and inventory.get_item_count(item) > 0:
-		slots_by_item_id[item.id].update_quantity()
+	if inventory_slots_by_item.get(item.id) and inventory.get_item_count(item) > 0:
+		inventory_slots_by_item[item.id].update_quantity()
 	
 	# Se item existia, mas quantidade agora é 0, remove slot
-	elif slots_by_item_id.get(item.id) and inventory.get_item_count(item) <= 0:
-		slots_by_item_id[item.id].queue_free()
+	elif inventory_slots_by_item.get(item.id) and inventory.get_item_count(item) <= 0:
+		inventory_slots_by_item[item.id].queue_free()
 	
 	# Se item não existia, adiciona slot
-	elif not slots_by_item_id.get(item.id):
-		var slot := ui_slot_scene.instantiate()
+	elif not inventory_slots_by_item.get(item.id):
+		var slot := inventory_slot_scene.instantiate()
 		item_grid.add_child(slot)
 		slot.setup_ui_slot(item, selector)
-		slots_by_item_id[item.id] = slot
+		inventory_slots_by_item[item.id] = slot
 
 func _on_create_potion_pressed() -> void:
 	if not selector.has_selection():
@@ -54,16 +58,26 @@ func _on_create_potion_pressed() -> void:
 	var signature := SelectionNormalizer.make_signature(items)
 	var potion := CreationRegistry.get_or_create(signature, items)
 	
-	inventory.remove_items(items)
 	inventory.add_created_item(potion)
+	_clear_selected_slots_ui()
 	selector.clear()
 	
 	print("MainUI.gd: Criado:", potion.id, "|", potion.display_name)
 
-func _on_selection_changed(items: Array[IngredientData]) -> void:
-	var selected_ids := {}
-	for i in items:
-		selected_ids[i.id] = true
+func _on_selection_changed(item: IngredientData) -> void:
+	# Cria slot
+	var slot := selection_slot_scene.instantiate()
+	selected_grid.add_child(slot)
+	slot.setup_ui_slot(item, selector)
 	
-	for slot in item_grid.get_children():
-		slot.button_pressed = selected_ids.has(slot.item_data.id)
+	# Outros#####
+	#var selected_ids := {}
+	#for i in items:
+		#selected_ids[i.id] = true
+	#
+	#for slot in item_grid.get_children():
+		#slot.button_pressed = selected_ids.has(slot.item_data.id)
+
+func _clear_selected_slots_ui():
+	for s in selected_grid.get_children():
+		s.queue_free()
