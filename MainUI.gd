@@ -3,7 +3,7 @@ extends Control
 var inventory := Inventory
 
 @onready var item_grid: GridContainer = $HBoxContainer/InventoryContainer/IngredientGrid
-@onready var create_button: Button = $HBoxContainer/CraftContainer/CenterContainer/CreateItemButton
+@onready var create_button: TextureButton = $HBoxContainer/CraftContainer/CenterContainer/CreateItemButton
 @onready var bowls: VBoxContainer = $HBoxContainer/BowlContainer
 
 @onready var bowl_manager: FoodBowlManager = $Game/FoodBowlManager

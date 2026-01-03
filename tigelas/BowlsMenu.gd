@@ -14,6 +14,6 @@ func _on_bowl_button_pressed(bowl: Button):
 	bowl_manager.set_active_bowl(index)
 	food_selection.open()
 
-func _on_bowl_state_changed(bowl_index: int, food_icon: Resource = load("res://tigelas/sprites/empty.png")):
+func _on_bowl_state_changed(bowl_index: int, food_icon: Resource = load("res://tigelas/sprites/empty.svg")):
 	var bowl_button = get_child(bowl_index)
 	bowl_button.icon = food_icon

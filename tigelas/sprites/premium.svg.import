@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck02jm3mvxctx"
-path="res://.godot/imported/bbq.png-0956568a27ae40a8696986f02ef0eb91.ctex"
+uid="uid://d1d3alyqlerbr"
+path="res://.godot/imported/premium.svg-b2be49315ccdb097a15371ae40978002.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tigelas/sprites/bbq.png"
-dest_files=["res://.godot/imported/bbq.png-0956568a27ae40a8696986f02ef0eb91.ctex"]
+source_file="res://tigelas/sprites/premium.svg"
+dest_files=["res://.godot/imported/premium.svg-b2be49315ccdb097a15371ae40978002.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

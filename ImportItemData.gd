@@ -19,9 +19,8 @@ func _ready():
 func _parse_to_json(file_name):
 	var file = FileAccess.open(FOLDER_PATH + file_name, FileAccess.READ)
 	var data_as_text = file.get_as_text()
-	var json = JSON.new()
 	file.close()
-	return json.parse_string(data_as_text)
+	return JSON.parse_string(data_as_text)
 
 func _format_items_data():
 	ingredients_data = _parse_to_json(ITEMS_FILE_NAME)
@@ -55,5 +54,5 @@ func _format_food_data():
 		food_data.id = data.id
 		food_data.display_name = data.display_name
 		food_data.fill_value = data.fill_value
-		food_data.icon = load("res://tigelas/sprites/%s.png" % data.icon_name)
+		food_data.icon = load("res://tigelas/sprites/%s.svg" % data.icon_name)
 		foods_data[data.id] = food_data

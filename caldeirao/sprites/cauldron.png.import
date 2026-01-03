@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kdllyeyq7q4a"
-path="res://.godot/imported/empty.png-01169222c2c943667d0f61a549ade770.ctex"
+uid="uid://bhv7gvsjjvmm3"
+path="res://.godot/imported/cauldron.png-a95e834f7945b1c5db0cc7a94182e510.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tigelas/sprites/empty.png"
-dest_files=["res://.godot/imported/empty.png-01169222c2c943667d0f61a549ade770.ctex"]
+source_file="res://caldeirao/sprites/cauldron.png"
+dest_files=["res://.godot/imported/cauldron.png-a95e834f7945b1c5db0cc7a94182e510.ctex"]
 
 [params]
 
