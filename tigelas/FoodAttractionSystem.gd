@@ -57,3 +57,6 @@ func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void
 	var food_cost := int(1 * cat.data.food_efficiency)
 	bowl.remaining_amount -= food_cost
 	print("FoodAttractionSystem: ração remaining " + str(bowl.remaining_amount))
+	if bowl.remaining_amount <= 0:
+		var bowl_index = bowls.find(bowl)
+		SignalBus.bowl_state_changed.emit(bowl_index)

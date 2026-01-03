@@ -40,6 +40,7 @@ func _create_debug_bowl() -> void:
 	bowl_manager.add_bowl()
 	bowl_manager.add_bowl()
 	bowl_manager.add_bowl()
+	bowl_manager.add_bowl()
 	food_system.bowls = bowl_manager.bowls
 
 # --------------------------------------------------

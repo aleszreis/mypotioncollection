@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
 [ext_resource type="Script" uid="uid://bw8or3ejgy86s" path="res://tigelas/BowlsMenu.gd" id="2_dbw6l"]
+[ext_resource type="Texture2D" uid="uid://kdllyeyq7q4a" path="res://tigelas/sprites/empty.png" id="3_dbw6l"]
 [ext_resource type="Script" uid="uid://dm71y0mrc0pm0" path="res://tigelas/FoodSelectionUI.gd" id="4_dbw6l"]
-[ext_resource type="Texture2D" uid="uid://b57doq3nr5xfh" path="res://gatos/sprites/racao.png" id="7_yjiuj"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://tigelas/FoodAttractionSystem.gd" id="10_pclmd"]
 [ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://tigelas/FoodBowlManager.gd" id="12_wd510"]
 
@@ -35,30 +35,43 @@ script = ExtResource("2_dbw6l")
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Encher tigela"
-icon = ExtResource("7_yjiuj")
+icon = ExtResource("3_dbw6l")
 metadata/index = 0
 
 [node name="FillBowl2" type="Button" parent="HBoxContainer/BowlContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Encher tigela"
-icon = ExtResource("7_yjiuj")
-metadata/index = 1
+icon = ExtResource("3_dbw6l")
+metadata/index = 0
 
 [node name="FillBowl3" type="Button" parent="HBoxContainer/BowlContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Encher tigela"
-icon = ExtResource("7_yjiuj")
-metadata/index = 2
+icon = ExtResource("3_dbw6l")
+metadata/index = 0
+
+[node name="FillBowl4" type="Button" parent="HBoxContainer/BowlContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Encher tigela"
+icon = ExtResource("3_dbw6l")
+metadata/index = 0
 
 [node name="CraftContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SelectedIngredientsGrid" type="GridContainer" parent="HBoxContainer/CraftContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 10
+
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/CraftContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 
 [node name="CreateItemButton" type="Button" parent="HBoxContainer/CraftContainer/CenterContainer"]
 layout_mode = 2
@@ -88,43 +101,44 @@ layout_mode = 2
 size_flags_vertical = 3
 columns = 10
 
-[node name="FoodOptionsMenu" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 0
-size_flags_horizontal = 0
-size_flags_vertical = 4
-script = ExtResource("4_dbw6l")
-
-[node name="Panel" type="Panel" parent="FoodOptionsMenu"]
-custom_minimum_size = Vector2(640, 256)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 236.0
-offset_top = 176.0
-offset_right = 876.0
-offset_bottom = 432.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FoodList" type="HBoxContainer" parent="FoodOptionsMenu/Panel"]
+[node name="FoodOptionsMenu" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+script = ExtResource("4_dbw6l")
+
+[node name="Panel" type="Panel" parent="FoodOptionsMenu"]
+custom_minimum_size = Vector2(640, 256)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="FoodOptionsMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FoodList" type="HBoxContainer" parent="FoodOptionsMenu/Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
 
 [node name="Button" type="Button" parent="FoodOptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 571.0
-offset_top = 217.0
-offset_right = 631.0
-offset_bottom = 248.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 246.0
+offset_top = 89.0
+offset_right = 306.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Cancel"
 
 [node name="Game" type="Node" parent="."]

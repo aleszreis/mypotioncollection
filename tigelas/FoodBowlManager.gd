@@ -26,5 +26,6 @@ func fill_bowl(food_type: FoodType):
 	bowls[active_bowl_index].food_type = food_type
 	bowls[active_bowl_index].remaining_amount = food_type.fill_value
 	print("FoodBowlManager: Tigela %s preenchida com comida %s" % [active_bowl_index, food_type.display_name])
+	SignalBus.bowl_state_changed.emit(active_bowl_index, food_type.icon)
 	active_bowl_index = -1
 	food_modal.close()

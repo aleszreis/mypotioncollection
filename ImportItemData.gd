@@ -53,6 +53,7 @@ func _format_food_data():
 	for data in food_data_as_json.values():
 		var food_data = FoodType.new()
 		food_data.id = data.id
-		food_data.display_name = data['display name']
-		food_data.fill_value = data['fill value']
+		food_data.display_name = data.display_name
+		food_data.fill_value = data.fill_value
+		food_data.icon = load("res://tigelas/sprites/%s.png" % data.icon_name)
 		foods_data[data.id] = food_data
