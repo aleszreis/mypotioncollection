@@ -6,7 +6,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "apple"
   },
   "2": {
@@ -16,7 +16,7 @@
 	"item_type": "Fruta",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "avocado"
   },
   "3": {
@@ -26,7 +26,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "banana"
   },
   "4": {
@@ -36,7 +36,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "blueberry"
   },
   "5": {
@@ -46,7 +46,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "carrot"
   },
   "6": {
@@ -56,17 +56,17 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cherry"
   },
   "7": {
 	"id": "7",
-	"display_name": "Coco",
+	"display_name": "Côco",
 	"icon": null,
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "coconut"
   },
   "8": {
@@ -76,7 +76,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "corn"
   },
   "9": {
@@ -86,7 +86,7 @@
 	"item_type": "Fruta",
 	"rarity": 3,
 	"base_weight": 0.5,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "dragonfruit"
   },
   "10": {
@@ -96,7 +96,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "eggplant"
   },
   "11": {
@@ -106,7 +106,7 @@
 	"item_type": "Especiaria",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "garlic"
   },
   "12": {
@@ -116,7 +116,7 @@
 	"item_type": "Especiaria",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "ginger"
   },
   "13": {
@@ -126,7 +126,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "grape"
   },
   "14": {
@@ -136,7 +136,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "green bell pepper"
   },
   "15": {
@@ -146,7 +146,7 @@
 	"item_type": "Fruta",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "kiwi"
   },
   "16": {
@@ -156,7 +156,7 @@
 	"item_type": "Especiaria",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "onion"
   },
   "17": {
@@ -166,7 +166,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "orange"
   },
   "18": {
@@ -176,7 +176,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "peach"
   },
   "19": {
@@ -186,7 +186,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "pear"
   },
   "20": {
@@ -196,7 +196,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "pineapple"
   },
   "21": {
@@ -206,7 +206,7 @@
 	"item_type": "Vegetal",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "red bell pepper"
   },
   "22": {
@@ -216,7 +216,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "tomato"
   },
   "23": {
@@ -226,7 +226,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "watermelon"
   },
   "24": {
@@ -236,7 +236,7 @@
 	"item_type": "Vegetal",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "yellow bell pepper"
   },
   "25": {
@@ -246,7 +246,7 @@
 	"item_type": "Mineral",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "stone"
   },
   "26": {
@@ -256,7 +256,7 @@
 	"item_type": "Mineral",
 	"rarity": 3,
 	"base_weight": 0.5,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "gold"
   },
   "27": {
@@ -266,7 +266,7 @@
 	"item_type": "Mineral",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "silver"
   },
   "28": {
@@ -276,7 +276,7 @@
 	"item_type": "Mineral",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "copper"
   },
   "29": {
@@ -286,7 +286,7 @@
 	"item_type": "Mineral",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "mercury"
   },
   "30": {
@@ -296,7 +296,7 @@
 	"item_type": "Mineral",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "coal"
   },
   "31": {
@@ -306,7 +306,7 @@
 	"item_type": "Liquido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "water"
   },
   "32": {
@@ -316,7 +316,7 @@
 	"item_type": "Liquido",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "oil"
   },
   "33": {
@@ -326,7 +326,7 @@
 	"item_type": "Gema",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "jade"
   },
   "34": {
@@ -336,7 +336,7 @@
 	"item_type": "Gema",
 	"rarity": 3,
 	"base_weight": 0.5,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "diamond"
   },
   "35": {
@@ -346,7 +346,7 @@
 	"item_type": "Gema",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "emerald"
   },
   "36": {
@@ -356,7 +356,7 @@
 	"item_type": "Gema",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "topaz"
   },
   "37": {
@@ -366,7 +366,7 @@
 	"item_type": "Gema",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "quartz"
   },
   "38": {
@@ -376,7 +376,7 @@
 	"item_type": "Animal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "pig"
   },
   "39": {
@@ -386,7 +386,7 @@
 	"item_type": "Animal",
 	"rarity": 3,
 	"base_weight": 0.5,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "horse"
   },
   "40": {
@@ -396,7 +396,7 @@
 	"item_type": "Animal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cow"
   },
   "41": {
@@ -406,7 +406,7 @@
 	"item_type": "Animal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "chicken"
   },
   "42": {
@@ -416,7 +416,7 @@
 	"item_type": "Liquido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "coffee"
   },
   "43": {
@@ -426,7 +426,7 @@
 	"item_type": "Especiaria",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cinnamon"
   },
   "44": {
@@ -436,7 +436,7 @@
 	"item_type": "Animal",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "fish"
   },
   "45": {
@@ -446,7 +446,7 @@
 	"item_type": "Liquido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "milk"
   },
   "46": {
@@ -456,7 +456,7 @@
 	"item_type": "Liquido",
 	"rarity": 3,
 	"base_weight": 0.5,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "ice"
   },
   "47": {
@@ -466,7 +466,7 @@
 	"item_type": "Semente",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "pine cone"
   },
   "48": {
@@ -476,7 +476,7 @@
 	"item_type": "Produzido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "pie"
   },
   "49": {
@@ -486,7 +486,7 @@
 	"item_type": "Objeto",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cards"
   },
   "50": {
@@ -496,7 +496,7 @@
 	"item_type": "Produzido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "pizza"
   },
   "51": {
@@ -506,7 +506,7 @@
 	"item_type": "Flor",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "rose"
   },
   "52": {
@@ -516,7 +516,7 @@
 	"item_type": "Especiaria",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "salt"
   },
   "53": {
@@ -526,7 +526,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "strawberry"
   },
   "54": {
@@ -536,7 +536,7 @@
 	"item_type": "Flor",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "sunflower"
   },
   "55": {
@@ -546,7 +546,7 @@
 	"item_type": "Semente",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "walnut"
   },
   "56": {
@@ -556,7 +556,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "wheat"
   },
   "57": {
@@ -566,7 +566,7 @@
 	"item_type": "Liquido",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "wine"
   },
   "58": {
@@ -576,7 +576,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "pumpkin"
   },
   "59": {
@@ -586,7 +586,7 @@
 	"item_type": "Especiaria",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "pepper"
   },
   "60": {
@@ -596,7 +596,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "lemon"
   },
   "61": {
@@ -606,7 +606,7 @@
 	"item_type": "Fruta",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "mango"
   },
   "62": {
@@ -616,7 +616,7 @@
 	"item_type": "Animal",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "lobster"
   },
   "63": {
@@ -626,7 +626,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cabbage"
   },
   "64": {
@@ -636,7 +636,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "lettuce"
   },
   "65": {
@@ -646,7 +646,7 @@
 	"item_type": "Produzido",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "ice cream"
   },
   "66": {
@@ -656,7 +656,7 @@
 	"item_type": "Especiaria",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "honey"
   },
   "67": {
@@ -666,7 +666,7 @@
 	"item_type": "Produzido",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "hamburguer"
   },
   "68": {
@@ -676,7 +676,7 @@
 	"item_type": "Animal",
 	"rarity": 3,
 	"base_weight": 0.5,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "egg"
   },
   "69": {
@@ -686,7 +686,7 @@
 	"item_type": "Produzido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "donut"
   },
   "70": {
@@ -696,7 +696,7 @@
 	"item_type": "Produzido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cupcake"
   },
   "71": {
@@ -706,7 +706,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cucumber"
   },
   "72": {
@@ -716,7 +716,7 @@
 	"item_type": "Animal",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "crab"
   },
   "73": {
@@ -726,7 +726,7 @@
 	"item_type": "Produzido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cookie"
   },
   "74": {
@@ -736,7 +736,7 @@
 	"item_type": "Produzido",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "chocolate"
   },
   "75": {
@@ -746,7 +746,7 @@
 	"item_type": "Animal",
 	"rarity": 2,
 	"base_weight": 0.75,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cheese"
   },
   "76": {
@@ -756,7 +756,7 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "cactus"
   },
   "77": {
@@ -766,7 +766,7 @@
 	"item_type": "Produzido",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "bread"
   },
   "78": {
@@ -776,7 +776,7 @@
 	"item_type": "Objeto",
 	"rarity": 4,
 	"base_weight": 0.25,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "bomb"
   },
   "79": {
@@ -786,7 +786,7 @@
 	"item_type": "Vegetal",
 	"rarity": 3,
 	"base_weight": 0.5,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "bok choi"
   },
   "80": {
@@ -796,7 +796,17 @@
 	"item_type": "Vegetal",
 	"rarity": 1,
 	"base_weight": 1,
-	"rules": null,
+	"rules": "diminishing_rule",
 	"icon_name": "broccoli"
+  },
+  "81": {
+	"id": "81",
+	"display_name": "Lasanha",
+	"icon": null,
+	"item_type": "Produzido",
+	"rarity": 3,
+	"base_weight": 0.5,
+	"rules": "diminishing_rule",
+	"icon_name": "lasanha"
   }
 }

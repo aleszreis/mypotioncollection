@@ -10,7 +10,6 @@ func add_base_item(item: IngredientData) -> void:
 		ingredients[item.id]['count'] += 1
 	
 	SignalBus.changed_item.emit(item)
-	print("Inventory.gd: %s adicionado ao inventário" % item.display_name)
 
 func add_created_item(item: PotionData) -> void:
 	if potions.has(item):
@@ -27,4 +26,3 @@ func remove_items(items: Array[IngredientData]):
 		else:
 			ingredients.erase(item.id)
 		SignalBus.changed_item.emit(item)
-		print("Inventory.gd: %s removido do inventário" % item.display_name)

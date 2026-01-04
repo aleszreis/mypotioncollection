@@ -34,9 +34,6 @@ func _schedule_cat(cat: CatInstance, bowl: FoodBowlState, now: float) -> void:
 	cat.target_bowl = bowl
 	bowl.has_cat_assigned = true
 
-	print("FoodAttractionSystem: %s está a caminho, chega em %s"
-		% [cat.data.name, cat.data.base_travel_time])
-
 func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void:
 	var context := {
 		"cat": cat,
@@ -51,12 +48,11 @@ func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void
 	bowl.has_cat_assigned = false
 	
 	var ingredient := ingredient_catalog.roll_ingredient(context, rng)
-	print("FoodAttractionSystem: adquirido o item " + ingredient.display_name)
+	print("FoodAttractionSystem: <%s> trouxe o item <%s>" % [cat.data.name, ingredient.display_name])
 	inventory.add_base_item(ingredient)
 	
 	var food_cost := int(1 * cat.data.food_efficiency)
 	bowl.remaining_amount -= food_cost
-	print("FoodAttractionSystem: ração remaining " + str(bowl.remaining_amount))
 	if bowl.remaining_amount <= 0:
 		var bowl_index = bowls.find(bowl)
 		SignalBus.bowl_state_changed.emit(bowl_index)

@@ -7,20 +7,7 @@ func _ready():
 	_populate_entries()
 	
 func _populate_entries():
-	for item in ImportItemData.ingredients_data.values():
-		var item_data = IngredientData.new()
-		item_data.id = item.id
-		item_data.display_name = item.display_name
-		item_data.icon = load(item.icon)
-		item_data.item_type = ItemTypes.Ingredient[item.item_type.to_upper()]
-		item_data.rarity = item.rarity
-		
-		var entry = IngredientEntry.new()
-		entry.ingredient = item_data
-		entry.base_weight = item.base_weight
-		#entry.rules = [] # TODO: formatar as regras quando forem implementadas
-		
-		entries.append(entry)
+	entries = ImportItemData.catalog_data
 
 func roll_ingredient(context: Dictionary, rng: RandomNumberGenerator) -> IngredientData:
 	var pool: Array[IngredientEntry] = []
@@ -65,12 +52,15 @@ func _weighted_pick(
 
 func _passes_rules(entry: IngredientEntry, context: Dictionary) -> bool:
 	for rule in entry.rules:
-		if not rule.is_available(context):
+		if not rule.is_available(context, entry):
 			return false
 	return true
 
 func _apply_modifiers(entry: IngredientEntry, context: Dictionary) -> float:
 	var result := 1.0
 	for rule in entry.rules:
-		result *= rule.weight_modifier(context)
+		result *= rule.weight_modifier(context, entry)
+	
+	for rule in context.cat_data.rules:
+		result *= rule.weight_modifier(context, entry)
 	return result

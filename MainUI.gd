@@ -62,7 +62,7 @@ func _on_create_potion_pressed() -> void:
 	_clear_selected_slots_ui()
 	selector.clear()
 	
-	print("MainUI.gd: Criado:", potion.id, "|", potion.display_name)
+	print("MainUI.gd: Criado:", potion.id, " | ", potion.display_name)
 
 func _on_selection_changed(item: IngredientData) -> void:
 	# Cria slot

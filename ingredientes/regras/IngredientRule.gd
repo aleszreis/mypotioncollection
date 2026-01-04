@@ -2,8 +2,8 @@
 class_name IngredientRule
 extends Resource
 
-func is_available(context: Dictionary) -> bool:
+func is_available(context: Dictionary, entry: IngredientEntry) -> bool:
 	return true
 
-func weight_modifier(context: Dictionary) -> float:
+func weight_modifier(context: Dictionary, entry: IngredientEntry) -> float:
 	return 1.0

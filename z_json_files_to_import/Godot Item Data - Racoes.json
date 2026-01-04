@@ -1,38 +1,38 @@
 {
   "1": {
-    "id": "1",
-    "display_name": "Ração Comum Grande",
-    "fill_value": 32,
-    "icon_name": "common"
+	"id": "1",
+	"display_name": "Ração Comum Grande",
+	"fill_value": 32,
+	"icon_name": "common"
   },
   "2": {
-    "id": "2",
-    "display_name": "Iscas de Peixe",
-    "fill_value": 16,
-    "icon_name": "fish"
+	"id": "2",
+	"display_name": "Iscas de Peixe",
+	"fill_value": 16,
+	"icon_name": "fish"
   },
   "3": {
-    "id": "3",
-    "display_name": "Tropicalíssima",
-    "fill_value": 16,
-    "icon_name": "tropical"
+	"id": "3",
+	"display_name": "Tropicalíssima",
+	"fill_value": 16,
+	"icon_name": "tropical"
   },
   "4": {
-    "id": "4",
-    "display_name": "Restos de Churrasco",
-    "fill_value": 16,
-    "icon_name": "bbq"
+	"id": "4",
+	"display_name": "Restos de Churrasco",
+	"fill_value": 16,
+	"icon_name": "bbq"
   },
   "5": {
-    "id": "5",
-    "display_name": "Gurjãozinho",
-    "fill_value": 16,
-    "icon_name": "chicken"
+	"id": "5",
+	"display_name": "Gurjãozinho",
+	"fill_value": 16,
+	"icon_name": "chicken"
   },
   "6": {
-    "id": "6",
-    "display_name": "Premium",
-    "fill_value": 12,
-    "icon_name": "premium"
+	"id": "6",
+	"display_name": "Premium",
+	"fill_value": 12,
+	"icon_name": "premium"
   }
 }
