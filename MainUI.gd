@@ -62,8 +62,9 @@ func _on_create_potion_pressed() -> void:
 	selector.clear()
 	
 	# TODO: REMOVE LATER - DEBUG ONLY
-	$HBoxContainer/LeftSideColumn/Panel/CenterContainer/VBoxContainer/Label2.text = potion.display_name
-	
+	$HBoxContainer/LeftSideColumn/VBoxContainer/IntroLabel.text = "Você criou..."
+	$HBoxContainer/LeftSideColumn/VBoxContainer/NameLabel.text = potion.display_name
+
 	print("MainUI.gd: Criado:", potion.id, " | ", potion.display_name)
 
 func _on_selection_changed(item: IngredientData) -> void:
@@ -72,14 +73,20 @@ func _on_selection_changed(item: IngredientData) -> void:
 	selected_grid.add_child(slot)
 	slot.setup_ui_slot(item, selector)
 	
-	# Outros#####
-	#var selected_ids := {}
-	#for i in items:
-		#selected_ids[i.id] = true
-	#
-	#for slot in item_grid.get_children():
-		#slot.button_pressed = selected_ids.has(slot.item_data.id)
+	# Atualiza menu lateral
+	var items := selector.get_selected_items()
+	var signature := SelectionNormalizer.make_signature(items)
+	var potion = CreationRegistry.potion_is_known(signature)
+	# TODO: REMOVE LATER - DEBUG ONLY
+	$HBoxContainer/LeftSideColumn/VBoxContainer/IntroLabel.text = "Você está criando..."
+	if potion:
+		$HBoxContainer/LeftSideColumn/VBoxContainer/NameLabel.text = potion.display_name
+	else:
+		$HBoxContainer/LeftSideColumn/VBoxContainer/NameLabel.text = "uma mistura desconhecida!"
 
 func _clear_selected_slots_ui():
 	for s in selected_grid.get_children():
 		s.queue_free()
+	# TODO: REMOVE LATER - DEBUG ONLY
+	$HBoxContainer/LeftSideColumn/VBoxContainer/IntroLabel.text = "Nada sendo criado por enquanto..."
+	$HBoxContainer/LeftSideColumn/VBoxContainer/NameLabel.text = ""

@@ -12,3 +12,6 @@ func get_or_create(signature: String, ingredients: Array[IngredientData]) -> Pot
 	var item := _generator.generate_item(signature, potion_name)
 	_registry[signature] = item
 	return item
+
+func potion_is_known(signature: String) -> PotionData:
+	return _registry.get(signature)

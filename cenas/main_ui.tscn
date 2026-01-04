@@ -34,19 +34,10 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 15
 script = ExtResource("2_dbw6l")
 
-[node name="CreatedInfoCenter" type="CenterContainer" parent="HBoxContainer/LeftSideColumn"]
+[node name="Control" type="Control" parent="HBoxContainer/LeftSideColumn"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftSideColumn/CreatedInfoCenter"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/LeftSideColumn/CreatedInfoCenter/VBoxContainer"]
-layout_mode = 2
-text = "Você criou..."
-
-[node name="Label2" type="Label" parent="HBoxContainer/LeftSideColumn/CreatedInfoCenter/VBoxContainer"]
-layout_mode = 2
+size_flags_stretch_ratio = 0.2
 
 [node name="BowlsContainer" type="VBoxContainer" parent="HBoxContainer/LeftSideColumn"]
 layout_mode = 2
@@ -83,6 +74,28 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("3_dbw6l")
 stretch_mode = 5
 metadata/index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftSideColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="IntroLabel" type="Label" parent="HBoxContainer/LeftSideColumn/VBoxContainer"]
+layout_mode = 2
+text = "Nada sendo criado por enquanto..."
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/LeftSideColumn/VBoxContainer"]
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CenterSprite" type="CenterContainer" parent="HBoxContainer/LeftSideColumn/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/LeftSideColumn/VBoxContainer/CenterSprite"]
+layout_mode = 2
 
 [node name="CraftContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
