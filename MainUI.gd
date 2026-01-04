@@ -2,7 +2,7 @@ extends Control
 
 var inventory := Inventory
 
-@onready var item_grid: GridContainer = $HBoxContainer/InventoryContainer/IngredientGrid
+@onready var item_grid = $HBoxContainer/InventoryContainer/IngredientGrid
 @onready var create_button: TextureButton = $HBoxContainer/CraftContainer/CenterCauldron/CreateItemButton
 @onready var bowls: VBoxContainer = $HBoxContainer/LeftSideColumn/BowlsContainer
 @onready var selected_grid = $HBoxContainer/CraftContainer/CenterSelected/SelectedIngredientsGrid
@@ -51,6 +51,8 @@ func _on_create_potion_pressed() -> void:
 		return
 	
 	var items := selector.get_selected_items()
+	var special_items = items.filter(func(n): return n.item_type == ItemTypes.Ingredient.ESPECIAL)
+	items = special_items if special_items.size() > 0 else items
 	
 	var signature := SelectionNormalizer.make_signature(items)
 	var potion := CreationRegistry.get_or_create(signature, items)
