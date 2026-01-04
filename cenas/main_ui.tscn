@@ -28,55 +28,82 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BowlContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="LeftSideColumn" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 script = ExtResource("2_dbw6l")
 
-[node name="FillBowl" type="Button" parent="HBoxContainer/BowlContainer"]
+[node name="BowlsContainer" type="VBoxContainer" parent="HBoxContainer/LeftSideColumn"]
+layout_mode = 2
+
+[node name="FillBowl" type="Button" parent="HBoxContainer/LeftSideColumn/BowlsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Encher tigela"
 icon = ExtResource("3_dbw6l")
 metadata/index = 0
 
-[node name="FillBowl2" type="Button" parent="HBoxContainer/BowlContainer"]
+[node name="FillBowl2" type="Button" parent="HBoxContainer/LeftSideColumn/BowlsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Encher tigela"
 icon = ExtResource("3_dbw6l")
 metadata/index = 0
 
-[node name="FillBowl3" type="Button" parent="HBoxContainer/BowlContainer"]
+[node name="FillBowl3" type="Button" parent="HBoxContainer/LeftSideColumn/BowlsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Encher tigela"
 icon = ExtResource("3_dbw6l")
 metadata/index = 0
 
-[node name="FillBowl4" type="Button" parent="HBoxContainer/BowlContainer"]
+[node name="FillBowl4" type="Button" parent="HBoxContainer/LeftSideColumn/BowlsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = " Encher tigela"
 icon = ExtResource("3_dbw6l")
 metadata/index = 0
+
+[node name="Panel" type="Panel" parent="HBoxContainer/LeftSideColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/LeftSideColumn/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftSideColumn/Panel/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftSideColumn/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Você criou..."
+
+[node name="Label2" type="Label" parent="HBoxContainer/LeftSideColumn/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="CraftContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SelectedIngredientsGrid" type="GridContainer" parent="HBoxContainer/CraftContainer"]
+[node name="CenterSelected" type="CenterContainer" parent="HBoxContainer/CraftContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-columns = 10
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/CraftContainer"]
+[node name="SelectedIngredientsGrid" type="HBoxContainer" parent="HBoxContainer/CraftContainer/CenterSelected"]
+layout_mode = 2
+
+[node name="CenterCauldron" type="CenterContainer" parent="HBoxContainer/CraftContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="CreateItemButton" type="TextureButton" parent="HBoxContainer/CraftContainer/CenterContainer"]
+[node name="CreateItemButton" type="TextureButton" parent="HBoxContainer/CraftContainer/CenterCauldron"]
 layout_mode = 2
 texture_normal = SubResource("CompressedTexture2D_dbw6l")
 
@@ -153,4 +180,4 @@ script = ExtResource("10_pclmd")
 [node name="FoodBowlManager" type="Node" parent="Game"]
 script = ExtResource("12_wd510")
 
-[connection signal="pressed" from="HBoxContainer/CraftContainer/CenterContainer/CreateItemButton" to="." method="_on_create_potion_pressed"]
+[connection signal="pressed" from="HBoxContainer/CraftContainer/CenterCauldron/CreateItemButton" to="." method="_on_create_potion_pressed"]

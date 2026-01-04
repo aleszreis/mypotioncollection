@@ -7,3 +7,7 @@ extends Resource
 @export var icon: Texture2D
 @export var item_type: ItemTypes.Ingredient
 @export var rarity: int
+@export var preffix: String
+@export var suffix: String
+@export var adj: String
+@export var color: String

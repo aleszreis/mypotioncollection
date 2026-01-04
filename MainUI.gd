@@ -3,9 +3,9 @@ extends Control
 var inventory := Inventory
 
 @onready var item_grid: GridContainer = $HBoxContainer/InventoryContainer/IngredientGrid
-@onready var create_button: TextureButton = $HBoxContainer/CraftContainer/CenterContainer/CreateItemButton
-@onready var bowls: VBoxContainer = $HBoxContainer/BowlContainer
-@onready var selected_grid: GridContainer = $HBoxContainer/CraftContainer/SelectedIngredientsGrid
+@onready var create_button: TextureButton = $HBoxContainer/CraftContainer/CenterCauldron/CreateItemButton
+@onready var bowls: VBoxContainer = $HBoxContainer/LeftSideColumn/BowlsContainer
+@onready var selected_grid = $HBoxContainer/CraftContainer/CenterSelected/SelectedIngredientsGrid
 
 @onready var bowl_manager: FoodBowlManager = $Game/FoodBowlManager
 
@@ -51,9 +51,6 @@ func _on_create_potion_pressed() -> void:
 		return
 	
 	var items := selector.get_selected_items()
-	if len(items) < 2:
-		print("MainUI.gd: Apenas 1 item selecionado")
-		return
 	
 	var signature := SelectionNormalizer.make_signature(items)
 	var potion := CreationRegistry.get_or_create(signature, items)
@@ -61,6 +58,9 @@ func _on_create_potion_pressed() -> void:
 	inventory.add_created_item(potion)
 	_clear_selected_slots_ui()
 	selector.clear()
+	
+	# TODO: REMOVE LATER - DEBUG ONLY
+	$HBoxContainer/LeftSideColumn/Panel/CenterContainer/VBoxContainer/Label2.text = potion.display_name
 	
 	print("MainUI.gd: Criado:", potion.id, " | ", potion.display_name)
 

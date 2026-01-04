@@ -3,23 +3,25 @@ extends Node
 
 const BASE_NAME_BY_TYPE := {
 	ItemTypes.Ingredient.FLOR: "Essência",
-	ItemTypes.Ingredient.VEGETAL: "Detox",
 	ItemTypes.Ingredient.FRUTA: "Suco",
 	ItemTypes.Ingredient.ESPECIARIA: "Molho",
-	ItemTypes.Ingredient.SEMENTE: "Óleo",
-	ItemTypes.Ingredient.ANIMAL: "Caldo",
-	ItemTypes.Ingredient.LIQUIDO: "Infusão",
-	ItemTypes.Ingredient.MINERAL: "Extrato",
-	ItemTypes.Ingredient.GEMA: "Pó",
-	ItemTypes.Ingredient.PRODUZIDO: "Cerveja",
-	ItemTypes.Ingredient.OBJETO: "Deconstructo",
+	ItemTypes.Ingredient.GEMA: "Infusão",
 }
 
 func _generate_name(ingredients: Array[IngredientData]) -> String:
-	var potion_type_name = _gen_potion_type_name(ingredients)
-	return "%s de %s" % [potion_type_name, ingredients[0].display_name]
+	var unique_ingredients = _get_unique_ingredients(ingredients)
+	var potion_type_name = _gen_potion_type_name(unique_ingredients)
+	var potion_flavor_name = _gen_potion_flavor_name(unique_ingredients)
+	return "%s de %s" % [potion_type_name, potion_flavor_name]
 
-func _gen_potion_type_name(items: Array[IngredientData]):
+func _get_unique_ingredients(ingredients: Array[IngredientData]) -> Array[IngredientData]:
+	var i : Array[IngredientData] = []
+	for ing in ingredients:
+		if ing not in i:
+			i.append(ing)
+	return i
+
+func _gen_potion_type_name(items: Array[IngredientData]) -> String:
 	var type = _potion_type(items)
 	var liquid_name = BASE_NAME_BY_TYPE.get(type)
 	
@@ -46,3 +48,17 @@ func _potion_type(items: Array[IngredientData]) -> int:
 			result.append(t)
 	
 	return 999 if len(result) > 1 else result[0]
+
+func _gen_potion_flavor_name(items: Array[IngredientData]) -> String:
+	var items_count = items.size()
+	
+	if items_count == 2:
+		return "%s%s" % [items[0].preffix, items[1].suffix]
+	
+	if items_count == 3:
+		return "%s%s %s" % [items[0].preffix, items[1].suffix, items[2].adj]
+
+	if items_count == 4:
+		return "%s%s %s-%s" % [items[0].preffix, items[1].suffix, items[2].adj, items[3].adj]
+	
+	return items[0].display_name

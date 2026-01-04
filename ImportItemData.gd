@@ -33,6 +33,10 @@ func _format_items_data():
 		item_data.icon = load("res://ingredientes/sprites/%s.png" % item.icon_name)
 		item_data.item_type = ItemTypes.Ingredient[item.item_type.to_upper()]
 		item_data.rarity = item.rarity
+		item_data.preffix = item.preffix
+		item_data.suffix = item.suffix
+		item_data.adj = item.adj
+		item_data.color = item.color
 		ingredients_data[item.id] = item_data
 
 		var entry = IngredientEntry.new()

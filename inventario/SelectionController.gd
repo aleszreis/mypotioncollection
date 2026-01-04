@@ -3,13 +3,15 @@ extends Node
 
 signal selection_changed(selected_items: Array[IngredientData])
 
+var MAX_SELECTION := 4
 var _selected: Array[IngredientData] = []
 
 func move_item(item: IngredientData) -> void:
-	_selected.append(item)
-	Inventory.remove_items([item])
+	if _selected.size() < MAX_SELECTION:
+		_selected.append(item)
+		Inventory.remove_items([item])
 	
-	_emit_change()
+		_emit_change()
 
 func clear() -> void:
 	_selected.clear()
