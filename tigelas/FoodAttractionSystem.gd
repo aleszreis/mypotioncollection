@@ -48,7 +48,7 @@ func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void
 	bowl.has_cat_assigned = false
 	
 	var ingredient := ingredient_catalog.roll_ingredient(context, rng)
-	print("FoodAttractionSystem: <%s> trouxe o item <%s>" % [cat.data.name, ingredient.display_name])
+	print("FoodAttractionSystem: <%s> trouxe o item <%s>" % [cat.data.display_name, ingredient.display_name])
 	inventory.add_base_item(ingredient)
 	
 	var food_cost := int(1 * cat.data.food_efficiency)

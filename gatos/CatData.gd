@@ -3,7 +3,7 @@ class_name CatData
 extends Resource
 
 @export var id: String
-@export var name: String
+@export var display_name: String
 
 @export var accepted_foods: Array[String] # ID dos FoodTypes aceitos
 @export var base_travel_time: float = 10.0

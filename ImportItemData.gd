@@ -49,7 +49,7 @@ func _format_cats_data():
 	for data in cats_data_as_json.values():
 		var cat_data = CatData.new()
 		cat_data.id = data.id
-		cat_data.name = data.name
+		cat_data.display_name = data.display_name
 		cat_data.food_efficiency = data.food_efficiency
 		cat_data.base_travel_time = data.base_travel_time
 		cat_data.favorite_item_type = ItemTypes.Ingredient[data.favorite_item_type.to_upper()]
