@@ -62,4 +62,4 @@ func _gen_potion_flavor_name(items: Array[IngredientData]) -> String:
 	if items_count == 4:
 		return "%s%s %s e %s" % [items[0].preffix, items[1].suffix, items[2].adj, items[3].adj]
 	
-	return items[0].adj
+	return items[0].adj if items[0].is_special() else items[0].display_name

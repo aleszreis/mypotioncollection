@@ -11,3 +11,6 @@ extends Resource
 @export var suffix: String
 @export var adj: String
 @export var color: String
+
+func is_special():
+	return item_type == ItemTypes.Ingredient.ESPECIAL
