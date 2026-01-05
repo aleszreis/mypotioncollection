@@ -1,7 +1,7 @@
 extends Container
 class_name RadialContainer
 
-@export var button_radius: float = 85.0
+@export var button_radius: float = 80.0
 
 func _ready():
 	_build_food_options()
@@ -35,11 +35,15 @@ func _sort_children() -> void:
 	
 	var center = get_viewport().get_mouse_position()
 	#var center: Vector2 = size * 0.5
-	var angle_step: float = TAU / count
+	var angle_step: float = TAU / (count - 1)
 	var angle: float = -PI * 0.5
 	
 	for child: Control in children:
 		var child_size: Vector2 = child.get_combined_minimum_size()
+		
+		if child == children[0]:
+			fit_child_in_rect(child, Rect2(center, child_size))
+			continue
 		
 		var offset: Vector2 = Vector2(button_radius, 0.0).rotated(angle)
 		var pos: Vector2 = center + offset - child_size * 0.5
@@ -76,4 +80,8 @@ func _on_food_button_pressed(button: TextureButton):
 	var food = button.get_meta("associated_food")
 	
 	SignalBus.fill_bowl.emit(food)
+	close()
+
+
+func _on_close_button_pressed() -> void:
 	close()
