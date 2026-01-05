@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv8u28p64d1r8"]
+[gd_scene load_steps=10 format=3 uid="uid://dv8u28p64d1r8"]
 
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
 [ext_resource type="Script" uid="uid://bw8or3ejgy86s" path="res://tigelas/BowlsMenu.gd" id="2_dbw6l"]
 [ext_resource type="Texture2D" uid="uid://cxcppd1o0rty5" path="res://tigelas/sprites/empty.svg" id="3_dbw6l"]
 [ext_resource type="Script" uid="uid://dm71y0mrc0pm0" path="res://tigelas/FoodSelectionUI.gd" id="4_dbw6l"]
+[ext_resource type="PackedScene" uid="uid://qu60cp1l0s4a" path="res://cenas/potion_preview.tscn" id="4_yjiuj"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://tigelas/FoodAttractionSystem.gd" id="10_pclmd"]
 [ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://tigelas/FoodBowlManager.gd" id="12_wd510"]
 
@@ -28,22 +29,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftSideColumn" type="VBoxContainer" parent="HBoxContainer"]
+[node name="LeftSideContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 script = ExtResource("2_dbw6l")
 
-[node name="Control" type="Control" parent="HBoxContainer/LeftSideColumn"]
+[node name="Control" type="Control" parent="HBoxContainer/LeftSideContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
-[node name="BowlsContainer" type="VBoxContainer" parent="HBoxContainer/LeftSideColumn"]
+[node name="BowlsContainer" type="VBoxContainer" parent="HBoxContainer/LeftSideContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FillBowl" type="TextureButton" parent="HBoxContainer/LeftSideColumn/BowlsContainer"]
+[node name="FillBowl" type="TextureButton" parent="HBoxContainer/LeftSideContainer/BowlsContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -51,7 +52,7 @@ texture_normal = ExtResource("3_dbw6l")
 stretch_mode = 5
 metadata/index = 0
 
-[node name="FillBowl2" type="TextureButton" parent="HBoxContainer/LeftSideColumn/BowlsContainer"]
+[node name="FillBowl2" type="TextureButton" parent="HBoxContainer/LeftSideContainer/BowlsContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -59,7 +60,7 @@ texture_normal = ExtResource("3_dbw6l")
 stretch_mode = 5
 metadata/index = 0
 
-[node name="FillBowl3" type="TextureButton" parent="HBoxContainer/LeftSideColumn/BowlsContainer"]
+[node name="FillBowl3" type="TextureButton" parent="HBoxContainer/LeftSideContainer/BowlsContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -67,7 +68,7 @@ texture_normal = ExtResource("3_dbw6l")
 stretch_mode = 5
 metadata/index = 0
 
-[node name="FillBowl4" type="TextureButton" parent="HBoxContainer/LeftSideColumn/BowlsContainer"]
+[node name="FillBowl4" type="TextureButton" parent="HBoxContainer/LeftSideContainer/BowlsContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -75,26 +76,7 @@ texture_normal = ExtResource("3_dbw6l")
 stretch_mode = 5
 metadata/index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftSideColumn"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="IntroLabel" type="Label" parent="HBoxContainer/LeftSideColumn/VBoxContainer"]
-layout_mode = 2
-text = "Nada sendo criado por enquanto..."
-horizontal_alignment = 1
-
-[node name="NameLabel" type="Label" parent="HBoxContainer/LeftSideColumn/VBoxContainer"]
-custom_minimum_size = Vector2(256, 48)
-layout_mode = 2
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="CenterSprite" type="CenterContainer" parent="HBoxContainer/LeftSideColumn/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/LeftSideColumn/VBoxContainer/CenterSprite"]
+[node name="PotionPreviewContainer" parent="HBoxContainer/LeftSideContainer" instance=ExtResource("4_yjiuj")]
 layout_mode = 2
 
 [node name="CraftContainer" type="VBoxContainer" parent="HBoxContainer"]

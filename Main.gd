@@ -10,6 +10,7 @@ func _ready() -> void:
 	_setup_system_links()
 	_spawn_initial_cats()
 	_create_debug_bowl()
+	_DEBUG_spawn_inventory_items()
 	_process_offline_progress()
 
 func _process(_delta: float) -> void:
@@ -41,6 +42,13 @@ func _create_debug_bowl() -> void:
 	bowl_manager.add_bowl()
 	bowl_manager.add_bowl()
 	food_system.bowls = bowl_manager.bowls
+
+# --------------------------------------------------
+
+func _DEBUG_spawn_inventory_items() -> void:
+	for entry in ingredient_catalog.entries:
+		for i in range(10):
+			inventory.add_base_item(entry.ingredient)
 
 # --------------------------------------------------
 

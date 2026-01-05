@@ -2,9 +2,9 @@
 class_name ItemTypes
 
 enum Ingredient {
-	ESPECIARIA, # Temperos
-	ESPECIAL, # Pinha, sementes
+	ESPECIAL,
+	FLOR, # Rosa, girassol
 	FRUTA, # Frutas
 	GEMA, # Pedras preciosas
-	FLOR, # Rosa, girassol
+	ESPECIARIA, # Temperos
 }

@@ -4,8 +4,9 @@ var inventory := Inventory
 
 @onready var item_grid = $HBoxContainer/InventoryContainer/IngredientGrid
 @onready var create_button: TextureButton = $HBoxContainer/CraftContainer/CenterCauldron/CreateItemButton
-@onready var bowls: VBoxContainer = $HBoxContainer/LeftSideColumn/BowlsContainer
+@onready var bowls: VBoxContainer = $HBoxContainer/LeftSideContainer/BowlsContainer
 @onready var selected_grid = $HBoxContainer/CraftContainer/CenterSelected/SelectedIngredientsGrid
+@onready var potion_preview = $HBoxContainer/LeftSideContainer/PotionPreviewContainer
 
 @onready var bowl_manager: FoodBowlManager = $Game/FoodBowlManager
 
@@ -20,7 +21,8 @@ var selector := SelectionController.new()
 func _ready() -> void:
 	add_child(selector)
 	
-	selector.selection_changed.connect(_on_selection_changed)
+	selector.selected_item.connect(_on_item_selected)
+	selector.deselected_item.connect(_on_item_deselected)
 	SignalBus.changed_item.connect(_update_inventory_ui)
 	
 	_build_inventory_ui()
@@ -51,42 +53,30 @@ func _on_create_potion_pressed() -> void:
 		return
 	
 	var items := selector.get_selected_items()
-	var special_items = items.filter(func(n): return n.item_type == ItemTypes.Ingredient.ESPECIAL)
-	items = special_items if special_items.size() > 0 else items
-	
 	var signature := SelectionNormalizer.make_signature(items)
 	var potion := CreationRegistry.get_or_create(signature, items)
 	
 	inventory.add_created_item(potion)
 	_clear_selected_slots_ui()
 	selector.clear()
-	
-	# TODO: REMOVE LATER - DEBUG ONLY
-	$HBoxContainer/LeftSideColumn/VBoxContainer/IntroLabel.text = "Você criou..."
-	$HBoxContainer/LeftSideColumn/VBoxContainer/NameLabel.text = potion.display_name
 
 	print("MainUI.gd: Criado:", potion.id, " | ", potion.display_name)
 
-func _on_selection_changed(item: IngredientData) -> void:
+func _on_item_selected(item: IngredientData) -> void:
 	# Cria slot
 	var slot := selection_slot_scene.instantiate()
 	selected_grid.add_child(slot)
 	slot.setup_ui_slot(item, selector)
-	
+
 	# Atualiza menu lateral
-	var items := selector.get_selected_items()
-	var signature := SelectionNormalizer.make_signature(items)
-	var potion = CreationRegistry.potion_is_known(signature)
-	# TODO: REMOVE LATER - DEBUG ONLY
-	$HBoxContainer/LeftSideColumn/VBoxContainer/IntroLabel.text = "Você está criando..."
-	if potion:
-		$HBoxContainer/LeftSideColumn/VBoxContainer/NameLabel.text = potion.display_name
-	else:
-		$HBoxContainer/LeftSideColumn/VBoxContainer/NameLabel.text = "uma mistura desconhecida!"
+	potion_preview.update_potion_preview(selector.get_selected_items())
+
+func _on_item_deselected(item: IngredientData) -> void:
+	potion_preview.update_potion_preview(selector.get_selected_items())
 
 func _clear_selected_slots_ui():
 	for s in selected_grid.get_children():
 		s.queue_free()
-	# TODO: REMOVE LATER - DEBUG ONLY
-	$HBoxContainer/LeftSideColumn/VBoxContainer/IntroLabel.text = "Nada sendo criado por enquanto..."
-	$HBoxContainer/LeftSideColumn/VBoxContainer/NameLabel.text = ""
+		
+	# Atualiza menu lateral
+	potion_preview.update_potion_preview(selector.get_selected_items())

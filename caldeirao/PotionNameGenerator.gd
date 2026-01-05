@@ -11,6 +11,10 @@ const BASE_NAME_BY_TYPE := {
 
 func _generate_name(ingredients: Array[IngredientData]) -> String:
 	var unique_ingredients = _get_unique_ingredients(ingredients)
+	var pot_name = _check_special_name(unique_ingredients)
+	if pot_name:
+		return pot_name
+		
 	var potion_type_name = _gen_potion_type_name(unique_ingredients)
 	var potion_flavor_name = _gen_potion_flavor_name(unique_ingredients)
 	return "%s %s" % [potion_type_name, potion_flavor_name]
@@ -26,7 +30,7 @@ func _gen_potion_type_name(items: Array[IngredientData]) -> String:
 	var type = _potion_type(items)
 	var liquid_name = BASE_NAME_BY_TYPE.get(type)
 	
-	return liquid_name if liquid_name else "Mistura"
+	return liquid_name if liquid_name else "Mistura de"
 	
 func _potion_type(items: Array[IngredientData]) -> int:
 	"""Retorna o tipo de ingrediente mais utilizado"""
@@ -52,7 +56,6 @@ func _potion_type(items: Array[IngredientData]) -> int:
 
 func _gen_potion_flavor_name(items: Array[IngredientData]) -> String:
 	var items_count = items.size()
-	
 	if items_count == 2:
 		return "%s%s" % [items[0].preffix, items[1].suffix]
 	
@@ -63,3 +66,14 @@ func _gen_potion_flavor_name(items: Array[IngredientData]) -> String:
 		return "%s%s %s e %s" % [items[0].preffix, items[1].suffix, items[2].adj, items[3].adj]
 	
 	return items[0].adj if items[0].is_special() else items[0].display_name
+
+func _check_special_name(items: Array[IngredientData]) -> String:
+	# 4 Items with rarity 4 and different ItemTypes
+	var types = items.filter(func(i): return i.item_type)
+	if types.size() != 4:
+		return ""
+	for item in items:
+		if item.rarity != 4:
+			return ""
+	return "Poção de Todas as Coisas"
+	
