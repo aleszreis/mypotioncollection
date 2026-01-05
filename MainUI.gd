@@ -57,6 +57,7 @@ func _on_create_potion_pressed() -> void:
 	var potion := CreationRegistry.get_or_create(signature, items)
 	
 	inventory.add_created_item(potion)
+	potion_preview.update_potion_preview(selector.get_selected_items())
 	_clear_selected_slots_ui()
 	selector.clear()
 

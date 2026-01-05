@@ -1,12 +1,23 @@
 extends VBoxContainer
 
-@onready var intro_label : Label = $Background/VBoxContainer/IntroLabel
-@onready var name_label : Label = $Background/VBoxContainer/NameLabel
+@onready var intro_label : Label = $IntroLabel
+@onready var name_label : Label = $NameLabel
+@onready var rarity_label : Label = $RarityLabel
+
+var RARITY = {
+	0: "comum",
+	1: "comum",
+	2: "incomum",
+	3: "raro",
+	4: "lendário!",
+	5: "exclusivo!"
+}
 
 func update_potion_preview(items: Array[IngredientData]) -> void:
 	if not items:
 		intro_label.text = "Nada sendo criado por enquanto..."
 		name_label.text = ""
+		rarity_label.text = ""
 		return
 	
 	var signature := SelectionNormalizer.make_signature(items)
@@ -14,6 +25,7 @@ func update_potion_preview(items: Array[IngredientData]) -> void:
 	intro_label.text = "Você está criando..."
 	if potion:
 		name_label.text = potion.display_name
+		rarity_label.text = "Item %s" % RARITY[potion.rarity]
 	else:
 		name_label.text = "uma mistura desconhecida!"
 
