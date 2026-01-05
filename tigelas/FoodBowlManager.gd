@@ -7,6 +7,9 @@ const MAX_BOWLS := 5
 var bowls: Array[FoodBowlState] = []
 var active_bowl_index: int = -1
 
+func _ready():
+	SignalBus.fill_bowl.connect(_fill_bowl)
+
 func get_bowl_count():
 	return len(bowls)
 
@@ -22,7 +25,7 @@ func add_bowl() -> bool:
 func set_active_bowl(index):
 	active_bowl_index = index
 	
-func fill_bowl(food_type: FoodType):
+func _fill_bowl(food_type: FoodType):
 	bowls[active_bowl_index].food_type = food_type
 	bowls[active_bowl_index].remaining_amount = food_type.fill_value
 	print("FoodBowlManager: Tigela %s preenchida com comida %s" % [active_bowl_index, food_type.display_name])
