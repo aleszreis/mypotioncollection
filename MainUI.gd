@@ -10,10 +10,10 @@ var inventory := Inventory
 
 @onready var bowl_manager: FoodBowlManager = $Game/FoodBowlManager
 
-var inventory_slot_scene = preload("res://cenas/inv_slot_ui.tscn")
+var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 var inventory_slots_by_item: Dictionary = {}
 
-var selection_slot_scene = preload("res://cenas/selec_slot_ui.tscn")
+var selection_slot_scene = preload("res://scenes/selec_slot_ui.tscn")
 var selection_slots_by_item: Dictionary = {}
 
 var selector := SelectionController.new()
@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func _build_inventory_ui() -> void:
 	for item in inventory.ingredients.values():
-		_update_inventory_ui(item['data'])
+		_update_inventory_ui(item.data)
 
 func _update_inventory_ui(item: IngredientData) -> void:
 	# Se item já existe e quantidade continua maior que 0, atualiza label

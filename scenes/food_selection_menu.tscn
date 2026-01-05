@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcxroxc5hgo8b"]
+
+[ext_resource type="Script" uid="uid://luulhj2rnjte" path="res://bowls/FoodSelectionUI.gd" id="1_b3s8y"]
+
+[node name="FoodOptionsMenu" type="Container"]
+custom_minimum_size = Vector2(240, 240)
+offset_right = 240.0
+offset_bottom = 240.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_b3s8y")

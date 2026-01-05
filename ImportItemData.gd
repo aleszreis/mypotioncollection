@@ -30,7 +30,7 @@ func _format_items_data():
 		var item_data = IngredientData.new()
 		item_data.id = str(item.id)
 		item_data.display_name = item.display_name
-		item_data.icon = load("res://ingredientes/sprites/%s.png" % item.icon_name)
+		item_data.icon = load("res://ingredients/sprites/%s.png" % item.icon_name)
 		item_data.item_type = ItemTypes.Ingredient[item.item_type.to_upper()]
 		item_data.rarity = item.rarity
 		item_data.preffix = item.preffix
@@ -71,7 +71,7 @@ func _format_food_data():
 		food_data.id = data.id
 		food_data.display_name = data.display_name
 		food_data.fill_value = data.fill_value
-		food_data.icon = load("res://tigelas/sprites/%s.svg" % data.icon_name)
+		food_data.icon = load("res://bowls/sprites/%s.svg" % data.icon_name)
 		foods_data[data.id] = food_data
 
 func _format_string_to_array(s: String) -> Array[String]:

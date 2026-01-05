@@ -18,9 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 ImportItemData="*res://ImportItemData.gd"
-IngredientCatalog="*res://ingredientes/IngredientCatalog.gd"
-CreationRegistry="*res://caldeirao/CreationRegistry.gd"
-Inventory="*res://inventario/Inventory.gd"
+IngredientCatalog="*res://ingredients/IngredientCatalog.gd"
+CreationRegistry="*res://craft/CreationRegistry.gd"
+Inventory="*res://inventory/Inventory.gd"
 SignalBus="*res://SignalBus.gd"
 
 [rendering]
