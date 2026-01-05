@@ -71,7 +71,7 @@ func _format_food_data():
 		food_data.id = data.id
 		food_data.display_name = data.display_name
 		food_data.fill_value = data.fill_value
-		food_data.icon = load("res://bowls/sprites/%s.svg" % data.icon_name)
+		food_data.icon = load("res://bowls/sprites/%s.png" % data.icon_name)
 		foods_data[data.id] = food_data
 
 func _format_string_to_array(s: String) -> Array[String]:

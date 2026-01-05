@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1d3alyqlerbr"
-path="res://.godot/imported/premium.svg-29fde3a2c3a749f1f2f91ed72540cc6b.ctex"
+uid="uid://b7qpqw2bm4t5k"
+path="res://.godot/imported/fruit.png-378846f19fcbdc97b57ba05113c89605.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bowls/sprites/premium.svg"
-dest_files=["res://.godot/imported/premium.svg-29fde3a2c3a749f1f2f91ed72540cc6b.ctex"]
+source_file="res://bowls/sprites/fruit.png"
+dest_files=["res://.godot/imported/fruit.png-378846f19fcbdc97b57ba05113c89605.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

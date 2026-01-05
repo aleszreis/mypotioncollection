@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c23bd4rbvs0cu"
-path="res://.godot/imported/chicken.svg-0998c972b48244a5a5f3e7dd93b42c93.ctex"
+uid="uid://b6vi81efr8sqb"
+path="res://.godot/imported/empty.png-46b39c08dc348b457ef95afdc6e55cca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bowls/sprites/chicken.svg"
-dest_files=["res://.godot/imported/chicken.svg-0998c972b48244a5a5f3e7dd93b42c93.ctex"]
+source_file="res://bowls/sprites/empty.png"
+dest_files=["res://.godot/imported/empty.png-46b39c08dc348b457ef95afdc6e55cca.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -15,6 +15,6 @@ func _on_bowl_button_pressed(bowl: TextureButton):
 	bowl_manager.set_active_bowl(index)
 	food_selection.open()
 
-func _on_bowl_state_changed(bowl_index: int, food_icon: Resource = load("res://bowls/sprites/empty.svg")):
+func _on_bowl_state_changed(bowl_index: int, food_icon: Resource = load("res://bowls/sprites/empty.png")):
 	var bowl_button = bowls_ui_container.get_child(bowl_index)
 	bowl_button.texture_normal = food_icon

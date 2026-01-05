@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
 [ext_resource type="Script" uid="uid://bw8or3ejgy86s" path="res://bowls/BowlsMenu.gd" id="2_dbw6l"]
-[ext_resource type="Texture2D" uid="uid://cxcppd1o0rty5" path="res://bowls/sprites/empty.svg" id="3_dbw6l"]
+[ext_resource type="Texture2D" uid="uid://b6vi81efr8sqb" path="res://bowls/sprites/empty.png" id="3_okuri"]
 [ext_resource type="PackedScene" uid="uid://qu60cp1l0s4a" path="res://scenes/potion_preview.tscn" id="4_yjiuj"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="10_pclmd"]
@@ -49,7 +49,7 @@ size_flags_stretch_ratio = 0.8
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("3_dbw6l")
+texture_normal = ExtResource("3_okuri")
 stretch_mode = 5
 metadata/index = 0
 
@@ -57,7 +57,7 @@ metadata/index = 0
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("3_dbw6l")
+texture_normal = ExtResource("3_okuri")
 stretch_mode = 5
 metadata/index = 0
 
@@ -65,7 +65,7 @@ metadata/index = 0
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("3_dbw6l")
+texture_normal = ExtResource("3_okuri")
 stretch_mode = 5
 metadata/index = 0
 
@@ -73,7 +73,7 @@ metadata/index = 0
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("3_dbw6l")
+texture_normal = ExtResource("3_okuri")
 stretch_mode = 5
 metadata/index = 0
 

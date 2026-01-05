@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cku85xaxkoo2l"
-path="res://.godot/imported/fish.svg-2c682ad4548922b7ef2bf6e737417b74.ctex"
+uid="uid://vf13a53b8g7h"
+path="res://.godot/imported/premium.png-dfb46a28c6bad62557f6cdbf9fe7175c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bowls/sprites/fish.svg"
-dest_files=["res://.godot/imported/fish.svg-2c682ad4548922b7ef2bf6e737417b74.ctex"]
+source_file="res://bowls/sprites/premium.png"
+dest_files=["res://.godot/imported/premium.png-dfb46a28c6bad62557f6cdbf9fe7175c.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

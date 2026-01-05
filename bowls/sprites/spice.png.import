@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b26hr5l06jf6"
-path="res://.godot/imported/tropical.svg-83147df201a7ba546a7e5b06a8beb3b0.ctex"
+uid="uid://bt85hemxdysof"
+path="res://.godot/imported/spice.png-cec24d23558aad66bb354da9c347ad2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bowls/sprites/tropical.svg"
-dest_files=["res://.godot/imported/tropical.svg-83147df201a7ba546a7e5b06a8beb3b0.ctex"]
+source_file="res://bowls/sprites/spice.png"
+dest_files=["res://.godot/imported/spice.png-cec24d23558aad66bb354da9c347ad2e.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
