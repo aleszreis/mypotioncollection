@@ -77,11 +77,10 @@ func _build_food_options():
 		#add_child(food_label)
 
 func _on_food_button_pressed(button: TextureButton):
-	var food = button.get_meta("associated_food")
+	var food: FoodType = button.get_meta("associated_food")
 	
-	SignalBus.fill_bowl.emit(food)
+	SignalBus.update_bowl.emit(food, food.fill_value)
 	close()
-
 
 func _on_close_button_pressed() -> void:
 	close()

@@ -1,13 +1,23 @@
 extends VBoxContainer
 
-@onready var bowls_ui_container = $BowlsContainer
-@onready var food_selection = $"../../FoodOptionsMenu"
-@onready var bowl_manager = $"../../Game/FoodBowlManager"
+@onready var food_selection = $"../../../FoodOptionsMenu"
+@onready var bowl_manager: FoodBowlManager = $"../../../Game/FoodBowlManager"
+
+var empty_bowl_icon = load("res://bowls/sprites/empty.png")
 
 func _ready():
-	for child in bowls_ui_container.get_children():
+	_create_bowl_btns()
+	
+	for child in get_children():
 		child.pressed.connect(_on_bowl_button_pressed.bind(child))
-	SignalBus.bowl_state_changed.connect(_on_bowl_state_changed)
+	SignalBus.update_bowl_button.connect(_on_bowl_state_changed)
+
+func _create_bowl_btns() -> void:
+	for bowl: FoodBowlState in bowl_manager.bowls:
+		var bowl_btn = TextureButton.new()
+		_update_bowl_icon(bowl, bowl_btn)
+		bowl_btn.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+		add_child(bowl_btn)
 
 func _on_bowl_button_pressed(bowl: TextureButton):
 	var index = bowl.get_index()
@@ -15,6 +25,14 @@ func _on_bowl_button_pressed(bowl: TextureButton):
 	bowl_manager.set_active_bowl(index)
 	food_selection.open()
 
-func _on_bowl_state_changed(bowl_index: int, food_icon: Resource = load("res://bowls/sprites/empty.png")):
-	var bowl_button = bowls_ui_container.get_child(bowl_index)
-	bowl_button.texture_normal = food_icon
+func _on_bowl_state_changed(bowl_index: int, food: FoodType):
+	var bowl_button = get_child(bowl_index)
+	var bowl_info = bowl_manager.bowls[bowl_index]
+	_update_bowl_icon(bowl_info, bowl_button)
+	UserConfig.save_bowls(bowl_manager.bowls)
+
+func _update_bowl_icon(bowl: FoodBowlState, btn: TextureButton) -> void:
+	if bowl.food_type:
+		btn.texture_normal = bowl.food_type.icon 
+	else:
+		btn.texture_normal = empty_bowl_icon

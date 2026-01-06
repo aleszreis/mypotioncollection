@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+UserConfig="*res://UserConfig.gd"
 ImportItemData="*res://ImportItemData.gd"
 IngredientCatalog="*res://ingredients/IngredientCatalog.gd"
 CreationRegistry="*res://craft/CreationRegistry.gd"

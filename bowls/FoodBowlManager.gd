@@ -8,7 +8,8 @@ var bowls: Array[FoodBowlState] = []
 var active_bowl_index: int = -1
 
 func _ready():
-	SignalBus.fill_bowl.connect(_fill_bowl)
+	bowls = UserConfig.set_bowls_from_save()
+	SignalBus.update_bowl.connect(_update_bowl)
 
 func get_bowl_count():
 	return len(bowls)
@@ -19,16 +20,19 @@ func add_bowl() -> bool:
 	
 	var bowl := FoodBowlState.new()
 	bowls.append(bowl)
-	print("FoodBowlManager: Tigela criada")
+	UserConfig.save_bowls(bowls)
 	return true
 
 func set_active_bowl(index):
 	active_bowl_index = index
+
+func _update_bowl(food_type: FoodType, new_amount: int, idx: int = active_bowl_index):
+	var curr_bowl = bowls[idx]
+	curr_bowl.food_type = food_type
+	curr_bowl.remaining_amount = new_amount
 	
-func _fill_bowl(food_type: FoodType):
-	bowls[active_bowl_index].food_type = food_type
-	bowls[active_bowl_index].remaining_amount = food_type.fill_value
-	print("FoodBowlManager: Tigela %s preenchida com comida %s" % [active_bowl_index, food_type.display_name])
-	SignalBus.bowl_state_changed.emit(active_bowl_index, food_type.icon)
+	if curr_bowl.remaining_amount <= 0:
+		curr_bowl.food_type = null
+		
+	SignalBus.update_bowl_button.emit(idx, food_type)
 	active_bowl_index = -1
-	food_modal.close()
