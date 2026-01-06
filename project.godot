@@ -11,6 +11,9 @@ config_version=5
 [application]
 
 config/name="MyPotionCollection"
+config/name_localized={
+"pal_BR": "Minha Coleção de Poções"
+}
 run/main_scene="uid://dv8u28p64d1r8"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -23,6 +26,10 @@ IngredientCatalog="*res://ingredients/IngredientCatalog.gd"
 CreationRegistry="*res://craft/CreationRegistry.gd"
 Inventory="*res://inventory/Inventory.gd"
 SignalBus="*res://SignalBus.gd"
+
+[display]
+
+window/stretch/aspect="ignore"
 
 [rendering]
 

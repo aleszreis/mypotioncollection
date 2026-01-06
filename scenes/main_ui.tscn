@@ -1,15 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv8u28p64d1r8"]
+[gd_scene load_steps=10 format=3 uid="uid://dv8u28p64d1r8"]
 
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
 [ext_resource type="Script" uid="uid://bw8or3ejgy86s" path="res://bowls/BowlsMenu.gd" id="2_dbw6l"]
+[ext_resource type="Texture2D" uid="uid://eo01h0maa2qq" path="res://house_background.png" id="2_okuri"]
 [ext_resource type="PackedScene" uid="uid://qu60cp1l0s4a" path="res://scenes/potion_preview.tscn" id="4_yjiuj"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
+[ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="10_pclmd"]
 [ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://bowls/FoodBowlManager.gd" id="12_wd510"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dbw6l"]
-load_path = "res://.godot/imported/cauldron.png-a95e834f7945b1c5db0cc7a94182e510.ctex"
 
 [node name="MainUi" type="Control"]
 layout_mode = 3
@@ -19,6 +18,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_paifj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_okuri")
+expand_mode = 5
 
 [node name="Game" type="Node" parent="."]
 script = ExtResource("1_dbw6l")
@@ -69,13 +78,15 @@ layout_mode = 2
 
 [node name="CenterCauldron" type="CenterContainer" parent="HBoxContainer/CraftContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 10
 size_flags_stretch_ratio = 2.0
 
 [node name="CreateItemButton" type="TextureButton" parent="HBoxContainer/CraftContainer/CenterCauldron"]
+custom_minimum_size = Vector2(320, 320)
 layout_mode = 2
-texture_normal = SubResource("CompressedTexture2D_dbw6l")
-stretch_mode = 5
+texture_normal = ExtResource("8_kyx1g")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="InventoryContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

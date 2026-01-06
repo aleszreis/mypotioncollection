@@ -1,8 +1,8 @@
-extends VBoxContainer
+extends Panel
 
-@onready var intro_label : Label = $IntroLabel
-@onready var name_label : Label = $NameLabel
-@onready var rarity_label : Label = $RarityLabel
+@onready var intro_label : Label = $VBoxContainer/IntroLabel
+@onready var name_label : Label = $VBoxContainer/NameLabel
+@onready var rarity_label : Label = $VBoxContainer/RarityLabel
 
 var RARITY = {
 	0: "comum",
