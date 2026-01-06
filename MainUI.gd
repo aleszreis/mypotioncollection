@@ -61,6 +61,8 @@ func _on_create_potion_pressed() -> void:
 	_clear_selected_slots_ui()
 	selector.clear()
 
+	UserConfig.save_to_file()
+	
 	print("MainUI.gd: Criado:", potion.id, " | ", potion.display_name)
 
 func _on_item_selected(item: IngredientData) -> void:

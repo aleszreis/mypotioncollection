@@ -20,7 +20,6 @@ func _process(_delta: float) -> void:
 
 func _setup_system_links() -> void:
 	UserConfig.set_inventory_from_save()
-	food_system.inventory = Inventory
 	food_system.ingredient_catalog = ingredient_catalog
 	food_system.bowls = bowl_manager.bowls
 
@@ -51,3 +50,5 @@ func _DEBUG_spawn_inventory_items() -> void:
 func _process_offline_progress() -> void:
 	var now := Time.get_unix_time_from_system()
 	food_system.process_time(now)
+
+# --------------------------------------------------

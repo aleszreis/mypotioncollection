@@ -9,6 +9,8 @@ var active_bowl_index: int = -1
 
 func _ready():
 	bowls = UserConfig.set_bowls_from_save()
+	for b in bowls:
+		b.cat_assigned = null
 	SignalBus.update_bowl.connect(_update_bowl)
 
 func get_bowl_count():
@@ -33,6 +35,7 @@ func _update_bowl(food_type: FoodType, new_amount: int, idx: int = active_bowl_i
 	
 	if curr_bowl.remaining_amount <= 0:
 		curr_bowl.food_type = null
-		
+	
+	UserConfig.save_bowls(bowls)
 	SignalBus.update_bowl_button.emit(idx, food_type)
 	active_bowl_index = -1

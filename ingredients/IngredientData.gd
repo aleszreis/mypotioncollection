@@ -14,3 +14,16 @@ extends Resource
 
 func is_special():
 	return item_type == ItemTypes.Ingredient.ESPECIAL
+
+func serialize() -> Dictionary:
+	return {
+		'id': id,
+		'display_name': display_name,
+		'icon': icon,
+		'item_type': item_type,
+		'rarity': rarity,
+		'preffix': preffix,
+		'suffix': suffix,
+		'adj': adj,
+		'color': color,
+	}

@@ -19,3 +19,6 @@ func get_or_create(signature: String, ingredients: Array[IngredientData]) -> Pot
 
 func potion_is_known(signature: String) -> PotionData:
 	return _registry.get(signature)
+	
+func get_registry_data():
+	return _registry

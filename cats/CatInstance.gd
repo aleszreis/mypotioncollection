@@ -6,7 +6,6 @@ extends Resource
 
 var is_busy := false
 var next_available_time := 0.0
-var target_bowl = FoodBowlState
 
 func can_respond_to_bowl(bowl: FoodBowlState, now: float) -> bool:
 	if is_busy:
@@ -16,3 +15,9 @@ func can_respond_to_bowl(bowl: FoodBowlState, now: float) -> bool:
 	if not data.accepted_foods.has(bowl.food_type.id):
 		return false
 	return true
+
+func serialize() -> Dictionary:
+	return {
+		'is_busy': is_busy,
+		'next_available_time': next_available_time,
+	}

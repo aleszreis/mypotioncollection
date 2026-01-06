@@ -29,7 +29,6 @@ func _on_bowl_state_changed(bowl_index: int, food: FoodType):
 	var bowl_button = get_child(bowl_index)
 	var bowl_info = bowl_manager.bowls[bowl_index]
 	_update_bowl_icon(bowl_info, bowl_button)
-	UserConfig.save_bowls(bowl_manager.bowls)
 
 func _update_bowl_icon(bowl: FoodBowlState, btn: TextureButton) -> void:
 	if bowl.food_type:
