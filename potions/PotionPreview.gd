@@ -13,7 +13,7 @@ var RARITY = {
 	5: "exclusivo!"
 }
 
-func update_potion_preview(items: Array[IngredientData]) -> void:
+func update_potion_preview(items: Array[String]) -> void:
 	if not items:
 		intro_label.text = "Nada sendo criado por enquanto..."
 		name_label.text = ""
@@ -21,9 +21,10 @@ func update_potion_preview(items: Array[IngredientData]) -> void:
 		return
 	
 	var signature := SelectionNormalizer.make_signature(items)
-	var potion = CreationRegistry.potion_is_known(signature)
+	var potion_id = CreationRegistry.potion_is_known(signature)
 	intro_label.text = "Você está criando..."
-	if potion:
+	if potion_id:
+		var potion = Database.get_potion_data(potion_id)
 		name_label.text = potion.display_name
 		rarity_label.text = "Item %s" % RARITY[potion.rarity]
 	else:

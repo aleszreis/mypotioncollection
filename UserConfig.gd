@@ -21,8 +21,8 @@ func save_to_file():
 	_saving = false
 
 func save_inventory():
-	config.set_value("inventory", "ingredients", Inventory._serialize_ingredients())
-	config.set_value("inventory", "potions", Inventory._serialize_potions())
+	config.set_value("inventory", "ingredients", Inventory.ingredients)
+	config.set_value("inventory", "potions", Inventory.potions)
 	
 func save_owned_cats():
 	pass
@@ -31,7 +31,6 @@ func save_owned_cats():
 func save_foods():
 	pass
 	
-	
 func save_bowls(bowls: Array[FoodBowlState]):
 	config.set_value('bowls', 'bowls_list', bowls)
 	
@@ -39,11 +38,8 @@ func save_registry(data: Dictionary):
 	config.set_value('creation', 'registry', data)
 	
 func set_inventory_from_save():
-	var serial_ings = config.get_value('inventory', 'ingredients', {})
-	Inventory.deserialize_ingredients(serial_ings)
-	
-	var serial_pots = config.get_value('inventory', 'potions', {})
-	Inventory.deserialize_potions(serial_pots)
+	Inventory.ingredients = config.get_value('inventory', 'ingredients', {})
+	Inventory.potions = config.get_value('inventory', 'potions', {})
 	
 func set_owned_cats_from_save():
 	pass

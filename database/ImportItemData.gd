@@ -1,11 +1,10 @@
 extends Node
 
 @export var ingredients_data: Dictionary = {}
+@export var potions_data: Dictionary = {}
 @export var catalog_data: Array[IngredientEntry] = []
 @export var cats_data: Dictionary = {}
 @export var foods_data: Dictionary = {}
-
-@export var MOCK_ITEM_DATA_LIST: Array[IngredientData]
 
 var FOLDER_PATH = "res://z_json_files_to_import/Godot Item Data - "
 var ITEMS_FILE_NAME = "ingredientes.json"
@@ -37,15 +36,14 @@ func _format_items_data():
 		item_data.suffix = item.suffix
 		item_data.adj = item.adj
 		item_data.color = item.color
-		ingredients_data[item.id] = item_data
+		ingredients_data[item_data.id] = item_data
 
 		var entry = IngredientEntry.new()
-		entry.ingredient = item_data
+		entry.ingredient_id = str(item.id)
 		entry.base_weight = item.base_weight
 		entry.rules = _format_rules(item.rules)
 		catalog_data.append(entry)
-
-		
+	
 func _format_cats_data():
 	var cats_data_as_json = _parse_to_json(CATS_FILE_NAME)
 	
@@ -93,3 +91,9 @@ func _format_rules(rules_as_string: String) -> Array[IngredientRule]:
 			'fave_item_id_rule':
 				rules_formatted.append(FaveItemIdRule.new())
 	return rules_formatted
+
+func get_ingredient_data(ing_id: String) -> IngredientData:
+	return ingredients_data[ing_id]
+
+func get_potion_data(pot_id: String) -> PotionData:
+	return potions_data[pot_id]

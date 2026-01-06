@@ -26,7 +26,7 @@ func _setup_system_links() -> void:
 # --------------------------------------------------
 
 func _spawn_initial_cats() -> void:
-	var all_cats_data = ImportItemData.cats_data.values()
+	var all_cats_data = Database.cats_data.values()
 	
 	for cat in all_cats_data:
 		var cat_instance := CatInstance.new()
@@ -36,6 +36,7 @@ func _spawn_initial_cats() -> void:
 # --------------------------------------------------
 
 func _create_debug_bowl() -> void:
+	#bowl_manager.add_bowl()
 	food_system.bowls = bowl_manager.bowls
 
 # --------------------------------------------------

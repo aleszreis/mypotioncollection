@@ -9,8 +9,12 @@ const BASE_NAME_BY_TYPE := {
 	ItemTypes.Ingredient.ESPECIAL: "Poção"
 }
 
-func _generate_name(ingredients: Array[IngredientData]) -> String:
-	var unique_ingredients = _get_unique_ingredients(ingredients)
+func _generate_name(ingredients: Array[String]) -> String:
+	var ingredients_as_data: Array[IngredientData] = []
+	for id in ingredients:
+		ingredients_as_data.append(Database.get_ingredient_data(id))
+	
+	var unique_ingredients = _get_unique_ingredients(ingredients_as_data)
 	var pot_name = _check_special_name(unique_ingredients)
 	if pot_name:
 		return pot_name

@@ -1,4 +1,5 @@
-# Guarda os dados de todos os ingredientes que existem no jogo
+# Guarda os IDs de todos os ingredientes que podem ser adquiridos, com
+# suas chances e regras
 extends Node
 
 var entries: Array[IngredientEntry] = []
@@ -7,9 +8,9 @@ func _ready():
 	_populate_entries()
 	
 func _populate_entries():
-	entries = ImportItemData.catalog_data
+	entries = Database.catalog_data
 
-func roll_ingredient(context: Dictionary, rng: RandomNumberGenerator) -> IngredientData:
+func roll_ingredient(context: Dictionary, rng: RandomNumberGenerator) -> String:
 	var pool: Array[IngredientEntry] = []
 	var weights: Array[float] = []
 
@@ -24,7 +25,7 @@ func roll_ingredient(context: Dictionary, rng: RandomNumberGenerator) -> Ingredi
 		pool.append(entry)
 		weights.append(weight)
 
-	return _weighted_pick(pool, weights, rng).ingredient
+	return _weighted_pick(pool, weights, rng).ingredient_id
 
 func _weighted_pick(
 	entries: Array[IngredientEntry],

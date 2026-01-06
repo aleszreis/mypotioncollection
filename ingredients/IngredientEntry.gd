@@ -2,6 +2,6 @@
 class_name IngredientEntry
 extends Resource
 
-@export var ingredient: IngredientData
+@export var ingredient_id: String
 @export var base_weight: float = 1.0
 @export var rules: Array[IngredientRule] = []

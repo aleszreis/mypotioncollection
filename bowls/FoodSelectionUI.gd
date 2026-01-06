@@ -60,7 +60,7 @@ func _sort_children() -> void:
 		angle += angle_step
 
 func _build_food_options():
-	for food in ImportItemData.foods_data.values():
+	for food in Database.foods_data.values():
 		var food_button = TextureButton.new()
 		food_button.texture_normal = food.icon
 		food_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED

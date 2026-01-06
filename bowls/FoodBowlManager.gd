@@ -25,6 +25,13 @@ func add_bowl() -> bool:
 	UserConfig.save_bowls(bowls)
 	return true
 
+func remove_bowl() -> void:
+	if bowls.size() == 0:
+		return
+	
+	bowls.pop_back()
+	UserConfig.save_bowls(bowls)
+
 func set_active_bowl(index):
 	active_bowl_index = index
 

@@ -41,7 +41,7 @@ func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void
 	}
 	
 	var ingredient := ingredient_catalog.roll_ingredient(context, rng)
-	print("FoodAttractionSystem: <%s> trouxe o item <%s>" % [cat.data.display_name, ingredient.display_name])
+	#print("FoodAttractionSystem: <%s> trouxe o item <%s>" % [cat.data.display_name, Database.ingredients_data.ingredient])
 	Inventory.add_base_item(ingredient)
 	
 	cat.is_busy = false
