@@ -50,6 +50,7 @@ func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void
 	var ingredient := ingredient_catalog.roll_ingredient(context, rng)
 	print("FoodAttractionSystem: <%s> trouxe o item <%s>" % [cat.data.display_name, ingredient.display_name])
 	inventory.add_base_item(ingredient)
+	UserConfig.save_inventory(inventory)
 	
 	var new_food_value := bowl.remaining_amount - int(1 * cat.data.food_efficiency)
 	SignalBus.update_bowl.emit(bowl.food_type, new_food_value, bowls.find(bowl))

@@ -1,6 +1,5 @@
 extends Node
 
-var inventory := Inventory
 var ingredient_catalog := IngredientCatalog
 @onready var food_system: FoodAttractionSystem = $FoodAttractionSystem
 @onready var bowl_manager: FoodBowlManager = $FoodBowlManager
@@ -20,7 +19,8 @@ func _process(_delta: float) -> void:
 # --------------------------------------------------
 
 func _setup_system_links() -> void:
-	food_system.inventory = inventory
+	UserConfig.set_inventory_from_save()
+	food_system.inventory = Inventory
 	food_system.ingredient_catalog = ingredient_catalog
 	food_system.bowls = bowl_manager.bowls
 
@@ -44,7 +44,7 @@ func _create_debug_bowl() -> void:
 func _DEBUG_spawn_inventory_items() -> void:
 	for entry in ingredient_catalog.entries:
 		for i in range(10):
-			inventory.add_base_item(entry.ingredient)
+			Inventory.add_base_item(entry.ingredient)
 
 # --------------------------------------------------
 
