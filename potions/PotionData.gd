@@ -9,8 +9,6 @@ extends Resource
 
 @export var icon: Texture2D
 
-@export var discovered_at: int         # timestamp unix
-
 func serialize() -> Dictionary:
 	return {
 		'signature': signature,
@@ -18,7 +16,6 @@ func serialize() -> Dictionary:
 		'icon': icon,
 		'rarity': rarity,
 		'description': description,
-		'discovered_at': discovered_at,
 	}
 
 func create_from_dict(data: Dictionary) -> void:
@@ -27,4 +24,3 @@ func create_from_dict(data: Dictionary) -> void:
 	icon = data.icon
 	rarity = data.rarity
 	description = data.description
-	discovered_at = data.discovered_at

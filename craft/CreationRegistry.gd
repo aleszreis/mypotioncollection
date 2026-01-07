@@ -1,11 +1,11 @@
 extends Node
 
-var _registry: Dictionary = {}
+var _registry: Dictionary = {}  # Signature (String): { Data } (PotionData)
 var _generator := ProceduralItemGenerator.new()
 var _name_generator := PotionNameGenerator.new()
 
 func _ready():
-	_registry = UserConfig.set_registry_from_save()
+	_registry = UserConfig.set_potion_data_from_save()
 
 func get_or_create(signature: String, ingredient_ids: Array[String]) -> PotionData:
 	if _registry.has(signature):
@@ -18,7 +18,7 @@ func get_or_create(signature: String, ingredient_ids: Array[String]) -> PotionDa
 	var item := _generator.generate_item(signature, potion_name, ingredients)
 	_registry[signature] = item
 	
-	UserConfig.save_registry(PotionDatabase.potions_data, _registry)
+	UserConfig.save_potions(_registry)
 	
 	return item
 
