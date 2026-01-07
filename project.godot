@@ -21,9 +21,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 UserConfig="*res://UserConfig.gd"
-Db="*res://database/ImportItemData.gd"
-IngredientCatalog="*res://ingredients/IngredientCatalog.gd"
 CreationRegistry="*res://craft/CreationRegistry.gd"
+CatDatabase="*res://database/CatDatabase.gd"
+FoodDatabase="*res://database/FoodDatabase.gd"
+IngDatabase="*res://database/IngredientDatabase.gd"
+IngredientCatalog="*res://ingredients/IngredientCatalog.gd"
+PotionDatabase="*res://database/PotionDatabase.gd"
 Inventory="*res://inventory/Inventory.gd"
 SignalBus="*res://SignalBus.gd"
 

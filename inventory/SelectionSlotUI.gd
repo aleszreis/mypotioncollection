@@ -1,22 +1,23 @@
 extends Button
 class_name SelectionSlot
 
-var item: String
+var item: IngredientData
 var selector: SelectionController
 var inventory := Inventory
 
 @onready var sprite: TextureRect = $TextureRect
 
 func setup_ui_slot(item_id: String, selection_controller: SelectionController) -> void:
-	item = item_id
-	sprite.texture = Db.get_ing(item_id).icon
+	var data = IngDatabase.get_by_id(item_id)
+	item = data
+	sprite.texture = data.icon
 	
 	selector = selection_controller
 	
 	pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
-	Inventory.add_base_item(item)
-	selector.remove_from_selection(item)
+	Inventory.add_base_item(item.id)
+	selector.remove_from_selection(item.id)
 	queue_free()
 	

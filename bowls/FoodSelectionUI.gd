@@ -60,7 +60,7 @@ func _sort_children() -> void:
 		angle += angle_step
 
 func _build_food_options():
-	for food in Db.foods_data.values():
+	for food in FoodDatabase.foods_data.values():
 		if not food.is_available:
 			continue
 		var food_button = TextureButton.new()
@@ -79,10 +79,9 @@ func _build_food_options():
 		#add_child(food_label)
 
 func _on_food_button_pressed(button: TextureButton):
-	var food: String = button.get_meta("associated_food")
-	var fill_amount = Db.get_food(food).fill_value
+	var food = FoodDatabase.get_by_id(button.get_meta("associated_food"))
 	
-	SignalBus.update_bowl.emit(food, fill_amount)
+	SignalBus.update_bowl.emit(food.id, food.fill_value)
 	close()
 
 func _on_close_button_pressed() -> void:

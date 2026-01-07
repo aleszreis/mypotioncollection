@@ -18,7 +18,7 @@ func clear() -> void:
 	_selected.clear()
 
 func get_selected_items() -> Array[String]:
-	var filtered_items = _selected.filter(func(n): return Db.get_ing(n).is_special())
+	var filtered_items = _selected.filter(func(i): return IngDatabase.get_by_id(i).is_special())
 	return filtered_items if filtered_items.size() > 0 else _selected
 
 func has_selection() -> bool:

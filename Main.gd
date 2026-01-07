@@ -26,11 +26,11 @@ func _setup_system_links() -> void:
 # --------------------------------------------------
 
 func _spawn_initial_cats() -> void:
-	var all_cats_data = Db.cats_data.values()
+	var all_cats_data = CatDatabase.cats_data.values()
 	
 	for cat in all_cats_data:
 		var cat_instance := CatInstance.new()
-		cat_instance.cat_id = cat.id
+		cat_instance.cat_data = CatDatabase.get_by_id(cat.id)
 		food_system.cats.append(cat_instance)
 
 # --------------------------------------------------
@@ -42,9 +42,9 @@ func _create_debug_bowl() -> void:
 # --------------------------------------------------
 
 func _DEBUG_spawn_inventory_items() -> void:
-	for entry in ingredient_catalog.entries:
+	for entry in IngredientCatalog.entries:
 		for i in range(10):
-			Inventory.add_base_item(entry.ingredient)
+			Inventory.add_base_item(entry.ingredient.id)
 
 # --------------------------------------------------
 

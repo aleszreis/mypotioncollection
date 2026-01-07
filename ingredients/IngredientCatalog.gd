@@ -8,7 +8,7 @@ func _ready():
 	_populate_entries()
 	
 func _populate_entries():
-	entries = Db.catalog_data
+	entries = IngDatabase.catalog_data
 
 func roll_ingredient(context: Dictionary, rng: RandomNumberGenerator) -> String:
 	var pool: Array[IngredientEntry] = []
@@ -25,7 +25,7 @@ func roll_ingredient(context: Dictionary, rng: RandomNumberGenerator) -> String:
 		pool.append(entry)
 		weights.append(weight)
 
-	return _weighted_pick(pool, weights, rng).ingredient_id
+	return _weighted_pick(pool, weights, rng).ingredient.id
 
 func _weighted_pick(
 	entries: Array[IngredientEntry],
@@ -62,6 +62,6 @@ func _apply_modifiers(entry: IngredientEntry, context: Dictionary) -> float:
 	for rule in entry.rules:
 		result *= rule.weight_modifier(context, entry)
 	
-	for rule in Db.get_cat(context.cat_data).rules:
+	for rule in context.cat_data.rules:
 		result *= rule.weight_modifier(context, entry)
 	return result

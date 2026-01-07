@@ -21,10 +21,9 @@ func update_potion_preview(items: Array[String]) -> void:
 		return
 	
 	var signature := SelectionNormalizer.make_signature(items)
-	var potion_id = CreationRegistry.potion_is_known(signature)
+	var potion = CreationRegistry.potion_is_known(signature)
 	intro_label.text = "Você está criando..."
-	if potion_id:
-		var potion = Db.get_pot(potion_id)
+	if potion:
 		name_label.text = potion.display_name
 		rarity_label.text = "Item %s" % RARITY[potion.rarity]
 	else:

@@ -12,10 +12,10 @@ func add_base_item(item_id: String) -> void:
 	UserConfig.save_inventory()
 	SignalBus.changed_item.emit(item_id)
 
-func add_created_potion(item_id: String) -> void:
-	if potions.has(item_id):
+func add_created_potion(signature: String) -> void:
+	if potions.has(signature):
 		return
-	potions.append(item_id)
+	potions.append(signature)
 	UserConfig.save_inventory()
 
 func get_item_count(item_id: String):

@@ -11,7 +11,7 @@ var inventory := Inventory
 func setup_ui_slot(item: String, selection_controller: SelectionController) -> void:
 	selector = selection_controller
 	
-	var item_data = Db.get_ing(item)
+	var item_data = IngDatabase.get_by_id(item)
 	item_id = item_data.id
 	sprite.texture = item_data.icon
 	num_label.text = str(inventory.get_item_count(item_id))

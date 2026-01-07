@@ -52,9 +52,9 @@ func _on_create_potion_pressed() -> void:
 	
 	var items := selector.get_selected_items()
 	var signature := SelectionNormalizer.make_signature(items)
-	var potion_id := CreationRegistry.get_or_create(signature, items)
+	var potion := CreationRegistry.get_or_create(signature, items)
 	
-	Inventory.add_created_potion(potion_id)
+	Inventory.add_created_potion(potion.signature)
 	potion_preview.update_potion_preview(selector.get_selected_items())
 	_clear_selected_slots_ui()
 	selector.clear()

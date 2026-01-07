@@ -43,29 +43,29 @@ func _pick_cat(bowl: FoodBowlState, now: float) -> CatInstance:
 func _schedule_cat(cat: CatInstance, bowl: FoodBowlState, now: float, chosen_item: String = "") -> void:
 	var context := {
 		"cat": cat,
-		"cat_data": cat.cat_id,
+		"cat_data": cat.cat_data,
 		"food_type": bowl.food_type,
 		"bowl": bowl,
 		"time": now,
 	}
 	
 	cat.is_busy = true
-	cat.next_available_time = now + Db.get_cat(cat.cat_id).base_travel_time
-	cat.chosen_item = chosen_item if chosen_item else ingredient_catalog.roll_ingredient(context, rng)
+	cat.next_available_time = now + context.cat_data.base_travel_time
+	cat.chosen_item = chosen_item if chosen_item else IngredientCatalog.roll_ingredient(context, rng)
 	bowl.cat_assigned = cat
 	
 	# TODO: Atualizar bowls antes de salvar
 	UserConfig.save_bowls(bowls)
 
-	print("FoodAttractionSystem.gd: <%s> agendado com item <%s>" % [Db.get_cat(cat.cat_id).display_name, Db.get_ing(cat.chosen_item).display_name])
+	print("FoodAttractionSystem.gd: <%s> agendado com item <%s>" % [context.cat_data.display_name, IngDatabase.get_by_id(cat.chosen_item).display_name])
 
 func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void:
-	print("FoodAttractionSystem.gd: <%s> chegou." % Db.get_cat(cat.cat_id).display_name)
+	print("FoodAttractionSystem.gd: <%s> chegou." % cat.cat_data.display_name)
 	Inventory.add_base_item(cat.chosen_item)
 	
 	cat.is_busy = false
 	cat.chosen_item = ""
 	bowl.cat_assigned = null
 	
-	var new_food_value := bowl.remaining_amount - int(1 * Db.get_cat(cat.cat_id).food_efficiency)
+	var new_food_value := bowl.remaining_amount - int(1 * cat.cat_data.food_efficiency)
 	SignalBus.update_bowl.emit(bowl.food_type, new_food_value, bowls.find(bowl))

@@ -1,0 +1,32 @@
+extends Database
+
+@export var cats_data: Dictionary = {}
+
+var CATS_FILE_NAME = "gatos.json"
+
+## TO BE EDITED LATER
+var CAT_TRAVEL_TIME_MULTIPLIER = 1
+
+func _ready():
+	_format_cats_data()
+
+func _format_cats_data():
+	var cats_data_as_json = _parse_to_json(CATS_FILE_NAME)
+	
+	# Format CatData
+	for data in cats_data_as_json.values():
+		var cat_data = CatData.new()
+		cat_data.id = data.id
+		cat_data.display_name = data.display_name
+		cat_data.food_efficiency = data.food_efficiency
+		cat_data.rarity = data.rarity
+		cat_data.base_travel_time = data.rarity * CAT_TRAVEL_TIME_MULTIPLIER
+		cat_data.item_types = _format_string_to_array(data.item_types)
+		if data.favorite_item_id:
+			cat_data.favorite_item_id = data.favorite_item_id
+		cat_data.accepted_foods = _format_string_to_array(data.accepted_foods)
+		cat_data.rules = _format_rules(data.rules)
+		cats_data[data.id] = cat_data
+
+func get_by_id(cat_id: String) -> CatData:
+	return cats_data[cat_id]
