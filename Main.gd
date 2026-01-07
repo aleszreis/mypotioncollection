@@ -1,6 +1,5 @@
 extends Node
 
-var ingredient_catalog := IngredientCatalog
 @onready var food_system: FoodAttractionSystem = $FoodAttractionSystem
 @onready var bowl_manager: FoodBowlManager = $FoodBowlManager
 
@@ -20,7 +19,6 @@ func _process(_delta: float) -> void:
 
 func _setup_system_links() -> void:
 	UserConfig.set_inventory_from_save()
-	food_system.ingredient_catalog = ingredient_catalog
 	food_system.bowls = bowl_manager.bowls
 
 # --------------------------------------------------

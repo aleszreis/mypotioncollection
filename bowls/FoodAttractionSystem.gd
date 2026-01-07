@@ -1,8 +1,6 @@
 class_name FoodAttractionSystem
 extends Node
 
-var ingredient_catalog := IngredientCatalog
-
 var cats: Array[CatInstance] = []
 var bowls: Array[FoodBowlState] = []
 
