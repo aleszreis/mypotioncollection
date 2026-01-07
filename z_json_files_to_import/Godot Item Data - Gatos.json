@@ -1,82 +1,212 @@
 {
-  "1": {
-	"id": "1",
-	"display_name": "Chef",
-	"accepted_foods": "1, 2, 6",
-	"base_travel_time": 12,
-	"food_efficiency": 2,
-	"favorite_item_id": "18",
-	"favorite_item_type": "Especiaria",
-	"rules": "fave_item_type_rule, fave_item_id_rule"
+  "cat_1": {
+    "id": "cat_1",
+    "display_name": "Chef",
+    "rarity": 2,
+    "accepted_foods": "common, premium, spice",
+    "food_efficiency": 1,
+    "favorite_item_id": "rosemary",
+    "item_types": "1, 2, 3",
+    "rules": "item_types_rule, fave_item_id_rule"
   },
-  "2": {
-	"id": "2",
-	"display_name": "Druidinha",
-	"accepted_foods": "1, 2, 6",
-	"base_travel_time": 9,
-	"food_efficiency": 1,
-	"favorite_item_id": "16",
-	"favorite_item_type": "Especiaria",
-	"rules": "fave_item_type_rule, fave_item_id_rule"
+  "cat_2": {
+    "id": "cat_2",
+    "display_name": "Druidinha",
+    "rarity": 1,
+    "accepted_foods": "common, premium, flower",
+    "food_efficiency": 1,
+    "favorite_item_id": "ginger",
+    "item_types": "1, 3",
+    "rules": "item_types_rule, fave_item_id_rule"
   },
-  "3": {
-	"id": "3",
-	"display_name": "Lily",
-	"accepted_foods": "1, 2, 3, 6",
-	"base_travel_time": 6,
-	"food_efficiency": 1,
-	"favorite_item_id": "2",
-	"favorite_item_type": "Flor",
-	"rules": "fave_item_type_rule, fave_item_id_rule"
+  "cat_3": {
+    "id": "cat_3",
+    "display_name": "Comilão",
+    "rarity": 3,
+    "accepted_foods": "common, premium, fruit",
+    "food_efficiency": 4,
+    "favorite_item_id": "orange",
+    "item_types": "1, 2",
+    "rules": "item_types_rule, fave_item_id_rule"
   },
-  "4": {
-	"id": "4",
-	"display_name": "Lady",
-	"accepted_foods": "1, 2, 3, 6",
-	"base_travel_time": 9,
-	"food_efficiency": 1,
-	"favorite_item_id": "3",
-	"favorite_item_type": "Flor",
-	"rules": "fave_item_type_rule, fave_item_id_rule"
+  "cat_4": {
+    "id": "cat_4",
+    "display_name": "Hunter",
+    "rarity": 5,
+    "accepted_foods": "premium",
+    "food_efficiency": 4,
+    "favorite_item_id": "butterfly",
+    "item_types": "3, 4, 0",
+    "rules": "item_types_rule, fave_item_id_rule"
   },
-  "5": {
-	"id": "5",
-	"display_name": "Comilão",
-	"accepted_foods": "1, 3, 4, 6",
-	"base_travel_time": 12,
-	"food_efficiency": 4,
-	"favorite_item_id": "9",
-	"favorite_item_type": "Fruta",
-	"rules": "fave_item_type_rule, fave_item_id_rule"
+  "cat_5": {
+    "id": "cat_5",
+    "display_name": "Lily",
+    "rarity": 2,
+    "accepted_foods": "common, premium, flower, fruit",
+    "food_efficiency": 3,
+    "favorite_item_id": "lavender",
+    "item_types": "1",
+    "rules": "item_types_rule, fave_item_id_rule"
   },
-  "6": {
-	"id": "6",
-	"display_name": "Surfistinha",
-	"accepted_foods": "1, 3, 4, 6",
-	"base_travel_time": 6,
-	"food_efficiency": 3,
-	"favorite_item_id": "7",
-	"favorite_item_type": "Fruta",
-	"rules": "fave_item_type_rule, fave_item_id_rule"
+  "cat_6": {
+    "id": "cat_6",
+    "display_name": "Lady",
+    "rarity": 1,
+    "accepted_foods": "common, premium, flower",
+    "food_efficiency": 1,
+    "favorite_item_id": "rose",
+    "item_types": "1",
+    "rules": "item_types_rule, fave_item_id_rule"
   },
-  "7": {
-	"id": "7",
-	"display_name": "Princesa",
-	"accepted_foods": "1, 4, 5, 6",
-	"base_travel_time": 12,
-	"food_efficiency": 1,
-	"favorite_item_id": "13",
-	"favorite_item_type": "Gema",
-	"rules": "fave_item_type_rule, fave_item_id_rule"
+  "cat_7": {
+    "id": "cat_7",
+    "display_name": "Explorador",
+    "rarity": 3,
+    "accepted_foods": "premium, fruit, spice",
+    "food_efficiency": 2,
+    "favorite_item_id": "purple_basil",
+    "item_types": "1, 2, 3, 4",
+    "rules": "item_types_rule, fave_item_id_rule"
   },
-  "8": {
-	"id": "8",
-	"display_name": "Geronimo",
-	"accepted_foods": "1, 4, 5, 6",
-	"base_travel_time": 9,
-	"food_efficiency": 2,
-	"favorite_item_id": "15",
-	"favorite_item_type": "Gema",
-	"rules": "fave_item_type_rule, fave_item_id_rule"
+  "cat_8": {
+    "id": "cat_8",
+    "display_name": "Arara",
+    "rarity": 2,
+    "accepted_foods": "premium, fruit",
+    "food_efficiency": 3,
+    "favorite_item_id": "banana",
+    "item_types": "2",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_9": {
+    "id": "cat_9",
+    "display_name": "Princesa",
+    "rarity": 2,
+    "accepted_foods": "premium, flower, gem",
+    "food_efficiency": 1,
+    "favorite_item_id": "emerald",
+    "item_types": "1, 4",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_10": {
+    "id": "cat_10",
+    "display_name": "Geronimo",
+    "rarity": 3,
+    "accepted_foods": "premium, gem",
+    "food_efficiency": 1,
+    "favorite_item_id": "sapphire",
+    "item_types": "4",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_11": {
+    "id": "cat_11",
+    "display_name": "Pescador",
+    "rarity": 5,
+    "accepted_foods": "premium, gem",
+    "food_efficiency": 3,
+    "favorite_item_id": "dry_leaf",
+    "item_types": "1, 2, 3, 4, 0",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_12": {
+    "id": "cat_12",
+    "display_name": "Pirata",
+    "rarity": 4,
+    "accepted_foods": "premium, gem",
+    "food_efficiency": 2,
+    "favorite_item_id": "garnet",
+    "item_types": "3, 4",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_13": {
+    "id": "cat_13",
+    "display_name": "Cacau",
+    "rarity": 1,
+    "accepted_foods": "premium, fruit, flower",
+    "food_efficiency": 1,
+    "favorite_item_id": "grape",
+    "item_types": "1, 2",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_14": {
+    "id": "cat_14",
+    "display_name": "Molly",
+    "rarity": 2,
+    "accepted_foods": "premium, fruit",
+    "food_efficiency": 1,
+    "favorite_item_id": "cinnamon",
+    "item_types": "2, 3",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_15": {
+    "id": "cat_15",
+    "display_name": "Fred",
+    "rarity": 3,
+    "accepted_foods": "premium, spice",
+    "food_efficiency": 2,
+    "favorite_item_id": "strawberry",
+    "item_types": "1, 2, 3",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_16": {
+    "id": "cat_16",
+    "display_name": "Indiana Jones",
+    "rarity": 5,
+    "accepted_foods": "premium",
+    "food_efficiency": 4,
+    "favorite_item_id": null,
+    "item_types": "1, 2, 3, 4, 0",
+    "rules": "item_types_rule"
+  },
+  "cat_17": {
+    "id": "cat_17",
+    "display_name": "Fahra",
+    "rarity": 3,
+    "accepted_foods": "common, premium, spice",
+    "food_efficiency": 2,
+    "favorite_item_id": "ruby",
+    "item_types": "1, 4",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_18": {
+    "id": "cat_18",
+    "display_name": "Poki",
+    "rarity": 1,
+    "accepted_foods": "common, premium",
+    "food_efficiency": 1,
+    "favorite_item_id": null,
+    "item_types": "1",
+    "rules": "item_types_rule"
+  },
+  "cat_19": {
+    "id": "cat_19",
+    "display_name": "Buboo",
+    "rarity": 1,
+    "accepted_foods": "common, premium",
+    "food_efficiency": 1,
+    "favorite_item_id": null,
+    "item_types": "1",
+    "rules": "item_types_rule"
+  },
+  "cat_20": {
+    "id": "cat_20",
+    "display_name": "Monk",
+    "rarity": 1,
+    "accepted_foods": "common, premium",
+    "food_efficiency": 2,
+    "favorite_item_id": null,
+    "item_types": "1",
+    "rules": "item_types_rule"
+  },
+  "cat_21": {
+    "id": "cat_21",
+    "display_name": "Brabinho IV",
+    "rarity": 2,
+    "accepted_foods": "common, premium",
+    "food_efficiency": 2,
+    "favorite_item_id": null,
+    "item_types": "1",
+    "rules": "item_types_rule"
   }
 }

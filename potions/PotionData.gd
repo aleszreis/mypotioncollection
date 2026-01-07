@@ -22,3 +22,12 @@ func serialize() -> Dictionary:
 		'description': description,
 		'discovered_at': discovered_at,
 	}
+
+func create_from_dict(data: Dictionary) -> void:
+	id = data.id
+	display_name = data.display_name
+	icon = data.icon
+	signature = data.signature
+	rarity = data.rarity
+	description = data.description
+	discovered_at = data.discovered_at

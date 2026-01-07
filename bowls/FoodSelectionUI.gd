@@ -66,7 +66,7 @@ func _build_food_options():
 		food_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
 		food_button.custom_minimum_size = Vector2(48, 48)
 		#food_button.autowrap_mode = TextServer.AUTOWRAP_WORD
-		food_button.set_meta("associated_food", food)
+		food_button.set_meta("associated_food", food.id)
 		food_button.pressed.connect(_on_food_button_pressed.bind(food_button))
 		add_child(food_button)
 		#var food_label = Label.new()
@@ -77,9 +77,10 @@ func _build_food_options():
 		#add_child(food_label)
 
 func _on_food_button_pressed(button: TextureButton):
-	var food: FoodType = button.get_meta("associated_food")
+	var food: String = button.get_meta("associated_food")
+	var fill_amount = Database.get_food_data(food).fill_value
 	
-	SignalBus.update_bowl.emit(food, food.fill_value)
+	SignalBus.update_bowl.emit(food, fill_amount)
 	close()
 
 func _on_close_button_pressed() -> void:

@@ -30,7 +30,7 @@ func _spawn_initial_cats() -> void:
 	
 	for cat in all_cats_data:
 		var cat_instance := CatInstance.new()
-		cat_instance.data = cat
+		cat_instance.cat_id = cat.id
 		food_system.cats.append(cat_instance)
 
 # --------------------------------------------------

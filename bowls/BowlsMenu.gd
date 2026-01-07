@@ -25,13 +25,14 @@ func _on_bowl_button_pressed(bowl: TextureButton):
 	bowl_manager.set_active_bowl(index)
 	food_selection.open()
 
-func _on_bowl_state_changed(bowl_index: int, food: FoodType):
+func _on_bowl_state_changed(bowl_index: int):
 	var bowl_button = get_child(bowl_index)
 	var bowl_info = bowl_manager.bowls[bowl_index]
 	_update_bowl_icon(bowl_info, bowl_button)
 
 func _update_bowl_icon(bowl: FoodBowlState, btn: TextureButton) -> void:
 	if bowl.food_type:
-		btn.texture_normal = bowl.food_type.icon 
+		var food_icon = Database.get_food_data(bowl.food_type).icon 
+		btn.texture_normal = food_icon
 	else:
 		btn.texture_normal = empty_bowl_icon

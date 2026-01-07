@@ -14,7 +14,9 @@ func get_or_create(signature: String, ingredients: Array[String]) -> String:
 	var potion_name = _name_generator._generate_name(ingredients)
 	var item_id := _generator.generate_item(signature, potion_name, ingredients)
 	_registry[signature] = item_id
-	UserConfig.save_registry(_registry)
+	
+	UserConfig.save_registry(Database.potions_data, _registry)
+	
 	return item_id
 
 func potion_is_known(signature: String) -> String:

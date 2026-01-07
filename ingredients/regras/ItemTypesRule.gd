@@ -1,4 +1,4 @@
-class_name FaveItemTypeRule
+class_name ItemTypesRule
 extends IngredientRule
 
 func weight_modifier(context: Dictionary, entry: IngredientEntry) -> float:

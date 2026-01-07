@@ -62,6 +62,6 @@ func _apply_modifiers(entry: IngredientEntry, context: Dictionary) -> float:
 	for rule in entry.rules:
 		result *= rule.weight_modifier(context, entry)
 	
-	for rule in context.cat_data.rules:
+	for rule in Database.get_cat_data(context.cat_data).rules:
 		result *= rule.weight_modifier(context, entry)
 	return result

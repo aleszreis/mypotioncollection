@@ -5,6 +5,6 @@ enum Ingredient {
 	ESPECIAL,
 	FLOR, # Rosa, girassol
 	FRUTA, # Frutas
-	GEMA, # Pedras preciosas
 	ESPECIARIA, # Temperos
+	GEMA, # Pedras preciosas
 }
