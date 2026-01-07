@@ -32,7 +32,7 @@ func _on_bowl_state_changed(bowl_index: int):
 
 func _update_bowl_icon(bowl: FoodBowlState, btn: TextureButton) -> void:
 	if bowl.food_type:
-		var food_icon = Database.get_food_data(bowl.food_type).icon 
+		var food_icon = Db.get_food(bowl.food_type).icon 
 		btn.texture_normal = food_icon
 	else:
 		btn.texture_normal = empty_bowl_icon

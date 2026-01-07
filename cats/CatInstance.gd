@@ -10,14 +10,14 @@ var next_available_time := 0.0
 var chosen_item := ""
 
 func _ready():
-	base_weight = _rarity_to_weight(Database.get_cat_data(cat_id).rarity)
+	base_weight = _rarity_to_weight(Db.get_cat(cat_id).rarity)
 
 func can_respond_to_bowl(bowl: FoodBowlState, now: float) -> bool:
 	if is_busy:
 		return false
 	if now < next_available_time:
 		return false
-	if not Database.get_cat_data(cat_id).accepted_foods.has(bowl.food_type):
+	if not Db.get_cat(cat_id).accepted_foods.has(bowl.food_type):
 		return false
 	return true
 

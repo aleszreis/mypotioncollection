@@ -17,7 +17,7 @@ func generate_item(signature: String, potion_name: String, ingredients: Array[St
 	#item.description = _generate_description(rng)
 	#item.icon = _generate_icon(rng)
 	
-	Database.potions_data[item.id] = item
+	Db.potions_data[item.id] = item
 	
 	return item.id
 
@@ -33,5 +33,5 @@ func _generate_id(signature: String) -> String:
 func _generate_rarity(items: Array[String]) -> int:
 	var avg_rarity = 0
 	for id in items:
-		avg_rarity += Database.get_ingredient_data(id).rarity
+		avg_rarity += Db.get_ing(id).rarity
 	return floor(avg_rarity / items.size())

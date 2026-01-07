@@ -26,7 +26,7 @@ func _setup_system_links() -> void:
 # --------------------------------------------------
 
 func _spawn_initial_cats() -> void:
-	var all_cats_data = Database.cats_data.values()
+	var all_cats_data = Db.cats_data.values()
 	
 	for cat in all_cats_data:
 		var cat_instance := CatInstance.new()

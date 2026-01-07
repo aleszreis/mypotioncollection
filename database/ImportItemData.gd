@@ -64,11 +64,10 @@ func _format_food_data():
 	
 	# Format FoodType
 	for data in food_data_as_json.values():
+		data.icon = load("res://bowls/sprites/%s.png" % data.id)
+		
 		var food_data = FoodType.new()
-		food_data.id = data.id
-		food_data.display_name = data.display_name
-		food_data.fill_value = data.fill_value
-		food_data.icon = load("res://bowls/sprites/%s.png" % data.id)
+		food_data.create_from_dict(data)
 		foods_data[data.id] = food_data
 
 func _format_string_to_array(s: String) -> Array[String]:
@@ -93,14 +92,14 @@ func _format_rules(rules_as_string: String) -> Array[IngredientRule]:
 				rules_formatted.append(FaveItemIdRule.new())
 	return rules_formatted
 
-func get_ingredient_data(ing_id: String) -> IngredientData:
+func get_ing(ing_id: String) -> IngredientData:
 	return ingredients_data[ing_id]
 
-func get_potion_data(pot_id: String) -> PotionData:
+func get_pot(pot_id: String) -> PotionData:
 	return potions_data[pot_id]
 
-func get_cat_data(cat_id: String) -> CatData:
+func get_cat(cat_id: String) -> CatData:
 	return cats_data[cat_id]
 
-func get_food_data(food_id: String) -> FoodType:
+func get_food(food_id: String) -> FoodType:
 	return foods_data[food_id]

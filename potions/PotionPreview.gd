@@ -24,7 +24,7 @@ func update_potion_preview(items: Array[String]) -> void:
 	var potion_id = CreationRegistry.potion_is_known(signature)
 	intro_label.text = "Você está criando..."
 	if potion_id:
-		var potion = Database.get_potion_data(potion_id)
+		var potion = Db.get_pot(potion_id)
 		name_label.text = potion.display_name
 		rarity_label.text = "Item %s" % RARITY[potion.rarity]
 	else:

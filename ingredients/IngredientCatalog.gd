@@ -8,7 +8,7 @@ func _ready():
 	_populate_entries()
 	
 func _populate_entries():
-	entries = Database.catalog_data
+	entries = Db.catalog_data
 
 func roll_ingredient(context: Dictionary, rng: RandomNumberGenerator) -> String:
 	var pool: Array[IngredientEntry] = []
@@ -62,6 +62,6 @@ func _apply_modifiers(entry: IngredientEntry, context: Dictionary) -> float:
 	for rule in entry.rules:
 		result *= rule.weight_modifier(context, entry)
 	
-	for rule in Database.get_cat_data(context.cat_data).rules:
+	for rule in Db.get_cat(context.cat_data).rules:
 		result *= rule.weight_modifier(context, entry)
 	return result

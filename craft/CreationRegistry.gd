@@ -15,7 +15,7 @@ func get_or_create(signature: String, ingredients: Array[String]) -> String:
 	var item_id := _generator.generate_item(signature, potion_name, ingredients)
 	_registry[signature] = item_id
 	
-	UserConfig.save_registry(Database.potions_data, _registry)
+	UserConfig.save_registry(Db.potions_data, _registry)
 	
 	return item_id
 

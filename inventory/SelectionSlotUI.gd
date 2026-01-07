@@ -9,7 +9,7 @@ var inventory := Inventory
 
 func setup_ui_slot(item_id: String, selection_controller: SelectionController) -> void:
 	item = item_id
-	sprite.texture = Database.get_ingredient_data(item_id).icon
+	sprite.texture = Db.get_ing(item_id).icon
 	
 	selector = selection_controller
 	
