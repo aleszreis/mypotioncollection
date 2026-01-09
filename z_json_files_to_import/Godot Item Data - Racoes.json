@@ -1,38 +1,51 @@
 {
-  "common": {
-	"id": "common",
-	"display_name": "Ração Comum Grande",
+  "food_1": {
+	"id": "food_1",
+	"display_name": "Comum",
 	"fill_value": 32,
-	"is_available": true
+	"is_available": true,
+	"icon_name": "common"
   },
-  "flower": {
-	"id": "flower",
-	"display_name": "Ração Florida",
+  "food_2": {
+	"id": "food_2",
+	"display_name": "Florida",
 	"fill_value": 16,
-	"is_available": true
+	"is_available": true,
+	"icon_name": "flower"
   },
-  "fruit": {
-	"id": "fruit",
-	"display_name": "Ração Tropical",
+  "food_3": {
+	"id": "food_3",
+	"display_name": "Tropical",
 	"fill_value": 16,
-	"is_available": false
+	"is_available": true,
+	"icon_name": "fruit"
   },
-  "spice": {
-	"id": "spice",
-	"display_name": "Ração Aromatizada",
+  "food_4": {
+	"id": "food_4",
+	"display_name": "Aromatizada",
 	"fill_value": 16,
-	"is_available": false
+	"is_available": true,
+	"icon_name": "spice"
   },
-  "gem": {
-	"id": "gem",
-	"display_name": "Ração Dura",
+  "food_5": {
+	"id": "food_5",
+	"display_name": "Dura",
 	"fill_value": 16,
-	"is_available": false
+	"is_available": true,
+	"icon_name": "gem"
   },
-  "premium": {
-	"id": "premium",
+  "food_6": {
+	"id": "food_6",
 	"display_name": "Premium",
 	"fill_value": 32,
-	"is_available": true
+	"is_available": true,
+	"icon_name": "premium"
+  },
+  "food_7": {
+	"id": "food_7",
+	"display_name": "Especial",
+	"fill_value": 32,
+	"is_available": true,
+	"icon_name": "special"
   }
 }

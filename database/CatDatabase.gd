@@ -5,7 +5,7 @@ extends Database
 var CATS_FILE_NAME = "gatos.json"
 
 ## TO BE EDITED LATER
-var CAT_TRAVEL_TIME_MULTIPLIER = 1
+var CAT_TRAVEL_TIME_MULTIPLIER = 120
 
 func _ready():
 	_format_cats_data()
@@ -25,8 +25,25 @@ func _format_cats_data():
 		if data.favorite_item_id:
 			cat_data.favorite_item_id = data.favorite_item_id
 		cat_data.accepted_foods = _format_string_to_array(data.accepted_foods)
+		cat_data.accepted_foods = _format_foods(cat_data.accepted_foods)
 		cat_data.rules = _format_rules(data.rules)
 		cats_data[data.id] = cat_data
+
+func _format_foods(foods_list: Array[String]) -> Array:
+	var translation = {
+		"common": "food_1",
+		"flower": "food_2",
+		"fruit": "food_3",
+		"spice": "food_4",
+		"gem": "food_5",
+		"premium": "food_6",
+		"special": "food_7",
+	}
+	var result: Array[String] = []
+	for food in foods_list:
+		result.append(translation[food])
+	
+	return result
 
 func get_by_id(cat_id: String) -> CatData:
 	return cats_data[cat_id]

@@ -33,7 +33,7 @@
     "id": "cat_4",
     "display_name": "Hunter",
     "rarity": 5,
-    "accepted_foods": "premium",
+    "accepted_foods": "premium, special",
     "food_efficiency": 4,
     "favorite_item_id": "butterfly",
     "item_types": "3, 4, 0",
@@ -153,7 +153,7 @@
     "id": "cat_16",
     "display_name": "Indiana Jones",
     "rarity": 5,
-    "accepted_foods": "premium",
+    "accepted_foods": "premium, special",
     "food_efficiency": 4,
     "favorite_item_id": null,
     "item_types": "1, 2, 3, 4, 0",
@@ -208,5 +208,35 @@
     "favorite_item_id": null,
     "item_types": "1",
     "rules": "item_types_rule"
+  },
+  "cat_22": {
+    "id": "cat_22",
+    "display_name": "Herja",
+    "rarity": 5,
+    "accepted_foods": "premium, spice, special",
+    "food_efficiency": 4,
+    "favorite_item_id": "amber",
+    "item_types": "2, 0",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_23": {
+    "id": "cat_23",
+    "display_name": "Aiysha",
+    "rarity": 5,
+    "accepted_foods": "premium, flower, special",
+    "food_efficiency": 4,
+    "favorite_item_id": "cactus",
+    "item_types": "1, 0",
+    "rules": "item_types_rule, fave_item_id_rule"
+  },
+  "cat_24": {
+    "id": "cat_24",
+    "display_name": "Krishan",
+    "rarity": 5,
+    "accepted_foods": "premium, fruit, special",
+    "food_efficiency": 4,
+    "favorite_item_id": "strawberry",
+    "item_types": "3, 0",
+    "rules": "item_types_rule, fave_item_id_rule"
   }
 }

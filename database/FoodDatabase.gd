@@ -12,7 +12,7 @@ func _format_food_data():
 	
 	# Format FoodType
 	for data in food_data_as_json.values():
-		data.icon = load("res://bowls/sprites/%s.png" % data.id)
+		data.icon = load("res://bowls/sprites/%s.png" % data.icon_name)
 		
 		var food_data = FoodType.new()
 		food_data.create_from_dict(data)

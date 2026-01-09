@@ -31,7 +31,7 @@ func serialize() -> Dictionary:
 func create_from_dict(data: Dictionary) -> void:
 	id = data.id
 	display_name = data.display_name
-	icon = load("res://ingredients/sprites/%s.png" % data.id)
+	icon = load("res://ingredients/sprites/%s.png" % data.icon_name)
 	item_type = ItemTypes.Ingredient[data.item_type.to_upper()]
 	rarity = data.rarity
 	preffix = data.preffix
