@@ -1,7 +1,10 @@
 extends Node
 
-signal changed_item(item)
+signal craft_pressed(selector)
 
+signal open_food_menu()
+signal set_active_bowl(bowl)
 signal bowl_state_changed(index, icon)
-signal update_bowl(food, amount, bowl_idx)
-signal update_bowl_button(bowl_idx)
+signal change_bowl_food(food)
+signal remove_food(bowl, amount)
+signal update_bowl_button()

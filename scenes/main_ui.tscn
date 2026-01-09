@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv8u28p64d1r8"]
+[gd_scene load_steps=9 format=3 uid="uid://dv8u28p64d1r8"]
 
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
-[ext_resource type="Script" uid="uid://bw8or3ejgy86s" path="res://bowls/BowlsMenu.gd" id="2_dbw6l"]
 [ext_resource type="Texture2D" uid="uid://eo01h0maa2qq" path="res://house_background.png" id="2_okuri"]
 [ext_resource type="PackedScene" uid="uid://qu60cp1l0s4a" path="res://scenes/potion_preview.tscn" id="4_yjiuj"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
@@ -60,7 +59,6 @@ size_flags_stretch_ratio = 0.3
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
-script = ExtResource("2_dbw6l")
 
 [node name="PotionPreviewContainer" parent="HBoxContainer/LeftSideContainer" instance=ExtResource("4_yjiuj")]
 layout_mode = 2
