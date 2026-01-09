@@ -58,7 +58,7 @@ func _schedule_cat(cat: CatInstance, bowl: FoodBowlState, now: float, chosen_ite
 
 func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void:
 	print("FoodAttractionSystem.gd: <%s> chegou." % cat.cat_data.display_name)
-	Inventory.add_base_item(cat.chosen_item)
+	SignalBus.ingredient_acquired.emit(cat.chosen_item)
 	
 	cat.is_busy = false
 	cat.chosen_item = ""

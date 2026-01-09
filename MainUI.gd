@@ -12,16 +12,13 @@ var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 var inventory_slots_by_item: Dictionary = {}
 
 var selection_slot_scene = preload("res://scenes/selec_slot_ui.tscn")
-var selection_slots_by_item: Dictionary = {}
 
 var selector := SelectionController.new()
 
 func _ready() -> void:
-	add_child(selector)
-	
 	selector.selected_item.connect(_on_item_selected)
 	selector.deselected_item.connect(_on_item_deselected)
-	SignalBus.changed_item.connect(_update_inventory_ui)
+	SignalBus.change_ui_ingredient.connect(_update_inventory_ui)
 	
 	_build_bowls_buttons()
 	_build_inventory_ui()

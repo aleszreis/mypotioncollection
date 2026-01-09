@@ -19,6 +19,7 @@ func get_or_create(signature: String, ingredient_ids: Array[String]) -> PotionDa
 	_registry[signature] = item
 	
 	UserConfig.save_potions(_registry)
+	SignalBus.potion_acquired.emit(item)
 	
 	return item
 
