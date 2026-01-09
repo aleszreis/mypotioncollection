@@ -1,10 +1,10 @@
 extends Control
 
-@onready var item_grid = $HBoxContainer/InventoryContainer/IngredientGrid
-@onready var create_button: TextureButton = $HBoxContainer/CraftContainer/CenterCauldron/CreateItemButton
-@onready var bowls_container: VBoxContainer = $HBoxContainer/LeftSideContainer/BowlsContainer
-@onready var selected_grid = $HBoxContainer/CraftContainer/CenterSelected/SelectedIngredientsGrid
-@onready var potion_preview = $HBoxContainer/LeftSideContainer/PotionPreviewContainer
+@onready var item_grid = $HBoxContainer/CenterColumn/IngredientGrid
+@onready var create_button: TextureButton = $HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton
+@onready var bowls_container: VBoxContainer = $HBoxContainer/LeftColumn/BowlsContainer
+@onready var selected_grid = $HBoxContainer/CenterColumn/CenterSelected/SelectedIngredientsGrid
+@onready var potion_preview = $HBoxContainer/CenterColumn/Control/PotionPreviewContainer
 
 @onready var bowl_manager: FoodBowlManager = $Game/FoodBowlManager
 

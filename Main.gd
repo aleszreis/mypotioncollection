@@ -9,8 +9,6 @@ func _ready() -> void:
 	#_DEBUG_spawn_inventory_items()
 	_process_offline_progress()
 	
-	UserConfig.set_inventory_from_save()
-	
 	SignalBus.craft_pressed.connect(_craft_potion)
 
 func _process(_delta: float) -> void:

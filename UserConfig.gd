@@ -1,6 +1,6 @@
 extends Node
 
-var file_path = "res://save.cfg" # "user://save.cfg"
+var file_path = "user://save.cfg" # "user://save.cfg"
 var config := ConfigFile.new()
 var _saving = false
 
@@ -12,12 +12,16 @@ func _save_to_file():
 		return
 
 	_saving = true
-	#await get_tree().process_frame
+	await get_tree().process_frame
+	config.set_value("metadata", "last_saved_at", Time.get_unix_time_from_system())
+	config.set_value("metadata", "last_saved_date", str(Time.get_datetime_string_from_system()))
+
+	print("Saved data.")
 
 	var err = config.save(file_path)
 	if err != OK:
 		push_error("Erro ao salvar config: %s" % err)
-		
+	
 	_saving = false
 
 # ---------- CATS
@@ -96,3 +100,7 @@ func set_player_ingr_data_from_save():
 
 func set_player_pot_data_from_save():
 	return config.get_value('player', 'potion_data', {})
+
+# ---------- METADATA
+func get_last_save_time() -> float:
+	return float(config.get_value('metadata', 'last_saved_at', 0.0))

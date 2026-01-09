@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://qu60cp1l0s4a"]
+[gd_scene load_steps=3 format=3 uid="uid://qu60cp1l0s4a"]
 
 [ext_resource type="Script" uid="uid://b7mr13cnxaxtg" path="res://potions/PotionPreview.gd" id="1_eexqv"]
+[ext_resource type="Texture2D" uid="uid://f73oojmicy8i" path="res://potions/sprites/unknown_potion.png" id="2_uyduk"]
 
 [node name="PotionPreviewContainer" type="Panel"]
 anchors_preset = 15
@@ -26,28 +27,21 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "X"
 
-[node name="IntroLabel" type="Label" parent="VBoxContainer"]
+[node name="CenterSprite" type="CenterContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-text = "Nada sendo criado por enquanto..."
-horizontal_alignment = 1
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CenterSprite"]
+layout_mode = 2
+texture = ExtResource("2_uyduk")
+stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(256, 48)
 layout_mode = 2
 horizontal_alignment = 1
 autowrap_mode = 2
-
-[node name="RarityLabel" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(256, 48)
-layout_mode = 2
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="CenterSprite" type="CenterContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CenterSprite"]
-layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_clear_button_pressed"]

@@ -33,7 +33,9 @@ SignalBus="*res://SignalBus.gd"
 
 [display]
 
-window/stretch/aspect="ignore"
+window/size/viewport_width=360
+window/size/viewport_height=640
+window/handheld/orientation=1
 
 [rendering]
 

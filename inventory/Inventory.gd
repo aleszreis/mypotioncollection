@@ -4,6 +4,8 @@ var ingredients: Dictionary = {}
 var potions: Array = []
 
 func _ready():
+	UserConfig.set_inventory_from_save()
+	
 	SignalBus.ingredient_acquired.connect(_add_ingredient)
 	SignalBus.potion_acquired.connect(_add_potion)
 
