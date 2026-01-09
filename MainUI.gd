@@ -2,7 +2,7 @@ extends Control
 
 @onready var item_grid = $HBoxContainer/InventoryContainer/IngredientGrid
 @onready var create_button: TextureButton = $HBoxContainer/CraftContainer/CenterCauldron/CreateItemButton
-@onready var bowls: VBoxContainer = $HBoxContainer/LeftSideContainer/BowlsContainer
+@onready var bowls_container: VBoxContainer = $HBoxContainer/LeftSideContainer/BowlsContainer
 @onready var selected_grid = $HBoxContainer/CraftContainer/CenterSelected/SelectedIngredientsGrid
 @onready var potion_preview = $HBoxContainer/LeftSideContainer/PotionPreviewContainer
 
@@ -23,6 +23,7 @@ func _ready() -> void:
 	selector.deselected_item.connect(_on_item_deselected)
 	SignalBus.changed_item.connect(_update_inventory_ui)
 	
+	_build_bowls_buttons()
 	_build_inventory_ui()
 
 func _build_inventory_ui() -> void:
@@ -45,17 +46,22 @@ func _update_inventory_ui(item_id: String) -> void:
 		slot.setup_ui_slot(item_id, selector)
 		inventory_slots_by_item[item_id] = slot
 
+func _build_bowls_buttons() -> void:
+	var bowls = FoodBowlManager.bowls
+	for bowl: FoodBowlState in bowls:
+		var bowl_btn = BowlButton.new()
+		bowl_btn.bowl = bowl
+		bowls_container.add_child(bowl_btn)
+
 func _on_create_potion_pressed() -> void:
 	if not selector.has_selection():
 		print("MainUI.gd: Nenhum item selecionado")
 		return
 	
-	var items := selector.get_selected_items()
-	var signature := SelectionNormalizer.make_signature(items)
-	var potion := CreationRegistry.get_or_create(signature, items)
+	SignalBus.craft_pressed.emit(selector)
 	
-	Inventory.add_created_potion(potion.signature)
 	potion_preview.update_potion_preview(selector.get_selected_items())
+	
 	_clear_selected_slots_ui()
 	selector.clear()
 

@@ -29,13 +29,15 @@ func serialize() -> Dictionary:
 		"cat_data": cat_data.id,
 		"base_weight": base_weight,
 		"is_busy": is_busy,
-		"next_available_time": next_available_time,
+		"next_available_time": str(next_available_time),
 		"chosen_item": chosen_item,
 	}
 
-func create_from_dict(data: Dictionary) -> void:
-	cat_data = CatDatabase.get_by_id(data.cat_data)
-	base_weight = data.base_weight
-	is_busy = data.is_busy
-	next_available_time = data.next_available_time
-	chosen_item = data.chosen_item
+func create_from_dict(data: Dictionary) -> CatInstance:
+	var cat = CatInstance.new()
+	cat.cat_data = CatDatabase.get_by_id(data.cat_data)
+	cat.base_weight = data.base_weight
+	cat.is_busy = data.is_busy
+	cat.next_available_time = float(data.next_available_time)
+	cat.chosen_item = data.chosen_item
+	return cat

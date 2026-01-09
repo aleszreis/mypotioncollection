@@ -5,21 +5,17 @@ extends Node
 
 
 func _ready() -> void:
-	_setup_system_links()
 	_spawn_initial_cats()
-	_create_debug_bowl()
 	#_DEBUG_spawn_inventory_items()
 	_process_offline_progress()
+	
+	UserConfig.set_inventory_from_save()
+	
+	SignalBus.craft_pressed.connect(_craft_potion)
 
 func _process(_delta: float) -> void:
 	var now := Time.get_unix_time_from_system()
 	food_system.process_time(now)
-
-# --------------------------------------------------
-
-func _setup_system_links() -> void:
-	UserConfig.set_inventory_from_save()
-	food_system.bowls = bowl_manager.bowls
 
 # --------------------------------------------------
 
@@ -31,11 +27,6 @@ func _spawn_initial_cats() -> void:
 		cat_instance.cat_data = CatDatabase.get_by_id(cat.id)
 		food_system.cats.append(cat_instance)
 
-# --------------------------------------------------
-
-func _create_debug_bowl() -> void:
-	#bowl_manager.add_bowl()
-	food_system.bowls = bowl_manager.bowls
 
 # --------------------------------------------------
 
@@ -51,3 +42,8 @@ func _process_offline_progress() -> void:
 	food_system.process_time(now)
 
 # --------------------------------------------------
+
+func _craft_potion(selector: SelectionController) -> void:
+	var items := selector.get_selected_items()
+	var signature := SelectionNormalizer.make_signature(items)
+	var potion := CreationRegistry.get_or_create(signature, items)

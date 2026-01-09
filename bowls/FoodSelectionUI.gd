@@ -1,11 +1,12 @@
 extends Container
-class_name RadialContainer
 
 @export var button_radius: float = 80.0
 
 func _ready():
 	_build_food_options()
 	close()
+	
+	SignalBus.open_food_menu.connect(open)
 
 func open():
 	visible = true
@@ -67,8 +68,7 @@ func _build_food_options():
 		food_button.texture_normal = food.icon
 		food_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
 		food_button.custom_minimum_size = Vector2(48, 48)
-		#food_button.autowrap_mode = TextServer.AUTOWRAP_WORD
-		food_button.set_meta("associated_food", food.id)
+		food_button.set_meta("associated_food", food)
 		food_button.pressed.connect(_on_food_button_pressed.bind(food_button))
 		add_child(food_button)
 		#var food_label = Label.new()
@@ -79,9 +79,10 @@ func _build_food_options():
 		#add_child(food_label)
 
 func _on_food_button_pressed(button: TextureButton):
-	var food = FoodDatabase.get_by_id(button.get_meta("associated_food"))
+	var food = button.get_meta("associated_food")
 	
-	SignalBus.update_bowl.emit(food.id, food.fill_value)
+	SignalBus.change_bowl_food.emit(food)
+	
 	close()
 
 func _on_close_button_pressed() -> void:

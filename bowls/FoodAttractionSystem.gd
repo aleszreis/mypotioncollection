@@ -2,12 +2,11 @@ class_name FoodAttractionSystem
 extends Node
 
 var cats: Array[CatInstance] = []
-var bowls: Array[FoodBowlState] = []
 
 var rng := RandomNumberGenerator.new()
 
 func process_time(now: float) -> void:
-	for bowl in bowls:
+	for bowl in FoodBowlManager.bowls:
 		if not bowl.is_available():
 			var cat = bowl.cat_assigned
 			if cat and now >= cat.next_available_time:
@@ -17,7 +16,7 @@ func process_time(now: float) -> void:
 		var picked_cat := _pick_cat(bowl, now)
 		if picked_cat:
 			_schedule_cat(picked_cat, bowl, now)
-			UserConfig.save_bowls(bowls)
+	UserConfig.save_bowls(FoodBowlManager.bowls)
 
 func _pick_cat(bowl: FoodBowlState, now: float) -> CatInstance:
 	var eligible := cats.filter(func(c): return c.can_respond_to_bowl(bowl, now))
@@ -65,5 +64,6 @@ func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void
 	cat.chosen_item = ""
 	bowl.cat_assigned = null
 	
-	var new_food_value := bowl.remaining_amount - int(1 * cat.cat_data.food_efficiency)
-	SignalBus.update_bowl.emit(bowl.food_type, new_food_value, bowls.find(bowl))
+	#print("FoodAttractionSystem.bg: Bowl has <%s> of food left" % bowl.remaining_amount)
+	FoodBowlManager.remove_food_from_bowl(cat.cat_data.food_efficiency, bowl)
+	

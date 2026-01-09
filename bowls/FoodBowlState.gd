@@ -9,16 +9,20 @@ extends Resource
 func is_available() -> bool:
 	return remaining_amount > 0 and (cat_assigned == null)
 
+# --------------- Transform data to save and load
+
 func serialize() -> Dictionary:
 	return {
 		'food_type': food_type,
 		'remaining_amount': remaining_amount,
-		# TODO: incluir lógica de processamento offline para determinar gato por bowl
-		'cat_assigned': null
+		'cat_assigned': cat_assigned.serialize() if cat_assigned else null
 	}
 
 func create_from_dict(data: Dictionary) -> void:
 	food_type = data.food_type
 	remaining_amount = data.remaining_amount
-	# TODO: incluir lógica de processamento offline para determinar gato por bowl
 	cat_assigned = null
+	if data.cat_assigned:
+		var cat = CatInstance.new()
+		cat = cat.create_from_dict(data.cat_assigned)
+		cat_assigned = cat
