@@ -24,6 +24,18 @@ func can_respond_to_bowl(bowl: FoodBowlState, now: float) -> bool:
 func _rarity_to_weight(rarity: int) -> float:
 	return 1.0 / rarity
 
+func set_exploration(now: float, item: String) -> void:
+	next_available_time = now + cat_data.base_travel_time
+	chosen_item = item
+	is_busy = true
+
+func set_idle() -> void:
+	next_available_time = 0.0
+	chosen_item = ""
+	is_busy = false
+
+# ------------- Transform data to save and load
+
 func serialize() -> Dictionary:
 	return {
 		"cat_data": cat_data.id,

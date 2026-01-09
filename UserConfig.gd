@@ -12,7 +12,7 @@ func _save_to_file():
 		return
 
 	_saving = true
-	await get_tree().process_frame
+	#await get_tree().process_frame
 
 	var err = config.save(file_path)
 	if err != OK:

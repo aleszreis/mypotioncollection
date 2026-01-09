@@ -46,22 +46,19 @@ func _schedule_cat(cat: CatInstance, bowl: FoodBowlState, now: float, chosen_ite
 		"time": now,
 	}
 	
-	cat.is_busy = true
-	cat.next_available_time = now + context.cat_data.base_travel_time
-	cat.chosen_item = chosen_item if chosen_item else IngredientCatalog.roll_ingredient(context, rng)
-	bowl.cat_assigned = cat
+	chosen_item = chosen_item if chosen_item else IngredientCatalog.roll_ingredient(context, rng)
 	
-	# TODO: Atualizar bowls antes de salvar
-	UserConfig.save_bowls(bowls)
-
+	cat.set_exploration(now, chosen_item)
+	bowl.cat_assigned = cat
+	SignalBus.cat_scheduled.emit()
+	
 	print("FoodAttractionSystem.gd: <%s> agendado com item <%s>" % [context.cat_data.display_name, IngDatabase.get_by_id(cat.chosen_item).display_name])
 
 func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void:
 	print("FoodAttractionSystem.gd: <%s> chegou." % cat.cat_data.display_name)
 	SignalBus.ingredient_acquired.emit(cat.chosen_item)
 	
-	cat.is_busy = false
-	cat.chosen_item = ""
+	cat.set_idle()
 	bowl.cat_assigned = null
 	
 	#print("FoodAttractionSystem.bg: Bowl has <%s> of food left" % bowl.remaining_amount)
