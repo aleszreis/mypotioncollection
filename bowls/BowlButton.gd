@@ -22,11 +22,3 @@ func _update_bowl_button() -> void:
 	else:
 		var food = FoodDatabase.get_by_id(bowl.food_type)
 		icon = food.icon
-	_update_bowl_label()
-
-func _update_bowl_label() -> void:
-	var cat = bowl.cat_assigned
-	if cat:
-		text = cat.cat_data.display_name
-	else:
-		text = ""

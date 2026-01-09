@@ -34,8 +34,9 @@ func _sort_children() -> void:
 	if count == 0:
 		return
 	
-	var center = get_viewport().get_mouse_position()
-	#var center: Vector2 = size * 0.5
+	var click_pos = get_viewport().get_mouse_position()
+	var center: Vector2 = get_viewport().size * 0.5
+	center.y = click_pos.y
 	var angle_step: float = TAU / (count - 1)
 	var angle: float = -PI * 0.5
 	
