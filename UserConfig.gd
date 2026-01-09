@@ -83,3 +83,16 @@ func set_potion_data_from_save():
 		pot_as_data[potion.signature] = potion
 	
 	return pot_as_data
+
+# ---------- PLAYER DATA & ACHIEVEMENTS
+func save_player_data(ingredient_data, potion_data) -> void:
+	config.set_value('player', 'ingredient_data', ingredient_data)
+	config.set_value('player', 'potion_data', potion_data)
+	
+	_save_to_file()
+	
+func set_player_ingr_data_from_save():
+	return config.get_value('player', 'ingredient_data', {})
+
+func set_player_pot_data_from_save():
+	return config.get_value('player', 'potion_data', {})
