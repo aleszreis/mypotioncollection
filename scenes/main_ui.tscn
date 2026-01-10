@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv8u28p64d1r8"]
+[gd_scene load_steps=10 format=3 uid="uid://dv8u28p64d1r8"]
 
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
 [ext_resource type="Texture2D" uid="uid://eo01h0maa2qq" path="res://house_background.png" id="2_okuri"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
+[ext_resource type="Script" uid="uid://b2nf8cvq11yvl" path="res://ingredients/OfflineGains.gd" id="8_okuri"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="10_pclmd"]
 [ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://bowls/FoodBowlManager.gd" id="12_wd510"]
 
@@ -45,8 +46,16 @@ func _on_close_button_pressed() -> void:
 	hide()
 "
 
-[node name="MainUi" type="Control"]
+[node name="MainScene" type="Control"]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_paifj")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,16 +73,7 @@ grow_vertical = 2
 texture = ExtResource("2_okuri")
 expand_mode = 3
 
-[node name="Game" type="Node" parent="."]
-script = ExtResource("1_dbw6l")
-
-[node name="FoodAttractionSystem" type="Node" parent="Game"]
-script = ExtResource("10_pclmd")
-
-[node name="FoodBowlManager" type="Node" parent="Game"]
-script = ExtResource("12_wd510")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,42 +81,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftColumn" type="VBoxContainer" parent="HBoxContainer"]
+[node name="LeftColumn" type="VBoxContainer" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="Control" type="Control" parent="HBoxContainer/LeftColumn"]
+[node name="Control" type="Control" parent="UI/HBoxContainer/LeftColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
 
-[node name="BowlsContainer" type="VBoxContainer" parent="HBoxContainer/LeftColumn"]
+[node name="BowlsContainer" type="VBoxContainer" parent="UI/HBoxContainer/LeftColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
 
-[node name="CenterColumn" type="VBoxContainer" parent="HBoxContainer"]
+[node name="CenterColumn" type="VBoxContainer" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.5
 
-[node name="InventoryLabel" type="Label" parent="HBoxContainer/CenterColumn"]
+[node name="InventoryLabel" type="Label" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
 text = "Ingredientes"
 horizontal_alignment = 1
 
-[node name="IngredientGrid" type="HFlowContainer" parent="HBoxContainer/CenterColumn"]
+[node name="IngredientGrid" type="HFlowContainer" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 
-[node name="Control" type="Control" parent="HBoxContainer/CenterColumn"]
+[node name="Control" type="Control" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PotionPreviewContainer" type="VBoxContainer" parent="HBoxContainer/CenterColumn/Control"]
+[node name="PotionPreviewContainer" type="VBoxContainer" parent="UI/HBoxContainer/CenterColumn/Control"]
 layout_mode = 2
 offset_top = 4.0
 offset_right = 195.0
@@ -124,21 +124,21 @@ offset_bottom = 171.0
 size_flags_vertical = 3
 script = SubResource("GDScript_46p8p")
 
-[node name="Button" type="Button" parent="HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
+[node name="Button" type="Button" parent="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 10
 text = " X "
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterColumn/Control/PotionPreviewContainer/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
+[node name="NameLabel" type="Label" parent="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -146,41 +146,125 @@ size_flags_stretch_ratio = 2.0
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="CenterSelected" type="CenterContainer" parent="HBoxContainer/CenterColumn"]
+[node name="CenterSelected" type="CenterContainer" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="SelectedIngredientsGrid" type="HBoxContainer" parent="HBoxContainer/CenterColumn/CenterSelected"]
+[node name="SelectedIngredientsGrid" type="HBoxContainer" parent="UI/HBoxContainer/CenterColumn/CenterSelected"]
 layout_mode = 2
 
-[node name="CenterCauldron" type="CenterContainer" parent="HBoxContainer/CenterColumn"]
+[node name="CenterCauldron" type="CenterContainer" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="CreateItemButton" type="TextureButton" parent="HBoxContainer/CenterColumn/CenterCauldron"]
+[node name="CreateItemButton" type="TextureButton" parent="UI/HBoxContainer/CenterColumn/CenterCauldron"]
 custom_minimum_size = Vector2(180, 180)
 layout_mode = 2
 texture_normal = ExtResource("8_kyx1g")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="RightColumn" type="VBoxContainer" parent="HBoxContainer"]
+[node name="RightColumn" type="VBoxContainer" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="HBoxContainer/RightColumn"]
+[node name="Label2" type="Label" parent="UI/HBoxContainer/RightColumn"]
 layout_mode = 2
 text = "Poções"
 horizontal_alignment = 1
 
-[node name="PotionGrid" type="HFlowContainer" parent="HBoxContainer/RightColumn"]
+[node name="PotionGrid" type="HFlowContainer" parent="UI/HBoxContainer/RightColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="FoodOptionsMenu" parent="." instance=ExtResource("5_yjiuj")]
-layout_mode = 0
+[node name="FoodOptionsMenu" parent="UI" instance=ExtResource("5_yjiuj")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[connection signal="pressed" from="HBoxContainer/CenterColumn/Control/PotionPreviewContainer/Button" to="HBoxContainer/CenterColumn/Control/PotionPreviewContainer" method="_on_close_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton" to="." method="_on_create_potion_pressed"]
+[node name="OfflinePopupContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -79.0
+offset_right = 128.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_okuri")
+
+[node name="ColorRect" type="ColorRect" parent="OfflinePopupContainer"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+color = Color(0.533333, 0.223529, 0.231373, 0.784314)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OfflinePopupContainer"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+
+[node name="MarginContainerLbl" type="MarginContainer" parent="OfflinePopupContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="OfflinePopupContainer/VBoxContainer/MarginContainerLbl"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Ganhos Offline"
+horizontal_alignment = 1
+
+[node name="MarginContainerInv" type="MarginContainer" parent="OfflinePopupContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="OfflineInventory" type="HFlowContainer" parent="OfflinePopupContainer/VBoxContainer/MarginContainerInv"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 4
+
+[node name="MarginContainerBtn" type="MarginContainer" parent="OfflinePopupContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Button" type="Button" parent="OfflinePopupContainer/VBoxContainer/MarginContainerBtn"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Ok"
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_dbw6l")
+
+[node name="FoodAttractionSystem" type="Node" parent="GameManager"]
+script = ExtResource("10_pclmd")
+
+[node name="FoodBowlManager" type="Node" parent="GameManager"]
+script = ExtResource("12_wd510")
+
+[connection signal="pressed" from="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer/Button" to="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer" method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton" to="UI" method="_on_create_potion_pressed"]
+[connection signal="pressed" from="OfflinePopupContainer/VBoxContainer/MarginContainerBtn/Button" to="OfflinePopupContainer" method="_on_button_pressed"]

@@ -1,7 +1,7 @@
 extends Node
 
 @onready var food_system: FoodAttractionSystem = $FoodAttractionSystem
-@onready var bowl_manager: FoodBowlManager = $FoodBowlManager
+@onready var offline_display = $"../OfflinePopupContainer"
 
 
 func _ready() -> void:
@@ -36,9 +36,36 @@ func _DEBUG_spawn_inventory_items() -> void:
 # --------------------------------------------------
 
 func _process_offline_progress() -> void:
+	var next_event = _get_next_event()
+	
 	var now := Time.get_unix_time_from_system()
-	food_system.process_time(now)
-
+	var sim_time = 0.0
+	
+	var acquired_items = {}
+	
+	while next_event and sim_time < now:
+		sim_time = next_event.cat_assigned.next_available_time
+		var acq_item = next_event.cat_assigned.chosen_item
+		if acquired_items.get(acq_item):
+			acquired_items[acq_item] += 1
+		else:
+			acquired_items[acq_item] = 1
+		
+		food_system.process_time(sim_time)
+		next_event = _get_next_event()
+	
+	offline_display.display_items(acquired_items)
+	
+func _get_next_event() -> FoodBowlState:
+	""" Retorna bowl cujo gato tem a chegada mais próxima """
+	var next_event: FoodBowlState = null
+	for bowl: FoodBowlState in FoodBowlManager.bowls:
+		if bowl.cat_assigned:
+			if next_event == null:
+				next_event = bowl
+			elif bowl.cat_assigned.next_available_time < next_event.cat_assigned.next_available_time:
+				next_event = bowl
+	return next_event
 # --------------------------------------------------
 
 func _craft_potion(selector: SelectionController) -> void:

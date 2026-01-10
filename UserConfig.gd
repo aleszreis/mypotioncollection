@@ -13,7 +13,7 @@ func _save_to_file():
 
 	_saving = true
 	await get_tree().process_frame
-	config.set_value("metadata", "last_saved_at", Time.get_unix_time_from_system())
+	config.set_value("metadata", "last_saved_at", str(Time.get_unix_time_from_system()))
 	config.set_value("metadata", "last_saved_date", str(Time.get_datetime_string_from_system()))
 
 	print("Saved data.")

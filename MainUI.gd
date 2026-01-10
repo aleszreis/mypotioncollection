@@ -6,12 +6,12 @@ extends Control
 @onready var selected_grid = $HBoxContainer/CenterColumn/CenterSelected/SelectedIngredientsGrid
 @onready var potion_preview = $HBoxContainer/CenterColumn/Control/PotionPreviewContainer
 
-@onready var bowl_manager: FoodBowlManager = $Game/FoodBowlManager
-
 var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 var inventory_slots_by_item: Dictionary = {}
 
 var selection_slot_scene = preload("res://scenes/selec_slot_ui.tscn")
+
+var offline_gains_scene = preload("res://scenes/offline_gains.tscn").instantiate()
 
 var selector := SelectionController.new()
 
