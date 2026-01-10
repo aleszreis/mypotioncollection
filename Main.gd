@@ -5,7 +5,7 @@ extends Node
 
 
 func _ready() -> void:
-	_spawn_initial_cats()
+	_spawn_cats()
 	#_DEBUG_spawn_inventory_items()
 	_process_offline_progress()
 	
@@ -17,14 +17,13 @@ func _process(_delta: float) -> void:
 
 # --------------------------------------------------
 
-func _spawn_initial_cats() -> void:
+func _spawn_cats() -> void:
 	var all_cats_data = CatDatabase.cats_data.values()
 	
 	for cat in all_cats_data:
 		var cat_instance := CatInstance.new()
 		cat_instance.cat_data = CatDatabase.get_by_id(cat.id)
 		food_system.cats.append(cat_instance)
-
 
 # --------------------------------------------------
 

@@ -16,8 +16,7 @@ func process_time(now: float) -> void:
 		var picked_cat := _pick_cat(bowl, now)
 		if picked_cat:
 			_schedule_cat(picked_cat, bowl, now)
-	UserConfig.save_bowls(FoodBowlManager.bowls)
-
+	
 func _pick_cat(bowl: FoodBowlState, now: float) -> CatInstance:
 	var eligible := cats.filter(func(c): return c.can_respond_to_bowl(bowl, now))
 	if eligible.is_empty():
@@ -53,6 +52,8 @@ func _schedule_cat(cat: CatInstance, bowl: FoodBowlState, now: float, chosen_ite
 	SignalBus.cat_scheduled.emit()
 	
 	print("FoodAttractionSystem.gd: <%s> agendado com item <%s>" % [context.cat_data.display_name, IngDatabase.get_by_id(cat.chosen_item).display_name])
+	
+	UserConfig.save_bowls(FoodBowlManager.bowls)
 
 func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void:
 	print("FoodAttractionSystem.gd: <%s> chegou." % cat.cat_data.display_name)
@@ -63,4 +64,6 @@ func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void
 	
 	#print("FoodAttractionSystem.bg: Bowl has <%s> of food left" % bowl.remaining_amount)
 	FoodBowlManager.remove_food_from_bowl(cat.cat_data.food_efficiency, bowl)
+	
+	UserConfig.save_bowls(FoodBowlManager.bowls)
 	

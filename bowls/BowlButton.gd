@@ -10,7 +10,6 @@ func _ready():
 	
 	pressed.connect(_on_bowl_button_pressed)
 	SignalBus.update_bowl_button.connect(_update_bowl_button)
-	SignalBus.cat_scheduled.connect(_update_bowl_label)
 
 func _on_bowl_button_pressed():
 	SignalBus.set_active_bowl.emit(bowl)

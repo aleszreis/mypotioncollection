@@ -3,7 +3,6 @@ class_name SelectionSlot
 
 var item: IngredientData
 var selector: SelectionController
-var inventory := Inventory
 
 @onready var sprite: TextureRect = $TextureRect
 
