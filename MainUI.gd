@@ -4,7 +4,7 @@ extends Control
 @onready var create_button: TextureButton = $HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton
 @onready var bowls_container: VBoxContainer = $HBoxContainer/LeftColumn/BowlsContainer
 @onready var selected_grid = $HBoxContainer/CenterColumn/CenterSelected/SelectedIngredientsGrid
-@onready var potion_preview = $HBoxContainer/CenterColumn/Control/PotionPreviewContainer
+@onready var potion_preview = $HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer
 
 var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 var inventory_slots_by_item: Dictionary = {}

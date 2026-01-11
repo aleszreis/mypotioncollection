@@ -4,48 +4,12 @@
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
 [ext_resource type="Texture2D" uid="uid://eo01h0maa2qq" path="res://house_background.png" id="2_okuri"]
 [ext_resource type="Texture2D" uid="uid://cwf63mijwalao" path="res://inventory/sprites/inventory-bg.png" id="3_kyx1g"]
+[ext_resource type="Script" uid="uid://hxjjar1es3xg" path="res://potions/PotionPreview.gd" id="4_r8eje"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
 [ext_resource type="Script" uid="uid://b2nf8cvq11yvl" path="res://ingredients/OfflineGains.gd" id="8_okuri"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="10_pclmd"]
 [ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://bowls/FoodBowlManager.gd" id="12_wd510"]
-
-[sub_resource type="GDScript" id="GDScript_46p8p"]
-script/source = "extends VBoxContainer
-
-@onready var name_label : Label = $NameLabel
-
-var RARITY = {
-	0: \"comum\",
-	1: \"comum\",
-	2: \"incomum\",
-	3: \"raro\",
-	4: \"lendário!\",
-	5: \"exclusivo!\"
-}
-
-func update_potion_preview(items: Array[String]) -> void:
-	if not items:
-		hide()
-		name_label.text = \"\"
-		return
-	
-	show()
-	var signature := SelectionNormalizer.make_signature(items)
-	var potion = CreationRegistry.potion_is_known(signature)
-	if potion:
-		name_label.text = potion.display_name
-	else:
-		name_label.text = \"????\"
-
-
-func _on_clear_button_pressed() -> void:
-	update_potion_preview([])
-
-
-func _on_close_button_pressed() -> void:
-	hide()
-"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyx1g"]
 bg_color = Color(0.823901, 0.497788, 0.459586, 0.513726)
@@ -132,33 +96,47 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 8
 
-[node name="Control" type="Control" parent="UI/HBoxContainer/CenterColumn"]
+[node name="Control3" type="Control" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PotionPreviewContainer" type="VBoxContainer" parent="UI/HBoxContainer/CenterColumn/Control"]
+[node name="Spacer" type="Control" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
-offset_top = 4.0
-offset_right = 195.0
-offset_bottom = 171.0
 size_flags_vertical = 3
-script = SubResource("GDScript_46p8p")
 
-[node name="Button" type="Button" parent="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
+[node name="ColorRect" type="ColorRect" parent="UI/HBoxContainer/CenterColumn/Spacer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.550681, 0.265861, 0.351185, 0.8)
+
+[node name="PotionPreviewContainer" type="VBoxContainer" parent="UI/HBoxContainer/CenterColumn/Spacer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("4_r8eje")
+
+[node name="Button" type="Button" parent="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 10
 text = " X "
 
-[node name="CenterContainer" type="CenterContainer" parent="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
+stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer/CenterContainer"]
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer"]
+[node name="NameLabel" type="Label" parent="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -210,6 +188,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OfflinePopupContainer" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 1
 anchors_preset = 15
@@ -276,6 +255,6 @@ script = ExtResource("10_pclmd")
 [node name="FoodBowlManager" type="Node" parent="GameManager"]
 script = ExtResource("12_wd510")
 
-[connection signal="pressed" from="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer/Button" to="UI/HBoxContainer/CenterColumn/Control/PotionPreviewContainer" method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer/Button" to="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer" method="_on_close_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton" to="UI" method="_on_create_potion_pressed"]
 [connection signal="pressed" from="OfflinePopupContainer/VBoxContainer/MarginContainerBtn/Button" to="OfflinePopupContainer" method="_on_button_pressed"]
