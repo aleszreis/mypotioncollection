@@ -1,6 +1,6 @@
 extends Control
 
-@onready var item_grid = $HBoxContainer/CenterColumn/IngredientGrid
+@onready var item_grid: GridContainer = $HBoxContainer/CenterColumn/NinePatchRect/IngredientGrid
 @onready var create_button: TextureButton = $HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton
 @onready var bowls_container: VBoxContainer = $HBoxContainer/LeftColumn/BowlsContainer
 @onready var selected_grid = $HBoxContainer/CenterColumn/CenterSelected/SelectedIngredientsGrid
@@ -24,24 +24,40 @@ func _ready() -> void:
 	_build_inventory_ui()
 
 func _build_inventory_ui() -> void:
-	for item_id in Inventory.ingredients:
-		_update_inventory_ui(item_id)
-
-func _update_inventory_ui(item_id: String) -> void:
-	# Se item já existe e quantidade continua maior que 0, atualiza label
-	if inventory_slots_by_item.get(item_id) and Inventory.get_item_count(item_id) > 0:
-		inventory_slots_by_item[item_id].update_quantity()
+	var total_items = IngDatabase.catalog_data.size()
+	var inv_columns = item_grid.columns
+	var slots_to_add = ceili(float(total_items) / float(inv_columns)) * inv_columns
 	
-	# Se item existia, mas quantidade agora é 0, remove slot
-	elif inventory_slots_by_item.get(item_id) and Inventory.get_item_count(item_id) <= 0:
-		inventory_slots_by_item[item_id].queue_free()
-	
-	# Se item não existia, adiciona slot
-	elif not inventory_slots_by_item.get(item_id):
+	var owned_items = Inventory.ingredients.keys()
+	for n in range(slots_to_add):
 		var slot := inventory_slot_scene.instantiate()
 		item_grid.add_child(slot)
-		slot.setup_ui_slot(item_id, selector)
-		inventory_slots_by_item[item_id] = slot
+		slot.num_label.visible = false
+		if n < owned_items.size():
+			var item_id = owned_items[n]
+			slot.setup_ui_slot(item_id, selector)
+			inventory_slots_by_item[item_id] = slot
+
+func _update_inventory_ui(item_id: String) -> void:
+	var slot = inventory_slots_by_item.get(item_id)
+	var owned_count = Inventory.get_item_count(item_id)
+	
+	# Se item já existe e quantidade continua maior que 0, atualiza label
+	if slot and owned_count > 0:
+		slot.update_quantity()
+	
+	# Se item existia, mas quantidade agora é 0, remove item do slot
+	elif slot and owned_count <= 0:
+		slot.clear_slot()
+		inventory_slots_by_item.erase(item_id)
+	
+	# Se item não existia, adiciona ao primeiro slot vazio
+	elif not slot:
+		var empty_slots = item_grid.get_children().filter(func(s: ItemSlot): return s.item_id == "")
+		if empty_slots.size() <= 0:
+			push_error("MainUI.gd: Erro adicionando item ao inventário - nenhum slot vazio encontrado")
+		empty_slots[0].setup_ui_slot(item_id, selector)
+		inventory_slots_by_item[item_id] = empty_slots[0]
 
 func _build_bowls_buttons() -> void:
 	var bowls = FoodBowlManager.bowls

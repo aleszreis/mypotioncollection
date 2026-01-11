@@ -15,9 +15,7 @@ func setup_ui_slot(item: String, selection_controller: SelectionController) -> v
 	item_id = item_data.id
 	sprite.texture = item_data.icon
 	num_label.text = str(Inventory.get_item_count(item_id))
-	
-	toggle_mode = true
-	button_pressed = false
+	num_label.visible = true
 	
 	pressed.connect(_on_pressed)
 
@@ -28,3 +26,10 @@ func update_quantity() -> void:
 	var value = Inventory.get_item_count(item_id)
 	num_label.text = str(value)
 	num_label.visible = value >= 1
+
+func clear_slot() -> void:
+	item_id = ""
+	sprite.texture = null
+	num_label.visible = false
+	
+	pressed.disconnect(_on_pressed)

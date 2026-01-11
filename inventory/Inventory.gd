@@ -26,10 +26,10 @@ func _add_potion(potion: PotionData) -> void:
 	
 	UserConfig.save_inventory()
 
-func get_item_count(item_id: String):
+func get_item_count(item_id: String) -> int:
 	return ingredients[item_id] if ingredients.get(item_id) else 0
 	
-func remove_item(item_id: String):
+func remove_item(item_id: String) -> void:
 	if get_item_count(item_id) > 1:
 		ingredients[item_id] -= 1
 	else:

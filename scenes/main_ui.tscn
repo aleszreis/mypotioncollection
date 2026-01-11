@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv8u28p64d1r8"]
+[gd_scene load_steps=12 format=3 uid="uid://dv8u28p64d1r8"]
 
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
 [ext_resource type="Texture2D" uid="uid://eo01h0maa2qq" path="res://house_background.png" id="2_okuri"]
+[ext_resource type="Texture2D" uid="uid://cwf63mijwalao" path="res://inventory/sprites/inventory-bg.png" id="3_kyx1g"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
 [ext_resource type="Script" uid="uid://b2nf8cvq11yvl" path="res://ingredients/OfflineGains.gd" id="8_okuri"]
@@ -45,6 +46,9 @@ func _on_clear_button_pressed() -> void:
 func _on_close_button_pressed() -> void:
 	hide()
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyx1g"]
+bg_color = Color(0.823901, 0.497788, 0.459586, 0.513726)
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -101,16 +105,32 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.5
 
-[node name="InventoryLabel" type="Label" parent="UI/HBoxContainer/CenterColumn"]
-layout_mode = 2
-text = "Ingredientes"
-horizontal_alignment = 1
-
-[node name="IngredientGrid" type="HFlowContainer" parent="UI/HBoxContainer/CenterColumn"]
+[node name="Control2" type="Control" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/h_separation = 4
-theme_override_constants/v_separation = 4
+size_flags_stretch_ratio = 0.1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/HBoxContainer/CenterColumn"]
+custom_minimum_size = Vector2(192, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_kyx1g")
+draw_center = false
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="IngredientGrid" type="GridContainer" parent="UI/HBoxContainer/CenterColumn/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
 
 [node name="Control" type="Control" parent="UI/HBoxContainer/CenterColumn"]
 layout_mode = 2
