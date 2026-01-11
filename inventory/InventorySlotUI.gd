@@ -6,6 +6,7 @@ var selector: SelectionController
 
 @onready var sprite: TextureRect = $TextureRect
 @onready var num_label: Label = $Label
+@onready var bg_sprite: TextureRect = $InvBackground
 
 func setup_ui_slot(item: String, selection_controller: SelectionController) -> void:
 	selector = selection_controller
