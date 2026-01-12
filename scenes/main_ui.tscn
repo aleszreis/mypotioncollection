@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://hxjjar1es3xg" path="res://potions/PotionPreview.gd" id="4_r8eje"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
-[ext_resource type="Script" uid="uid://b2nf8cvq11yvl" path="res://ingredients/OfflineGains.gd" id="8_okuri"]
+[ext_resource type="Script" uid="uid://b2nf8cvq11yvl" path="res://ingredients/OfflineGainsUI.gd" id="8_okuri"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="10_pclmd"]
 [ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://bowls/FoodBowlManager.gd" id="12_wd510"]
 

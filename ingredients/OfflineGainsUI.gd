@@ -7,7 +7,8 @@ var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 func display_items(offline_items: Dictionary) -> void:
 	if offline_items.is_empty():
 		queue_free()
-		
+	
+	visible = true
 	for item_id in offline_items.keys():
 		var slot := inventory_slot_scene.instantiate()
 		inventory_display.add_child(slot)
