@@ -1,11 +1,9 @@
 extends Node
 
 @onready var food_system: FoodAttractionSystem = $FoodAttractionSystem
-@onready var offline_display = $"../OfflinePopupContainer"
 
 
 func _ready() -> void:
-	_spawn_cats()
 	#_DEBUG_spawn_inventory_items()
 	_process_offline_progress()
 	
@@ -14,16 +12,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	var now := Time.get_unix_time_from_system()
 	food_system.process_time(now)
-
-# --------------------------------------------------
-
-func _spawn_cats() -> void:
-	var all_cats_data = CatDatabase.cats_data.values()
-	
-	for cat in all_cats_data:
-		var cat_instance := CatInstance.new()
-		cat_instance.cat_data = CatDatabase.get_by_id(cat.id)
-		food_system.cats.append(cat_instance)
 
 # --------------------------------------------------
 
@@ -53,7 +41,7 @@ func _process_offline_progress() -> void:
 		food_system.process_time(sim_time)
 		next_event = _get_next_event()
 	
-	offline_display.display_items(acquired_items)
+	SignalBus.show_offline_gains.emit(acquired_items)
 	
 func _get_next_event() -> FoodBowlState:
 	""" Retorna bowl cujo gato tem a chegada mais próxima """

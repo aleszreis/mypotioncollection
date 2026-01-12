@@ -1,5 +1,7 @@
 extends Node
 
+signal show_offline_gains(items)
+
 signal craft_pressed(selector)
 
 signal change_ui_ingredient(item)

@@ -1,8 +1,6 @@
 class_name FoodAttractionSystem
 extends Node
 
-var cats: Array[CatInstance] = []
-
 var rng := RandomNumberGenerator.new()
 
 func process_time(now: float) -> void:
@@ -15,9 +13,10 @@ func process_time(now: float) -> void:
 			
 		var picked_cat := _pick_cat(bowl, now)
 		if picked_cat:
-			_schedule_cat(picked_cat, bowl, now)
+			schedule_cat(picked_cat, bowl, now)
 	
 func _pick_cat(bowl: FoodBowlState, now: float) -> CatInstance:
+	var cats = CatDatabase.cats_instances
 	var eligible := cats.filter(func(c): return c.can_respond_to_bowl(bowl, now))
 	if eligible.is_empty():
 		return null
@@ -36,7 +35,7 @@ func _pick_cat(bowl: FoodBowlState, now: float) -> CatInstance:
 
 	return eligible.back() # fallback de segurança
 
-func _schedule_cat(cat: CatInstance, bowl: FoodBowlState, now: float, chosen_item: String = "") -> void:
+func schedule_cat(cat: CatInstance, bowl: FoodBowlState, now: float, chosen_item: String = "") -> void:
 	var context := {
 		"cat": cat,
 		"cat_data": cat.cat_data,
@@ -58,6 +57,7 @@ func _schedule_cat(cat: CatInstance, bowl: FoodBowlState, now: float, chosen_ite
 func _resolve_arrival(cat: CatInstance, bowl: FoodBowlState, now: float) -> void:
 	print("FoodAttractionSystem.gd: <%s> chegou." % cat.cat_data.display_name)
 	SignalBus.ingredient_acquired.emit(cat.chosen_item)
+	IngDatabase.can_be_fetched(cat.chosen_item)
 	
 	cat.set_idle()
 	bowl.cat_assigned = null
