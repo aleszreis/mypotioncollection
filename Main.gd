@@ -1,12 +1,10 @@
 extends Node
 
 @onready var food_system: FoodAttractionSystem = $FoodAttractionSystem
-@onready var offline_display = $"../OfflinePopupContainer"
 
 
 func _ready() -> void:
 	_spawn_cats()
-	#_DEBUG_spawn_inventory_items()
 	_process_offline_progress()
 	
 	SignalBus.craft_pressed.connect(_craft_potion)
@@ -22,33 +20,23 @@ func _spawn_cats() -> void:
 
 # --------------------------------------------------
 
-func _DEBUG_spawn_inventory_items() -> void:
-	for entry in IngredientCatalog.entries:
-		for i in range(10):
-			Inventory.add_base_item(entry.ingredient.id)
-
-# --------------------------------------------------
-
 func _process_offline_progress() -> void:
 	var next_event = _get_next_event()
 	
 	var now := Time.get_unix_time_from_system()
-	var sim_time = 0.0
+	var sim_time = UserConfig.get_last_save_time()
 	
 	var acquired_items = {}
 	
 	while next_event and sim_time < now:
 		sim_time = next_event.next_available_time
 		var acq_item = next_event.chosen_item
-		if acquired_items.get(acq_item):
-			acquired_items[acq_item] += 1
-		else:
-			acquired_items[acq_item] = 1
+		acquired_items[acq_item] = acquired_items.get(acq_item, 0) + 1
 		
 		food_system.process_time(sim_time)
 		next_event = _get_next_event()
 	
-	offline_display.display_items(acquired_items)
+	SignalBus.show_offline_gains.emit(acquired_items)
 	
 func _get_next_event() -> CatInstance:
 	""" Retorna gato com a chegada mais próxima """

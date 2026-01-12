@@ -1,7 +1,7 @@
 class_name FoodAttractionSystem
 extends Node
 
-var cats: Array[CatInstance] = []
+var cats : Array[CatInstance] = []
 
 var rng := RandomNumberGenerator.new()
 
@@ -11,7 +11,12 @@ func process_time(now: float) -> void:
 		if cat.next_available_time <= now:
 			_resolve_arrival(cat, now)
 		continue
+		
 	for bowl in FoodBowlManager.get_bowls():
+		var assigned_cat = cats.filter(func(c): return c.target_bowl == bowl.id)
+		if not assigned_cat:
+			bowl.has_cat_assigned = false # Failsafe
+			
 		if not bowl.is_available():
 			continue
 			
@@ -58,6 +63,7 @@ func _schedule_cat(cat: CatInstance, chosen_item: String, now: float, bowl: Food
 func _resolve_arrival(cat: CatInstance, now: float) -> void:
 	print("FoodAttractionSystem.gd: <%s> chegou." % cat.cat_data.display_name)
 	SignalBus.ingredient_acquired.emit(cat.chosen_item)
+	IngDatabase.can_be_fetched(cat.chosen_item)
 	
 	var bowl = FoodBowlManager.bowls.get(cat.target_bowl)
 	if bowl:

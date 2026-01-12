@@ -65,3 +65,4 @@ func _apply_modifiers(entry: IngredientEntry, context: Dictionary) -> float:
 	for rule in context.cat_data.rules:
 		result *= rule.weight_modifier(context, entry)
 	return result
+	

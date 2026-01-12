@@ -29,6 +29,8 @@ func save_arrival_state(cats: Array[CatInstance], bowls: Dictionary) -> void:
 	save_cats(cats)
 	save_bowls(bowls)
 	
+	_save_to_file()
+	
 # ---------- CATS
 func save_cats(cats: Array[CatInstance]):
 	var serialized_cats = cats.map(func(c): return c.serialize())

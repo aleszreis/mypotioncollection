@@ -29,3 +29,6 @@ func _format_entries_data():
 
 func get_by_id(ing_id: String) -> IngredientData:
 	return ingredients_data[ing_id]
+
+func can_be_fetched(ing_id: String) -> void:
+	ingredients_data[ing_id].can_be_fetched = true

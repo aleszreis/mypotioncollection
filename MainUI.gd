@@ -1,10 +1,10 @@
 extends Control
 
-@onready var item_grid: GridContainer = $HBoxContainer/CenterColumn/NinePatchRect/IngredientGrid
-@onready var create_button: TextureButton = $HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton
-@onready var bowls_container: VBoxContainer = $HBoxContainer/LeftColumn/BowlsContainer
-@onready var selected_grid = $HBoxContainer/CenterColumn/CenterSelected/SelectedIngredientsGrid
-@onready var potion_preview = $HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer
+@onready var item_grid: GridContainer = $VBoxContainer/HBoxContainer/CenterColumn/NinePatchRect/IngredientGrid
+@onready var create_button: TextureButton = $VBoxContainer/HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton
+@onready var bowls_container: VBoxContainer = $VBoxContainer/HBoxContainer/LeftColumn/BowlsContainer
+@onready var selected_grid = $VBoxContainer/HBoxContainer/CenterColumn/CenterSelected/SelectedIngredientsGrid
+@onready var potion_preview = $VBoxContainer/HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer
 
 var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 var inventory_slots_by_item: Dictionary = {}
@@ -12,6 +12,8 @@ var inventory_slots_by_item: Dictionary = {}
 var selection_slot_scene = preload("res://scenes/selec_slot_ui.tscn")
 
 var offline_gains_scene = preload("res://scenes/offline_gains.tscn").instantiate()
+
+var fetch_item_scene = preload("res://scenes/fetch_item.tscn").instantiate()
 
 var selector := SelectionController.new()
 
@@ -96,3 +98,10 @@ func _clear_selected_slots_ui():
 		
 	# Atualiza menu lateral
 	potion_preview.update_potion_preview(selector.get_selected_items())
+
+func show_offline_gains():
+	pass
+
+func _on_fetch_item_btn_pressed() -> void:
+	add_child(fetch_item_scene)
+	
