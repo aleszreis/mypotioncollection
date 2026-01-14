@@ -18,12 +18,7 @@ func _process(_delta: float) -> void:
 # --------------------------------------------------
 
 func _spawn_cats() -> void:
-	var all_cats_data = CatDatabase.cats_data.values()
-	
-	for cat in all_cats_data:
-		var cat_instance := CatInstance.new()
-		cat_instance.cat_data = CatDatabase.get_by_id(cat.id)
-		food_system.cats.append(cat_instance)
+	food_system.cats = UserConfig.set_cats_from_save()
 
 # --------------------------------------------------
 
@@ -43,8 +38,8 @@ func _process_offline_progress() -> void:
 	var acquired_items = {}
 	
 	while next_event and sim_time < now:
-		sim_time = next_event.cat_assigned.next_available_time
-		var acq_item = next_event.cat_assigned.chosen_item
+		sim_time = next_event.next_available_time
+		var acq_item = next_event.chosen_item
 		if acquired_items.get(acq_item):
 			acquired_items[acq_item] += 1
 		else:
@@ -55,16 +50,15 @@ func _process_offline_progress() -> void:
 	
 	offline_display.display_items(acquired_items)
 	
-func _get_next_event() -> FoodBowlState:
-	""" Retorna bowl cujo gato tem a chegada mais próxima """
-	var next_event: FoodBowlState = null
-	var bowls = FoodBowlManager.get_bowls()
-	for bowl: FoodBowlState in FoodBowlManager.get_bowls():
-		if bowl.cat_assigned:
+func _get_next_event() -> CatInstance:
+	""" Retorna gato com a chegada mais próxima """
+	var next_event: CatInstance = null
+	for cat: CatInstance in food_system.cats:
+		if cat.is_busy:
 			if next_event == null:
-				next_event = bowl
-			elif bowl.cat_assigned.next_available_time < next_event.cat_assigned.next_available_time:
-				next_event = bowl
+				next_event = cat
+			elif cat.next_available_time < next_event.next_available_time:
+				next_event = cat
 	return next_event
 # --------------------------------------------------
 

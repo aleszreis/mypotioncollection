@@ -8,8 +8,6 @@ signal ingredient_acquired(ingredient_id, value)
 signal potion_acquired(potion)
 signal ingredient_consumed(ingredient_id, value, use)
 
-signal cat_scheduled(bowl)
-
 signal open_food_menu()
 
 signal set_active_bowl(bowl)

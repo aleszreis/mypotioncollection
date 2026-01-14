@@ -8,11 +8,117 @@
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
 [ext_resource type="Script" uid="uid://b2nf8cvq11yvl" path="res://ingredients/OfflineGainsUI.gd" id="8_okuri"]
-[ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="9_r8eje"]
 [ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://bowls/FoodBowlManager.gd" id="12_wd510"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyx1g"]
 bg_color = Color(0.823901, 0.497788, 0.459586, 0.513726)
+
+[sub_resource type="GDScript" id="GDScript_kyx1g"]
+script/source = "class_name EventHandler
+extends Node
+
+var events: Array[CatArrivalEvent] = []
+
+var cats: Array[CatInstance] = []
+
+var rng := RandomNumberGenerator.new()
+
+# ---------------------- ONLINE PROCESS ----------------------
+
+func process_time(now: float) -> void:
+	# TODO: definir onde salvar os eventos e as bowls agora que são diferentes
+	for event in events:
+		if now >= event.end_time:
+			_resolve_event(event)
+		continue
+	
+	_remove_resolved_events()
+			
+		#var picked_cat := _pick_cat(bowl)
+		#if picked_cat:
+			#_schedule_event(picked_cat, bowl, now)
+
+func pick_cat(bowl: FoodBowlState) -> CatInstance:
+	var eligible := cats.filter(func(c): return c.can_respond_to_bowl(bowl))
+	if eligible.is_empty():
+		return null
+		
+	var total_weight := 0.0
+	for c in eligible:
+		total_weight += c.base_weight
+
+	var roll := randf() * total_weight
+	var acc := 0.0
+
+	for c in eligible:
+		acc += c.base_weight
+		if roll <= acc:
+			return c
+
+	return eligible.back() # fallback de segurança
+
+func schedule_event(event: Event, now: float, chosen_item: String = \"\") -> void:
+	var context := {
+		\"cat\": event.cat_instance,
+		\"cat_data\": event.cat_instance.cat_data,
+		\"food_type\": event.target_bowl.food_type,
+		\"bowl\": event.target_bowl,
+	}
+	
+	chosen_item = chosen_item if chosen_item else IngredientCatalog.roll_ingredient(context, rng)
+	event.schedule(now, chosen_item)
+	
+	print(\"Main.gd: <%s> agendado com item <%s>\" % [event.cat_instance.cat_data.display_name, IngDatabase.get_by_id(chosen_item).display_name])
+	
+	#SignalBus.cat_scheduled.emit()
+	UserConfig.save_events(events)
+
+func _resolve_event(event: Event) -> void:
+	print(\"FoodAttractionSystem.gd: <%s> chegou.\" % event.cat_instance.cat_data.display_name)
+	SignalBus.ingredient_acquired.emit(event.fetch_item)
+	event.resolve()
+	
+	#print(\"FoodAttractionSystem.bg: Bowl has <%s> of food left\" % bowl.remaining_amount)
+	FoodBowlManager.remove_food_from_bowl(event.cat_instance.cat_data.food_efficiency, event.target_bowl)
+	
+	UserConfig.save_bowls(FoodBowlManager.bowls)
+
+func _remove_resolved_events() -> void:
+	for i in range(events.size() - 1, -1, -1):
+		var event: Event = events[i]
+		if event.resolved:
+			events.remove_at(i)
+
+# ---------------------- OFFLINE PROCESS ----------------------
+
+func process_offline_progress() -> Dictionary:
+	var next_event = _get_next_event()
+	
+	var now := Time.get_unix_time_from_system()
+	var sim_time = UserConfig.get_last_save_time()
+	
+	var acquired_items = {}
+	while next_event and sim_time < now:
+		sim_time = next_event.end_time
+		var acq_item = next_event.fetch_item
+		acquired_items[acq_item] =  acquired_items.get(acq_item, 0) +1
+		
+		process_time(sim_time)
+		next_event = _get_next_event()
+	
+	return acquired_items
+	
+func _get_next_event() -> Event:
+	\"\"\" Retorna evento com a chegada mais próxima \"\"\"
+	var next_event = null
+	for event in events:
+		if event.cat_instance:
+			if next_event == null:
+				next_event = event
+			elif event.end_time < next_event.end_time:
+				next_event = event
+	return next_event
+"
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -250,7 +356,7 @@ text = "Ok"
 script = ExtResource("1_dbw6l")
 
 [node name="FoodAttractionSystem" type="Node" parent="GameManager"]
-script = ExtResource("9_r8eje")
+script = SubResource("GDScript_kyx1g")
 
 [node name="FoodBowlManager" type="Node" parent="GameManager"]
 script = ExtResource("12_wd510")

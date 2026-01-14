@@ -5,7 +5,7 @@ extends Database
 var CATS_FILE_NAME = "gatos.json"
 
 ## TO BE EDITED LATER
-var CAT_TRAVEL_TIME_MULTIPLIER = 120
+var CAT_TRAVEL_TIME_MULTIPLIER = 5
 
 func _ready():
 	_format_cats_data()

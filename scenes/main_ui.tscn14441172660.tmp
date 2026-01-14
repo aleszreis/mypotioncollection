@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv8u28p64d1r8"]
+[gd_scene load_steps=11 format=3 uid="uid://dv8u28p64d1r8"]
 
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
@@ -8,8 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
 [ext_resource type="Script" uid="uid://b2nf8cvq11yvl" path="res://ingredients/OfflineGainsUI.gd" id="8_okuri"]
-[ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="9_r8eje"]
-[ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://bowls/FoodBowlManager.gd" id="12_wd510"]
+[ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://systems/EventHandler.gd" id="9_kyx1g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyx1g"]
 bg_color = Color(0.823901, 0.497788, 0.459586, 0.513726)
@@ -250,10 +249,7 @@ text = "Ok"
 script = ExtResource("1_dbw6l")
 
 [node name="FoodAttractionSystem" type="Node" parent="GameManager"]
-script = ExtResource("9_r8eje")
-
-[node name="FoodBowlManager" type="Node" parent="GameManager"]
-script = ExtResource("12_wd510")
+script = ExtResource("9_kyx1g")
 
 [connection signal="pressed" from="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer/Button" to="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer" method="_on_close_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton" to="UI" method="_on_create_potion_pressed"]

@@ -24,12 +24,27 @@ func _save_to_file():
 	
 	_saving = false
 
-# ---------- CATS
-func save_owned_cats():
-	pass
+# ---------- SAVE GAME STATE
+func save_arrival_state(cats: Array[CatInstance], bowls: Dictionary) -> void:
+	save_cats(cats)
+	save_bowls(bowls)
 	
-func set_owned_cats_from_save():
-	pass
+# ---------- CATS
+func save_cats(cats: Array[CatInstance]):
+	var serialized_cats = cats.map(func(c): return c.serialize())
+	config.set_value('cats', 'all_cats', serialized_cats)
+	
+func set_cats_from_save() -> Array[CatInstance]:
+	var c: Array = config.get_value('cats', 'all_cats', [])
+	if c.is_empty():
+		return []
+	
+	var result: Array[CatInstance]
+	for cat in c:
+		var new_cat = CatInstance.new()
+		new_cat.create_from_dict(cat)
+		result.append(new_cat)
+	return result
 
 # ---------- FOODS
 func save_foods():
@@ -53,8 +68,6 @@ func set_inventory_from_save():
 func save_bowls(bowls: Dictionary):
 	var serialized_bowls = bowls.values().map(func(b): return b.serialize())
 	config.set_value('bowls', 'bowls_list', serialized_bowls)
-	
-	_save_to_file()
 
 func set_bowls_from_save() -> Dictionary:
 	var b = config.get_value('bowls', 'bowls_list', [])
