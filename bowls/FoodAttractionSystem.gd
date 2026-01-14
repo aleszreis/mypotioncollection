@@ -6,7 +6,7 @@ var cats: Array[CatInstance] = []
 var rng := RandomNumberGenerator.new()
 
 func process_time(now: float) -> void:
-	for bowl in FoodBowlManager.bowls:
+	for bowl in FoodBowlManager.get_bowls():
 		if not bowl.is_available():
 			var cat = bowl.cat_assigned
 			if cat and now >= cat.next_available_time:

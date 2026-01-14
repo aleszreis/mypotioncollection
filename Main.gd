@@ -58,7 +58,8 @@ func _process_offline_progress() -> void:
 func _get_next_event() -> FoodBowlState:
 	""" Retorna bowl cujo gato tem a chegada mais próxima """
 	var next_event: FoodBowlState = null
-	for bowl: FoodBowlState in FoodBowlManager.bowls:
+	var bowls = FoodBowlManager.get_bowls()
+	for bowl: FoodBowlState in FoodBowlManager.get_bowls():
 		if bowl.cat_assigned:
 			if next_event == null:
 				next_event = bowl

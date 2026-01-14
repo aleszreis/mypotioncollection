@@ -1,8 +1,8 @@
 extends Node
 
 const MAX_BOWLS := 5
-var bowls: Array[FoodBowlState] = []
-var active_bowl_index: int = -1
+var bowls: Dictionary = {}
+var active_bowl_id: int = -1
 
 func _ready():
 	bowls = UserConfig.set_bowls_from_save()
@@ -15,16 +15,18 @@ func _unlock_bowl() -> void:
 		return
 	
 	var bowl := FoodBowlState.new()
-	bowls.append(bowl)
+	var new_index = bowls.values()[-1] + 1
+	bowl.id = new_index
+	bowls[new_index] = bowl
 
-func _set_active_bowl(bowl):
-	var index = bowls.find(bowl)
-	active_bowl_index = index
+func _set_active_bowl(bowl_id):
+	active_bowl_id = bowl_id
 	
 # ------------ Getters
 
-func _get_bowl_index(bowl: FoodBowlState) -> int:
-	return bowls.find(bowl)
+func get_bowls() -> Array:
+	return bowls.values()
+
 
 func get_bowl_count():
 	return len(bowls)
@@ -32,12 +34,14 @@ func get_bowl_count():
 # ------------ Change Bowls state
 
 func _change_bowl_food(food: FoodType):
-	var bowl = bowls[active_bowl_index]
+	var bowl = bowls[active_bowl_id]
 	bowl.food_type = food.id
 	bowl.remaining_amount = food.fill_value
 	
 	SignalBus.update_bowl_button.emit()
-	active_bowl_index = -1
+	active_bowl_id = -1
+	
+	UserConfig.save_bowls(bowls)
 
 func remove_food_from_bowl(amount: int, bowl: FoodBowlState):
 	bowl.remaining_amount -= amount

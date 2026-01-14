@@ -60,10 +60,10 @@ func _update_inventory_ui(item_id: String) -> void:
 		inventory_slots_by_item[item_id] = empty_slots[0]
 
 func _build_bowls_buttons() -> void:
-	var bowls = FoodBowlManager.bowls
-	for bowl: FoodBowlState in bowls:
+	var bowls_ids = FoodBowlManager.bowls.keys()
+	for bowl_id in bowls_ids:
 		var bowl_btn = BowlButton.new()
-		bowl_btn.bowl = bowl
+		bowl_btn.bowl_id = bowl_id
 		bowls_container.add_child(bowl_btn)
 
 func _on_create_potion_pressed() -> void:

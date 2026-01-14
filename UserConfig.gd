@@ -50,22 +50,22 @@ func set_inventory_from_save():
 	Inventory.potions = config.get_value('inventory', 'potions', [])
 
 # ---------- BOWLS
-func save_bowls(bowls: Array[FoodBowlState]):
-	var serialized_bowls = bowls.map(func(b): return b.serialize())
+func save_bowls(bowls: Dictionary):
+	var serialized_bowls = bowls.values().map(func(b): return b.serialize())
 	config.set_value('bowls', 'bowls_list', serialized_bowls)
 	
 	_save_to_file()
 
-func set_bowls_from_save() -> Array[FoodBowlState]:
-	var b: Array = config.get_value('bowls', 'bowls_list', [])
+func set_bowls_from_save() -> Dictionary:
+	var b = config.get_value('bowls', 'bowls_list', [])
 	if b.is_empty():
-		return [FoodBowlState.new()]
+		return {0: FoodBowlState.new()}
 	
-	var result: Array[FoodBowlState]
-	for bowl in b:
+	var result: Dictionary = {}
+	for bowl_data in b:
 		var new_bowl = FoodBowlState.new()
-		new_bowl.create_from_dict(bowl)
-		result.append(new_bowl)
+		new_bowl.create_from_dict(bowl_data)
+		result[bowl_data.id] = new_bowl
 	return result
 
 # ---------- POTIONS
