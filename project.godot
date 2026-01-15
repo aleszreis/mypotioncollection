@@ -29,6 +29,7 @@ IngDatabase="*res://database/IngredientDatabase.gd"
 IngredientCatalog="*res://ingredients/IngredientCatalog.gd"
 Inventory="*res://inventory/Inventory.gd"
 PlayerData="*res://database/PlayerData.gd"
+FoodAttractionSystem="*res://bowls/FoodAttractionSystem.gd"
 SignalBus="*res://SignalBus.gd"
 
 [display]

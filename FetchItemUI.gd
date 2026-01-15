@@ -5,11 +5,25 @@ extends Panel
 @onready var progress_bar = $VBoxContainer/MarginContainerLbl/VBoxContainer/ProgressBar
 @onready var items_inv: GridContainer = $VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerInv/ItemsToConsume
 
+var all_cats_data = []
+
 var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	visible = false
+
+func open():
+	items_list.clear()
+	
 	_populate_items()
 	_populate_cats()
+	
+	visible = true
+	
+func close():
+	visible = false
 
 func _populate_items() -> void:
 	var ingredients = IngDatabase.ingredients_data.values().duplicate(true)
@@ -24,9 +38,8 @@ func _populate_cats() -> void:
 	_clear_cats()
 	
 	var item: IngredientData = items_list.get_selected_metadata()
-	var cats = CatDatabase.cats_instances.duplicate(true)
-	cats.sort_custom(func(a,b): return a.cat_data.display_name < b.cat_data.display_name)
-	for cat: CatInstance in cats:
+	all_cats_data.sort_custom(func(a,b): return a.cat_data.display_name < b.cat_data.display_name)
+	for cat: CatInstance in all_cats_data:
 		if item.item_type not in cat.cat_data.item_types:
 			continue
 			
@@ -42,11 +55,19 @@ func update_progress_bar():
 	pass
 	
 func _on_send_button_pressed():
-	## Check if cat is busy before sending
-	pass
+	var cat: CatInstance = cats_list.get_item_metadata(cats_list.get_selected_id())
+	var item: IngredientData = items_list.get_item_metadata(items_list.get_selected_id())
+	var now := Time.get_unix_time_from_system() + 86400 # Adds one day
+	
+	FoodAttractionSystem.schedule_cat(cat, item.id, now)
+	
+	print("FetchItemUI.gd: Sending cat %s to fetch item %s" % [cat.cat_data.display_name, item.display_name])
+	get_tree().paused = false
+	close()
 
 func _on_cancel_button_pressed():
-	queue_free()
+	get_tree().paused = false
+	close()
 
 func _on_item_selected(index: int) -> void:
 	_populate_cats()

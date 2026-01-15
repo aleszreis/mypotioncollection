@@ -1,7 +1,7 @@
 extends Node
+class_name GameManager
 
-@onready var food_system: FoodAttractionSystem = $FoodAttractionSystem
-
+@onready var cats_instances: Array[CatInstance] = []
 
 func _ready() -> void:
 	_spawn_cats()
@@ -11,12 +11,14 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var now := Time.get_unix_time_from_system()
-	food_system.process_time(now)
+	FoodAttractionSystem.process_time(now, cats_instances)
 
 # --------------------------------------------------
 
 func _spawn_cats() -> void:
-	food_system.cats = UserConfig.set_cats_from_save()
+	cats_instances = UserConfig.set_cats_from_save()
+	if cats_instances.is_empty():
+		cats_instances = CatDatabase.cats_instances.duplicate(true)
 
 # --------------------------------------------------
 
@@ -33,7 +35,7 @@ func _process_offline_progress() -> void:
 		var acq_item = next_event.chosen_item
 		acquired_items[acq_item] = acquired_items.get(acq_item, 0) + 1
 		
-		food_system.process_time(sim_time)
+		FoodAttractionSystem.process_time(sim_time, cats_instances)
 		next_event = _get_next_event()
 	
 	SignalBus.show_offline_gains.emit(acquired_items)
@@ -41,7 +43,7 @@ func _process_offline_progress() -> void:
 func _get_next_event() -> CatInstance:
 	""" Retorna gato com a chegada mais próxima """
 	var next_event: CatInstance = null
-	for cat: CatInstance in food_system.cats:
+	for cat: CatInstance in cats_instances:
 		if cat.is_busy:
 			if next_event == null:
 				next_event = cat

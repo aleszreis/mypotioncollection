@@ -1,12 +1,12 @@
 extends Database
 
 @export var cats_data: Dictionary = {}
-@export var cats_instances: Array = []
+@export var cats_instances: Array[CatInstance] = []
 
 var CATS_FILE_NAME = "gatos.json"
 
 ## TO BE EDITED LATER
-var CAT_TRAVEL_TIME_MULTIPLIER = 5
+var CAT_TRAVEL_TIME_MULTIPLIER = 120
 
 func _ready():
 	_format_cats_data()

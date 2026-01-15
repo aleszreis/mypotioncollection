@@ -72,18 +72,22 @@ show_percentage = false
 [node name="MarginContainerBtn" type="CenterContainer" parent="VBoxContainer/MarginContainerLbl/VBoxContainer"]
 layout_mode = 2
 
-[node name="CancelButton" type="Button" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Cancelar"
 
-[node name="SendButton" type="Button" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn"]
+[node name="SendButton" type="Button" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Enviar"
 
 [connection signal="item_selected" from="VBoxContainer/MarginContainerLbl/VBoxContainer/ChooseItem" to="." method="_on_item_selected"]
-[connection signal="pressed" from="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]

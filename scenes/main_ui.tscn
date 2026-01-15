@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv8u28p64d1r8"]
+[gd_scene load_steps=13 format=3 uid="uid://dv8u28p64d1r8"]
 
 [ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cwf63mijwalao" path="res://inventory/sprites/inventory-bg.png" id="3_kyx1g"]
 [ext_resource type="Script" uid="uid://hxjjar1es3xg" path="res://potions/PotionPreview.gd" id="4_r8eje"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
+[ext_resource type="Script" uid="uid://dv7cby51i7bct" path="res://FetchItemUI.gd" id="7_82kx8"]
 [ext_resource type="Texture2D" uid="uid://cqoowpe2q5c56" path="res://cats/sprites/cat-icon.png" id="7_r0apq"]
 [ext_resource type="PackedScene" uid="uid://c2abn0bsaxgbq" path="res://scenes/offline_gains.tscn" id="8_82kx8"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
@@ -175,6 +176,90 @@ size_flags_vertical = 3
 icon = ExtResource("7_r0apq")
 expand_icon = true
 
+[node name="FetchItem" type="Panel" parent="UI"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_82kx8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/FetchItem"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -139.0
+offset_bottom = 139.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainerLbl" type="MarginContainer" parent="UI/FetchItem/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ItemLabel" type="Label" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Buscar item"
+horizontal_alignment = 1
+
+[node name="ChooseItem" type="OptionButton" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer"]
+layout_mode = 2
+text_overrun_behavior = 3
+fit_to_longest_item = false
+
+[node name="ChooseCat" type="OptionButton" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainerInv" type="CenterContainer" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemsToConsume" type="GridContainer" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerInv"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+step = 1.0
+show_percentage = false
+
+[node name="MarginContainerBtn" type="CenterContainer" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="CancelButton" type="Button" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Cancelar"
+
+[node name="SendButton" type="Button" parent="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Enviar"
+
 [node name="FoodOptionsMenu" parent="." instance=ExtResource("5_yjiuj")]
 layout_mode = 1
 anchors_preset = 15
@@ -201,3 +286,6 @@ script = ExtResource("12_wd510")
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer/Button" to="UI/VBoxContainer/HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer" method="_on_close_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton" to="UI" method="_on_create_potion_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/RightColumn/CenterContainer/OpenFetchItemMenu" to="UI" method="_on_fetch_item_btn_pressed"]
+[connection signal="item_selected" from="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer/ChooseItem" to="UI/FetchItem" method="_on_item_selected"]
+[connection signal="pressed" from="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer/CancelButton" to="UI/FetchItem" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="UI/FetchItem/VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer/SendButton" to="UI/FetchItem" method="_on_send_button_pressed"]
