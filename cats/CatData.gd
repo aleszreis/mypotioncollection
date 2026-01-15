@@ -11,7 +11,7 @@ extends Resource
 @export var base_travel_time: float = 2.0
 
 @export var favorite_item_id: String
-@export var item_types: Array[String]
+@export var item_types: Array[int]
 
 @export var rules: Array[IngredientRule] = []
 

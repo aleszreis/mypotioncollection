@@ -1,5 +1,7 @@
 extends Node
 
+signal show_offline_gains(items)
+
 signal craft_pressed(selector)
 
 signal change_ui_ingredient(item)
@@ -7,8 +9,6 @@ signal change_ui_ingredient(item)
 signal ingredient_acquired(ingredient_id, value)
 signal potion_acquired(potion)
 signal ingredient_consumed(ingredient_id, value, use)
-
-signal cat_scheduled(bowl)
 
 signal open_food_menu()
 

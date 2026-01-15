@@ -5,10 +5,10 @@ extends Resource
 @export var id: int = 0
 @export var food_type: String
 @export var remaining_amount: int
-@export var cat_assigned: CatInstance = null
+@export var has_cat_assigned: bool = false
 
 func is_available() -> bool:
-	return remaining_amount > 0 and (cat_assigned == null)
+	return remaining_amount > 0 and not has_cat_assigned
 
 # --------------- Transform data to save and load
 
@@ -17,15 +17,11 @@ func serialize() -> Dictionary:
 		'id': id,
 		'food_type': food_type,
 		'remaining_amount': remaining_amount,
-		'cat_assigned': cat_assigned.serialize() if cat_assigned else null
+		'has_cat_assigned': has_cat_assigned
 	}
 
 func create_from_dict(data: Dictionary) -> void:
 	id = data.id
 	food_type = data.food_type
 	remaining_amount = data.remaining_amount
-	cat_assigned = null
-	if data.cat_assigned:
-		var cat = CatInstance.new()
-		cat = cat.create_from_dict(data.cat_assigned)
-		cat_assigned = cat
+	has_cat_assigned = data.has_cat_assigned

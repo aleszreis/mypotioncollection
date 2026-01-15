@@ -4,6 +4,13 @@ extends Panel
 
 var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 
+func _ready():
+	var x = get_viewport().size.x
+	var y = x / 2
+	size = Vector2(x, y)
+	
+	SignalBus.show_offline_gains.connect(display_items)
+
 func display_items(offline_items: Dictionary) -> void:
 	if offline_items.is_empty():
 		queue_free()

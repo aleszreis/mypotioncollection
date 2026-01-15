@@ -1,36 +1,24 @@
 extends Node
+class_name GameManager
 
-@onready var food_system: FoodAttractionSystem = $FoodAttractionSystem
-@onready var offline_display = $"../OfflinePopupContainer"
-
+@onready var cats_instances: Array[CatInstance] = []
 
 func _ready() -> void:
 	_spawn_cats()
-	#_DEBUG_spawn_inventory_items()
 	_process_offline_progress()
 	
 	SignalBus.craft_pressed.connect(_craft_potion)
 
 func _process(_delta: float) -> void:
 	var now := Time.get_unix_time_from_system()
-	food_system.process_time(now)
+	FoodAttractionSystem.process_time(now, cats_instances)
 
 # --------------------------------------------------
 
 func _spawn_cats() -> void:
-	var all_cats_data = CatDatabase.cats_data.values()
-	
-	for cat in all_cats_data:
-		var cat_instance := CatInstance.new()
-		cat_instance.cat_data = CatDatabase.get_by_id(cat.id)
-		food_system.cats.append(cat_instance)
-
-# --------------------------------------------------
-
-func _DEBUG_spawn_inventory_items() -> void:
-	for entry in IngredientCatalog.entries:
-		for i in range(10):
-			Inventory.add_base_item(entry.ingredient.id)
+	cats_instances = UserConfig.set_cats_from_save()
+	if cats_instances.is_empty():
+		cats_instances = CatDatabase.cats_instances.duplicate(true)
 
 # --------------------------------------------------
 
@@ -38,33 +26,29 @@ func _process_offline_progress() -> void:
 	var next_event = _get_next_event()
 	
 	var now := Time.get_unix_time_from_system()
-	var sim_time = 0.0
+	var sim_time = UserConfig.get_last_save_time()
 	
 	var acquired_items = {}
 	
 	while next_event and sim_time < now:
-		sim_time = next_event.cat_assigned.next_available_time
-		var acq_item = next_event.cat_assigned.chosen_item
-		if acquired_items.get(acq_item):
-			acquired_items[acq_item] += 1
-		else:
-			acquired_items[acq_item] = 1
+		sim_time = next_event.next_available_time
+		var acq_item = next_event.chosen_item
+		acquired_items[acq_item] = acquired_items.get(acq_item, 0) + 1
 		
-		food_system.process_time(sim_time)
+		FoodAttractionSystem.process_time(sim_time, cats_instances)
 		next_event = _get_next_event()
 	
-	offline_display.display_items(acquired_items)
+	SignalBus.show_offline_gains.emit(acquired_items)
 	
-func _get_next_event() -> FoodBowlState:
-	""" Retorna bowl cujo gato tem a chegada mais próxima """
-	var next_event: FoodBowlState = null
-	var bowls = FoodBowlManager.get_bowls()
-	for bowl: FoodBowlState in FoodBowlManager.get_bowls():
-		if bowl.cat_assigned:
+func _get_next_event() -> CatInstance:
+	""" Retorna gato com a chegada mais próxima """
+	var next_event: CatInstance = null
+	for cat: CatInstance in cats_instances:
+		if cat.is_busy:
 			if next_event == null:
-				next_event = bowl
-			elif bowl.cat_assigned.next_available_time < next_event.cat_assigned.next_available_time:
-				next_event = bowl
+				next_event = cat
+			elif cat.next_available_time < next_event.next_available_time:
+				next_event = cat
 	return next_event
 # --------------------------------------------------
 

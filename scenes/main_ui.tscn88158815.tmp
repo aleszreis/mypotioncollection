@@ -1,0 +1,260 @@
+[gd_scene load_steps=12 format=3 uid="uid://dv8u28p64d1r8"]
+
+[ext_resource type="Script" uid="uid://bcnm664eof8so" path="res://Main.gd" id="1_dbw6l"]
+[ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
+[ext_resource type="Texture2D" uid="uid://eo01h0maa2qq" path="res://house_background.png" id="2_okuri"]
+[ext_resource type="Texture2D" uid="uid://cwf63mijwalao" path="res://inventory/sprites/inventory-bg.png" id="3_kyx1g"]
+[ext_resource type="Script" uid="uid://hxjjar1es3xg" path="res://potions/PotionPreview.gd" id="4_r8eje"]
+[ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
+[ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
+[ext_resource type="Script" uid="uid://b2nf8cvq11yvl" path="res://ingredients/OfflineGainsUI.gd" id="8_okuri"]
+[ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="9_r8eje"]
+[ext_resource type="Script" uid="uid://c8tllqev66e5c" path="res://bowls/FoodBowlManager.gd" id="12_wd510"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyx1g"]
+bg_color = Color(0.823901, 0.497788, 0.459586, 0.513726)
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_paifj")
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_okuri")
+expand_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftColumn" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="Control" type="Control" parent="UI/HBoxContainer/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="BowlsContainer" type="VBoxContainer" parent="UI/HBoxContainer/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="CenterColumn" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+
+[node name="Control2" type="Control" parent="UI/HBoxContainer/CenterColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/HBoxContainer/CenterColumn"]
+custom_minimum_size = Vector2(192, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_kyx1g")
+draw_center = false
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="IngredientGrid" type="GridContainer" parent="UI/HBoxContainer/CenterColumn/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="Control3" type="Control" parent="UI/HBoxContainer/CenterColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="UI/HBoxContainer/CenterColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="UI/HBoxContainer/CenterColumn/Spacer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.550681, 0.265861, 0.351185, 0.8)
+
+[node name="PotionPreviewContainer" type="VBoxContainer" parent="UI/HBoxContainer/CenterColumn/Spacer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("4_r8eje")
+
+[node name="Button" type="Button" parent="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 10
+text = " X "
+
+[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CenterSelected" type="CenterContainer" parent="UI/HBoxContainer/CenterColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="SelectedIngredientsGrid" type="HBoxContainer" parent="UI/HBoxContainer/CenterColumn/CenterSelected"]
+layout_mode = 2
+
+[node name="CenterCauldron" type="CenterContainer" parent="UI/HBoxContainer/CenterColumn"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="CreateItemButton" type="TextureButton" parent="UI/HBoxContainer/CenterColumn/CenterCauldron"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+texture_normal = ExtResource("8_kyx1g")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RightColumn" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="UI/HBoxContainer/RightColumn"]
+layout_mode = 2
+text = "Poções"
+horizontal_alignment = 1
+
+[node name="PotionGrid" type="HFlowContainer" parent="UI/HBoxContainer/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="FoodOptionsMenu" parent="UI" instance=ExtResource("5_yjiuj")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OfflinePopupContainer" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kyx1g")
+script = ExtResource("8_okuri")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OfflinePopupContainer"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+offset_left = 52.0
+offset_top = 256.0
+offset_right = 308.0
+offset_bottom = 384.0
+
+[node name="MarginContainerLbl" type="MarginContainer" parent="OfflinePopupContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="OfflinePopupContainer/VBoxContainer/MarginContainerLbl"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Ganhos Offline"
+horizontal_alignment = 1
+
+[node name="MarginContainerInv" type="CenterContainer" parent="OfflinePopupContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OfflineInventory" type="GridContainer" parent="OfflinePopupContainer/VBoxContainer/MarginContainerInv"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="MarginContainerBtn" type="MarginContainer" parent="OfflinePopupContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Button" type="Button" parent="OfflinePopupContainer/VBoxContainer/MarginContainerBtn"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Ok"
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_dbw6l")
+
+[node name="FoodAttractionSystem" type="Node" parent="GameManager"]
+script = ExtResource("9_r8eje")
+
+[node name="FoodBowlManager" type="Node" parent="GameManager"]
+script = ExtResource("12_wd510")
+
+[connection signal="pressed" from="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer/Button" to="UI/HBoxContainer/CenterColumn/Spacer/PotionPreviewContainer" method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/CenterColumn/CenterCauldron/CreateItemButton" to="UI" method="_on_create_potion_pressed"]
+[connection signal="pressed" from="OfflinePopupContainer/VBoxContainer/MarginContainerBtn/Button" to="OfflinePopupContainer" method="_on_button_pressed"]

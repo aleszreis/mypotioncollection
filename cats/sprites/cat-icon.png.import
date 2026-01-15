@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b57doq3nr5xfh"
-path="res://.godot/imported/racao.png-e471763a90de6f384bcb777ff25938ae.ctex"
+uid="uid://cqoowpe2q5c56"
+path="res://.godot/imported/cat-icon.png-24c27ac2e6bc1c6ea7512b70427c1f5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cats/sprites/racao.png"
-dest_files=["res://.godot/imported/racao.png-e471763a90de6f384bcb777ff25938ae.ctex"]
+source_file="res://cats/sprites/cat-icon.png"
+dest_files=["res://.godot/imported/cat-icon.png-24c27ac2e6bc1c6ea7512b70427c1f5c.ctex"]
 
 [params]
 
