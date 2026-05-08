@@ -7,7 +7,6 @@ func process_time(now: float, cats: Array[CatInstance]) -> void:
 	for cat: CatInstance in traveling_cats:
 		if cat.next_available_time <= now:
 			_resolve_arrival(cat)
-			UserConfig.save_arrival_state(cats, FoodBowlManager.bowls)
 		continue
 		
 	for bowl in FoodBowlManager.get_bowls():
@@ -22,7 +21,6 @@ func process_time(now: float, cats: Array[CatInstance]) -> void:
 		if picked_cat:
 			var item = _pick_item(picked_cat)
 			schedule_cat(picked_cat, item, now, bowl)
-			UserConfig.save_arrival_state(cats, FoodBowlManager.bowls)
 
 func _pick_cat(cats: Array[CatInstance], bowl: FoodBowlState, now: float) -> CatInstance:
 	var eligible := cats.filter(func(c): return c.can_respond_to_bowl(bowl, now))
@@ -56,6 +54,7 @@ func schedule_cat(cat: CatInstance, chosen_item: String, now: float, bowl: FoodB
 	if bowl:
 		bowl.has_cat_assigned = true
 	
+	UserConfig.save_arrival_state(GameManager.cats_instances, FoodBowlManager.bowls)
 	print("FoodAttractionSystem.gd: <%s> agendado com item <%s>" % [cat.cat_data.display_name, IngDatabase.get_by_id(chosen_item).display_name])
 
 func _resolve_arrival(cat: CatInstance) -> void:
@@ -69,3 +68,4 @@ func _resolve_arrival(cat: CatInstance) -> void:
 		FoodBowlManager.remove_food_from_bowl(cat.cat_data.food_efficiency, bowl)
 		
 	cat.set_idle()
+	UserConfig.save_arrival_state(GameManager.cats_instances, FoodBowlManager.bowls)
