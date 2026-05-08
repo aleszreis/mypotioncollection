@@ -2,6 +2,71 @@
 
 [ext_resource type="Script" uid="uid://dv7cby51i7bct" path="res://FetchItemUI.gd" id="1_7yk1g"]
 [ext_resource type="PackedScene" uid="uid://bx8iqumjwh1kq" path="res://inventory/inventory_ui.tscn" id="2_yepl5"]
+[ext_resource type="Texture2D" uid="uid://dpvmu7kkmtt7d" path="res://assets/Pet Cats Pack/Cat-3/Cat-3-Walk.png" id="3_kvdam"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1tbv"]
+atlas = ExtResource("3_kvdam")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m35oq"]
+atlas = ExtResource("3_kvdam")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_334wy"]
+atlas = ExtResource("3_kvdam")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c5kq"]
+atlas = ExtResource("3_kvdam")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gw18"]
+atlas = ExtResource("3_kvdam")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jmis"]
+atlas = ExtResource("3_kvdam")
+region = Rect2(250, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7b4w"]
+atlas = ExtResource("3_kvdam")
+region = Rect2(300, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib6gp"]
+atlas = ExtResource("3_kvdam")
+region = Rect2(350, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8qo80"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1tbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m35oq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_334wy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c5kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gw18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jmis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7b4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib6gp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [node name="FetchItemUI" type="Control" unique_id=81905423]
 layout_mode = 3
@@ -17,7 +82,7 @@ script = ExtResource("1_7yk1g")
 [node name="InventoryUI" parent="." unique_id=1309482004 instance=ExtResource("2_yepl5")]
 layout_mode = 1
 
-[node name="Panel" type="Panel" parent="." unique_id=901672416]
+[node name="FetchEnabled" type="Panel" parent="." unique_id=901672416]
 custom_minimum_size = Vector2(256, 280)
 layout_mode = 1
 anchors_preset = 8
@@ -32,7 +97,7 @@ offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=742243378]
+[node name="VBoxContainer" type="VBoxContainer" parent="FetchEnabled" unique_id=742243378]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,57 +112,118 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="ItemLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1413371361]
+[node name="ItemLabel" type="Label" parent="FetchEnabled/VBoxContainer" unique_id=1413371361]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Buscar item"
 horizontal_alignment = 1
 
-[node name="ChooseItem" type="OptionButton" parent="Panel/VBoxContainer" unique_id=805970428]
+[node name="ChooseItem" type="OptionButton" parent="FetchEnabled/VBoxContainer" unique_id=805970428]
 layout_mode = 2
 text_overrun_behavior = 3
 fit_to_longest_item = false
 
-[node name="ChooseCat" type="OptionButton" parent="Panel/VBoxContainer" unique_id=1757092075]
+[node name="ChooseCat" type="OptionButton" parent="FetchEnabled/VBoxContainer" unique_id=1757092075]
 layout_mode = 2
 
-[node name="ItemsToConsume" type="GridContainer" parent="Panel/VBoxContainer" unique_id=920438895]
+[node name="ItemsToConsume" type="GridContainer" parent="FetchEnabled/VBoxContainer" unique_id=920438895]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 3
 columns = 8
 
-[node name="ProgressBar" type="ProgressBar" parent="Panel/VBoxContainer" unique_id=362948304]
+[node name="ProgressBar" type="ProgressBar" parent="FetchEnabled/VBoxContainer" unique_id=362948304]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 step = 1.0
 show_percentage = false
 
-[node name="ProgressLabel" type="Label" parent="Panel/VBoxContainer" unique_id=171156210]
+[node name="ProgressLabel" type="Label" parent="FetchEnabled/VBoxContainer" unique_id=171156210]
 layout_mode = 2
 text = "0 / ??"
 horizontal_alignment = 1
 
-[node name="MarginContainerBtn" type="CenterContainer" parent="Panel/VBoxContainer" unique_id=1627637793]
+[node name="MarginContainerBtn" type="CenterContainer" parent="FetchEnabled/VBoxContainer" unique_id=1627637793]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainerBtn" unique_id=3621570]
+[node name="HBoxContainer" type="HBoxContainer" parent="FetchEnabled/VBoxContainer/MarginContainerBtn" unique_id=3621570]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="CancelButton" type="Button" parent="Panel/VBoxContainer/MarginContainerBtn/HBoxContainer" unique_id=1397172030]
+[node name="CancelButton" type="Button" parent="FetchEnabled/VBoxContainer/MarginContainerBtn/HBoxContainer" unique_id=1397172030]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Cancelar"
 
-[node name="SendButton" type="Button" parent="Panel/VBoxContainer/MarginContainerBtn/HBoxContainer" unique_id=863697778]
+[node name="SendButton" type="Button" parent="FetchEnabled/VBoxContainer/MarginContainerBtn/HBoxContainer" unique_id=863697778]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Enviar"
 
-[connection signal="item_selected" from="Panel/VBoxContainer/ChooseItem" to="." method="_on_item_selected"]
-[connection signal="item_selected" from="Panel/VBoxContainer/ChooseCat" to="." method="_on_cat_selected"]
-[connection signal="pressed" from="Panel/VBoxContainer/MarginContainerBtn/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/MarginContainerBtn/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]
+[node name="FetchInProgress" type="Panel" parent="." unique_id=1012515112]
+visible = false
+custom_minimum_size = Vector2(256, 280)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -140.0
+offset_right = 128.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FetchInProgress" unique_id=1513079415]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -123.0
+offset_right = 82.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="ItemLabel" type="Label" parent="FetchInProgress/VBoxContainer" unique_id=1371276130]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Buscando..."
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="FetchInProgress/VBoxContainer" unique_id=1767206422]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FetchInProgress/VBoxContainer/Control" unique_id=1198477700]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_8qo80")
+animation = &"walk"
+frame_progress = 0.23662968
+
+[node name="ProgressBar" type="ProgressBar" parent="FetchInProgress/VBoxContainer" unique_id=1307526914]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+step = 1.0
+show_percentage = false
+
+[node name="ProgressLabel" type="Label" parent="FetchInProgress/VBoxContainer" unique_id=944467025]
+custom_minimum_size = Vector2(232, 32)
+layout_mode = 2
+text = "<Gato> retornará em <hh:mm:ss> com o item <item>."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="item_selected" from="FetchEnabled/VBoxContainer/ChooseItem" to="." method="_on_item_selected"]
+[connection signal="item_selected" from="FetchEnabled/VBoxContainer/ChooseCat" to="." method="_on_cat_selected"]
+[connection signal="pressed" from="FetchEnabled/VBoxContainer/MarginContainerBtn/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="FetchEnabled/VBoxContainer/MarginContainerBtn/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]
