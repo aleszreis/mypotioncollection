@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bx8iqumjwh1kq"]
+
+[ext_resource type="Script" uid="uid://cn1kr8uxr1pwa" path="res://inventory/InventoryUI.gd" id="1_hfbh7"]
+
+[node name="InventoryUI" type="Control" unique_id=1309482004]
+custom_minimum_size = Vector2(192, 72)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_top = 48.0
+offset_right = 96.0
+offset_bottom = 120.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("1_hfbh7")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1570727526]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="IngredientGrid" type="GridContainer" parent="." unique_id=524173033]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8

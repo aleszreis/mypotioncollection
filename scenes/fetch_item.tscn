@@ -1,93 +1,103 @@
-[gd_scene load_steps=2 format=3 uid="uid://dady6xu5pb7jq"]
+[gd_scene format=3 uid="uid://dady6xu5pb7jq"]
 
 [ext_resource type="Script" uid="uid://dv7cby51i7bct" path="res://FetchItemUI.gd" id="1_7yk1g"]
+[ext_resource type="PackedScene" uid="uid://bx8iqumjwh1kq" path="res://inventory/inventory_ui.tscn" id="2_yepl5"]
 
-[node name="FetchItem" type="Panel"]
-anchors_preset = 14
-anchor_top = 0.5
+[node name="FetchItemUI" type="Control" unique_id=81905423]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -148.0
-offset_bottom = 108.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_7yk1g")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="InventoryUI" parent="." unique_id=1309482004 instance=ExtResource("2_yepl5")]
 layout_mode = 1
-anchors_preset = 14
+
+[node name="Panel" type="Panel" parent="." unique_id=901672416]
+custom_minimum_size = Vector2(256, 280)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -79.0
-offset_bottom = 79.0
+offset_left = -128.0
+offset_top = -140.0
+offset_right = 128.0
+offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainerLbl" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=742243378]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -123.0
+offset_right = 82.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainerLbl"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="ItemLabel" type="Label" parent="VBoxContainer/MarginContainerLbl/VBoxContainer"]
+[node name="ItemLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1413371361]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Buscar item"
 horizontal_alignment = 1
 
-[node name="ChooseItem" type="OptionButton" parent="VBoxContainer/MarginContainerLbl/VBoxContainer"]
+[node name="ChooseItem" type="OptionButton" parent="Panel/VBoxContainer" unique_id=805970428]
 layout_mode = 2
 text_overrun_behavior = 3
 fit_to_longest_item = false
 
-[node name="ChooseCat" type="OptionButton" parent="VBoxContainer/MarginContainerLbl/VBoxContainer"]
+[node name="ChooseCat" type="OptionButton" parent="Panel/VBoxContainer" unique_id=1757092075]
 layout_mode = 2
 
-[node name="MarginContainerInv" type="CenterContainer" parent="VBoxContainer/MarginContainerLbl/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ItemsToConsume" type="GridContainer" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerInv"]
+[node name="ItemsToConsume" type="GridContainer" parent="Panel/VBoxContainer" unique_id=920438895]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
 columns = 8
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/MarginContainerLbl/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="Panel/VBoxContainer" unique_id=362948304]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 step = 1.0
 show_percentage = false
 
-[node name="MarginContainerBtn" type="CenterContainer" parent="VBoxContainer/MarginContainerLbl/VBoxContainer"]
+[node name="ProgressLabel" type="Label" parent="Panel/VBoxContainer" unique_id=171156210]
+layout_mode = 2
+text = "0 / ??"
+horizontal_alignment = 1
+
+[node name="MarginContainerBtn" type="CenterContainer" parent="Panel/VBoxContainer" unique_id=1627637793]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainerBtn" unique_id=3621570]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="CancelButton" type="Button" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="Panel/VBoxContainer/MarginContainerBtn/HBoxContainer" unique_id=1397172030]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Cancelar"
 
-[node name="SendButton" type="Button" parent="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer"]
+[node name="SendButton" type="Button" parent="Panel/VBoxContainer/MarginContainerBtn/HBoxContainer" unique_id=863697778]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Enviar"
 
-[connection signal="item_selected" from="VBoxContainer/MarginContainerLbl/VBoxContainer/ChooseItem" to="." method="_on_item_selected"]
-[connection signal="pressed" from="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerBtn/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="item_selected" from="Panel/VBoxContainer/ChooseItem" to="." method="_on_item_selected"]
+[connection signal="item_selected" from="Panel/VBoxContainer/ChooseCat" to="." method="_on_cat_selected"]
+[connection signal="pressed" from="Panel/VBoxContainer/MarginContainerBtn/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/MarginContainerBtn/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]

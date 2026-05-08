@@ -23,11 +23,18 @@ func get_selected_items() -> Array[String]:
 
 func has_selection() -> bool:
 	return not _selected.is_empty()
-	
+
 func _emit_change() -> void:
 	selected_item.emit(_selected[-1])
+
+func deselect_all() -> void:
+	var selected_items = _selected.duplicate()
+	selected_items.reverse()
+	for item in selected_items:
+		remove_from_selection(item)
 
 func remove_from_selection(item_id: String):
 	var item_index = _selected.find(item_id)
 	_selected.pop_at(item_index)
+	SignalBus.ingredient_acquired.emit(item_id)
 	deselected_item.emit()

@@ -16,7 +16,6 @@ func setup_ui_slot(item_id: String, selection_controller: SelectionController) -
 	pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
-	SignalBus.ingredient_acquired.emit(item.id)
 	selector.remove_from_selection(item.id)
 	queue_free()
 	

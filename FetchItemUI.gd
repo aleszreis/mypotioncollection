@@ -1,29 +1,40 @@
-extends Panel
+extends Control
 
-@onready var items_list: OptionButton = $VBoxContainer/MarginContainerLbl/VBoxContainer/ChooseItem
-@onready var cats_list: OptionButton = $VBoxContainer/MarginContainerLbl/VBoxContainer/ChooseCat
-@onready var progress_bar = $VBoxContainer/MarginContainerLbl/VBoxContainer/ProgressBar
-@onready var items_inv: GridContainer = $VBoxContainer/MarginContainerLbl/VBoxContainer/MarginContainerInv/ItemsToConsume
+@onready var inventory_ui: Control = $InventoryUI
+@onready var items_list: OptionButton = $Panel/VBoxContainer/ChooseItem
+@onready var cats_list: OptionButton = $Panel/VBoxContainer/ChooseCat
+@onready var progress_bar = $Panel/VBoxContainer/ProgressBar
+@onready var progress_label: Label = $Panel/VBoxContainer/ProgressLabel
+@onready var selected_grid: GridContainer = $Panel/VBoxContainer/ItemsToConsume
 
 var all_cats_data = []
+var selected_cat : CatInstance
 
 var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 
-func _ready():
-	process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	visible = false
+var selection_slot_scene = preload("res://scenes/selec_slot_ui.tscn")
+var selector : SelectionController
 
-func open():
+func _ready():
+	selector = inventory_ui.selector
+	selector.MAX_SELECTION = 28
+	selector.selected_item.connect(_on_fuel_selected)
+	selector.deselected_item.connect(_on_fuel_deselected)
+	
+	all_cats_data =  GameManager.cats_instances.duplicate()
+
 	items_list.clear()
 	
 	_populate_items()
 	_populate_cats()
 	
-	visible = true
-	
+	var item = items_list.get_item_metadata(0)
+	progress_bar.max_value = item.rarity * 5
+	_update_progress()
+
 func close():
-	visible = false
+	selector.deselect_all()
+	get_tree().change_scene_to_file("res://scenes/main_ui.tscn")
 
 func _populate_items() -> void:
 	var ingredients = IngDatabase.ingredients_data.values().duplicate(true)
@@ -47,14 +58,21 @@ func _populate_cats() -> void:
 		cats_list.set_item_metadata(-1, cat)
 		if cat.is_busy:
 			cats_list.set_item_disabled(-1, true)
+	selected_cat = cats_list.get_item_metadata(0)
+
+func _on_cat_selected(index: int) -> void:
+	selected_cat = cats_list.get_item_metadata(index)
+	_update_progress()
 
 func _clear_cats() -> void:
 	cats_list.clear()
 
-func update_progress_bar():
-	pass
-	
 func _on_send_button_pressed():
+	if progress_bar.value < progress_bar.max_value:
+		# TODO: add friendly message/block button
+		print("Not enough fuel to send cat")
+		return
+		
 	var cat: CatInstance = cats_list.get_item_metadata(cats_list.get_selected_id())
 	var item: IngredientData = items_list.get_item_metadata(items_list.get_selected_id())
 	var now := Time.get_unix_time_from_system() + 86400 # Adds one day
@@ -62,12 +80,51 @@ func _on_send_button_pressed():
 	FoodAttractionSystem.schedule_cat(cat, item.id, now)
 	
 	print("FetchItemUI.gd: Sending cat %s to fetch item %s" % [cat.cat_data.display_name, item.display_name])
-	get_tree().paused = false
+	
+	# TODO: consume selected items
+	selector.clear()
+	# TODO: verify that cat is gone, busy and with correct chosen_item
+	
 	close()
 
 func _on_cancel_button_pressed():
-	get_tree().paused = false
 	close()
 
 func _on_item_selected(index: int) -> void:
 	_populate_cats()
+	
+	var item = items_list.get_item_metadata(index)
+	progress_bar.max_value = item.rarity * 5
+	_update_progress()
+
+func _update_progress() -> void:
+	var fuel_value = _calculate_fuel_value()
+	progress_bar.value = fuel_value
+	progress_label.text = "%s / %s" % [fuel_value, int(progress_bar.max_value)]
+
+func _on_fuel_selected(item_id: String) -> void:
+	# Cria slot
+	var slot : SelectionSlot = selection_slot_scene.instantiate()
+	selected_grid.add_child(slot)
+	slot.setup_ui_slot(item_id, selector)
+	
+	# Atualiza a barra de progresso
+	_update_progress()
+
+func _calculate_fuel_value() -> int:
+	var fuel = selector.get_selected_items()
+	var value = 0
+	
+	for item_id: String in fuel:
+		var item_rarity = IngDatabase.get_by_id(item_id).rarity
+		# TODO: update IDs
+		# talvez criar tudo como resource pra referenciar um ao outro?
+		if item_id == selected_cat.cat_data.favorite_item_id:
+			value += (item_rarity * 3)
+		else:
+			value += item_rarity
+	return value
+
+func _on_fuel_deselected() -> void:
+	_update_progress()
+	

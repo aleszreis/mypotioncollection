@@ -9,12 +9,9 @@ func _ready():
 	var y = x / 2
 	size = Vector2(x, y)
 	
-	SignalBus.show_offline_gains.connect(display_items)
+	_process_offline_progress()
 
 func display_items(offline_items: Dictionary) -> void:
-	if offline_items.is_empty():
-		queue_free()
-	
 	visible = true
 	for item_id in offline_items.keys():
 		var slot := inventory_slot_scene.instantiate()
@@ -28,3 +25,11 @@ func display_items(offline_items: Dictionary) -> void:
 		
 func _on_button_pressed() -> void:
 	queue_free()
+
+func _process_offline_progress() -> void:
+	var acquired_items = GameManager.process_offline_progress()
+	if acquired_items.is_empty():
+		queue_free()
+		return
+		
+	display_items(acquired_items)
