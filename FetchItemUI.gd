@@ -10,7 +10,7 @@ extends Control
 @onready var cats_list: OptionButton = $FetchEnabled/VBoxContainer/ChooseCat
 @onready var progress_bar = $FetchEnabled/VBoxContainer/ProgressBar
 @onready var progress_label: Label = $FetchEnabled/VBoxContainer/ProgressLabel
-@onready var selected_grid: GridContainer = $FetchEnabled/VBoxContainer/ItemsToConsume
+@onready var items_to_consume: GridContainer = $FetchEnabled/VBoxContainer/ItemsToConsume
 @onready var send_button: Button = $FetchEnabled/VBoxContainer/MarginContainerBtn/HBoxContainer/SendButton
 
 var all_cats_data = []
@@ -28,6 +28,8 @@ func _ready():
 	selector.deselected_item.connect(_on_fuel_deselected)
 	
 	items_list.clear()
+	
+	all_cats_data = GameManager.cats_instances.duplicate()
 	
 	_populate_items()
 	_populate_cats()
@@ -74,19 +76,15 @@ func _clear_cats() -> void:
 func _on_send_button_pressed():
 	var cat: CatInstance = cats_list.get_item_metadata(cats_list.get_selected_id())
 	var item: IngredientData = items_list.get_item_metadata(items_list.get_selected_id())
-	var now := Time.get_unix_time_from_system() + 86400 # Adds one day
+	var arrival_time := Time.get_unix_time_from_system() + 82800 # Adds one day
 	
-	FoodAttractionSystem.schedule_cat(cat, item.id, now)
+	FoodAttractionSystem.schedule_cat(cat, item.id, arrival_time)
 	
 	print("FetchItemUI.gd: Sending cat %s to fetch item %s" % [cat.cat_data.display_name, item.display_name])
 	
 	selector.clear()
-	close()
-	# TODO: verify that cat is gone, busy and with correct chosen_item
-	
-	# TODO: disallow new fetch send - wait until cat comes back
-	#fetch_enabled.hide()
-	#fetch_in_progress.show()
+	for fuel_node in items_to_consume.get_children():
+		fuel_node.queue_free()
 
 func _on_cancel_button_pressed():
 	close()
@@ -107,14 +105,14 @@ func _update_progress() -> void:
 func _on_fuel_selected(item_id: String) -> void:
 	# Cria slot
 	var slot : SelectionSlot = selection_slot_scene.instantiate()
-	selected_grid.add_child(slot)
+	items_to_consume.add_child(slot)
 	slot.setup_ui_slot(item_id, selector)
 	
 	# Atualiza a barra de progresso
 	_update_progress()
 
 func _calculate_fuel_value() -> int:
-	var fuel = selector.get_selected_items()
+	var fuel = selector.get_selected_items(false)
 	var value = 0
 	
 	for item_id: String in fuel:
@@ -131,18 +129,15 @@ func _on_fuel_deselected() -> void:
 func _get_cat_fetching(cats_data: Array[CatInstance]) -> Array[CatInstance]:
 	return cats_data.filter(func(c): return c.is_fetching)
 
-func _set_fetch_info(cat: CatInstance) -> void:
-	if cat:
-		cat_sprite.sprite_frames = cat.cat_data.walking_sprite
-		cat_sprite.play()
-		var formatted_time = _set_remaining_time(cat.next_available_time)
-		fetch_progress_label.text = "%s retornará em %s com o item %s." % [cat.cat_data.display_name, formatted_time, IngDatabase.get_by_id(cat.chosen_item).display_name]
-		
-		fetch_enabled.hide()
-		fetch_in_progress.show()
-	else:
-		fetch_in_progress.hide()
-		fetch_enabled.show()
+func _update_fetch_info(cat: CatInstance) -> void:
+	cat_sprite.sprite_frames = cat.cat_data.walking_sprite
+	cat_sprite.play()
+	var formatted_time = _set_remaining_time(cat.next_available_time)
+	fetch_progress_label.text = "%s retornará em %s com o item %s." % [cat.cat_data.display_name, formatted_time, IngDatabase.get_by_id(cat.chosen_item).display_name]
+	
+	inventory_ui.hide()
+	fetch_enabled.hide()
+	fetch_in_progress.show()
 
 func _set_remaining_time(end_time) -> String:
 	var now = Time.get_unix_time_from_system()
@@ -152,8 +147,16 @@ func _set_remaining_time(end_time) -> String:
 	var seconds: int = int(remaining_time) % 60
 	return "%02d:%02d:%02d" % [hours, minutes, seconds]
 
+func _show_fetch_ui() -> void:
+		fetch_in_progress.hide()
+		inventory_ui.show()
+		fetch_enabled.show()
+
 func _process(delta) -> void:
-	all_cats_data = GameManager.cats_instances.duplicate()
 	var fetching = _get_cat_fetching(all_cats_data)
+	if !fetching:
+		_show_fetch_ui()
+		return
+		
 	for cat in fetching:
-		_set_fetch_info(cat)
+		_update_fetch_info(cat)

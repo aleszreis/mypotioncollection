@@ -17,9 +17,9 @@ func move_item(item_id: String) -> void:
 func clear() -> void:
 	_selected.clear()
 
-func get_selected_items() -> Array[String]:
+func get_selected_items(filter_by_special: bool = true) -> Array[String]:
 	var filtered_items = _selected.filter(func(i): return IngDatabase.get_by_id(i).is_special())
-	return filtered_items if filtered_items.size() > 0 else _selected
+	return filtered_items if (filtered_items.size() > 0 and filter_by_special) else _selected
 
 func has_selection() -> bool:
 	return not _selected.is_empty()

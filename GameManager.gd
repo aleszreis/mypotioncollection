@@ -15,8 +15,6 @@ func _process(_delta: float) -> void:
 
 func _spawn_cats() -> void:
 	cats_instances = UserConfig.set_cats_from_save()
-	if cats_instances.is_empty():
-		cats_instances = CatDatabase.cats_instances.duplicate(true)
 
 # --------------------------------------------------
 

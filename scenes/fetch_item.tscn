@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dv7cby51i7bct" path="res://FetchItemUI.gd" id="1_7yk1g"]
 [ext_resource type="PackedScene" uid="uid://bx8iqumjwh1kq" path="res://inventory/inventory_ui.tscn" id="2_yepl5"]
-[ext_resource type="SpriteFrames" uid="uid://d14mtwy03i6br" path="res://assets/Pet Cats Pack/cat_2/walk_animation.tres" id="3_kvdam"]
+[ext_resource type="SpriteFrames" uid="uid://bner77iavc4ij" path="res://assets/Pet Cats Pack/cat_6/walk_animation.tres" id="3_kvdam"]
 
 [node name="FetchItemUI" type="Control" unique_id=81905423]
 layout_mode = 3
@@ -144,7 +144,7 @@ size_flags_vertical = 2
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("3_kvdam")
 animation = &"walk"
-frame_progress = 0.3236072
+frame_progress = 0.85361457
 
 [node name="ProgressLabel" type="Label" parent="FetchInProgress/VBoxContainer" unique_id=944467025]
 custom_minimum_size = Vector2(232, 32)
