@@ -1,8 +1,10 @@
 extends Control
 
-@onready var fetch_enabled: Panel = $FetchEnabled
 @onready var fetch_in_progress: Panel = $FetchInProgress
+@onready var cat_sprite: AnimatedSprite2D = $FetchInProgress/VBoxContainer/Control/AnimatedSprite2D
+@onready var fetch_progress_label: Label = $FetchInProgress/VBoxContainer/ProgressLabel
 
+@onready var fetch_enabled: Panel = $FetchEnabled
 @onready var inventory_ui: Control = $InventoryUI
 @onready var items_list: OptionButton = $FetchEnabled/VBoxContainer/ChooseItem
 @onready var cats_list: OptionButton = $FetchEnabled/VBoxContainer/ChooseCat
@@ -25,8 +27,6 @@ func _ready():
 	selector.selected_item.connect(_on_fuel_selected)
 	selector.deselected_item.connect(_on_fuel_deselected)
 	
-	all_cats_data =  GameManager.cats_instances.duplicate()
-
 	items_list.clear()
 	
 	_populate_items()
@@ -127,3 +127,33 @@ func _calculate_fuel_value() -> int:
 
 func _on_fuel_deselected() -> void:
 	_update_progress()
+
+func _get_cat_fetching(cats_data: Array[CatInstance]) -> Array[CatInstance]:
+	return cats_data.filter(func(c): return c.is_fetching)
+
+func _set_fetch_info(cat: CatInstance) -> void:
+	if cat:
+		cat_sprite.sprite_frames = cat.cat_data.walking_sprite
+		cat_sprite.play()
+		var formatted_time = _set_remaining_time(cat.next_available_time)
+		fetch_progress_label.text = "%s retornará em %s com o item %s." % [cat.cat_data.display_name, formatted_time, IngDatabase.get_by_id(cat.chosen_item).display_name]
+		
+		fetch_enabled.hide()
+		fetch_in_progress.show()
+	else:
+		fetch_in_progress.hide()
+		fetch_enabled.show()
+
+func _set_remaining_time(end_time) -> String:
+	var now = Time.get_unix_time_from_system()
+	var remaining_time = end_time - now
+	var hours: int = int(remaining_time / 3600)
+	var minutes: int = int(remaining_time / 60) % 60
+	var seconds: int = int(remaining_time) % 60
+	return "%02d:%02d:%02d" % [hours, minutes, seconds]
+
+func _process(delta) -> void:
+	all_cats_data = GameManager.cats_instances.duplicate()
+	var fetching = _get_cat_fetching(all_cats_data)
+	for cat in fetching:
+		_set_fetch_info(cat)

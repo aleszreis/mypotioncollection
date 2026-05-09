@@ -2,71 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dv7cby51i7bct" path="res://FetchItemUI.gd" id="1_7yk1g"]
 [ext_resource type="PackedScene" uid="uid://bx8iqumjwh1kq" path="res://inventory/inventory_ui.tscn" id="2_yepl5"]
-[ext_resource type="Texture2D" uid="uid://dpvmu7kkmtt7d" path="res://assets/Pet Cats Pack/Cat-3/Cat-3-Walk.png" id="3_kvdam"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j1tbv"]
-atlas = ExtResource("3_kvdam")
-region = Rect2(0, 0, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m35oq"]
-atlas = ExtResource("3_kvdam")
-region = Rect2(50, 0, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_334wy"]
-atlas = ExtResource("3_kvdam")
-region = Rect2(100, 0, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2c5kq"]
-atlas = ExtResource("3_kvdam")
-region = Rect2(150, 0, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8gw18"]
-atlas = ExtResource("3_kvdam")
-region = Rect2(200, 0, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jmis"]
-atlas = ExtResource("3_kvdam")
-region = Rect2(250, 0, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7b4w"]
-atlas = ExtResource("3_kvdam")
-region = Rect2(300, 0, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ib6gp"]
-atlas = ExtResource("3_kvdam")
-region = Rect2(350, 0, 50, 50)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8qo80"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j1tbv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m35oq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_334wy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2c5kq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8gw18")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2jmis")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l7b4w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ib6gp")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 8.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://d14mtwy03i6br" path="res://assets/Pet Cats Pack/cat_2/walk_animation.tres" id="3_kvdam"]
 
 [node name="FetchItemUI" type="Control" unique_id=81905423]
 layout_mode = 3
@@ -83,6 +19,7 @@ script = ExtResource("1_7yk1g")
 layout_mode = 1
 
 [node name="FetchEnabled" type="Panel" parent="." unique_id=901672416]
+visible = false
 custom_minimum_size = Vector2(256, 280)
 layout_mode = 1
 anchors_preset = 8
@@ -163,8 +100,7 @@ size_flags_horizontal = 8
 text = "Enviar"
 
 [node name="FetchInProgress" type="Panel" parent="." unique_id=1012515112]
-visible = false
-custom_minimum_size = Vector2(256, 280)
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -172,9 +108,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -128.0
-offset_top = -140.0
+offset_top = -128.0
 offset_right = 128.0
-offset_bottom = 140.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -206,24 +142,27 @@ size_flags_vertical = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FetchInProgress/VBoxContainer/Control" unique_id=1198477700]
 scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_8qo80")
+sprite_frames = ExtResource("3_kvdam")
 animation = &"walk"
-frame_progress = 0.23662968
-
-[node name="ProgressBar" type="ProgressBar" parent="FetchInProgress/VBoxContainer" unique_id=1307526914]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-step = 1.0
-show_percentage = false
+frame_progress = 0.3236072
 
 [node name="ProgressLabel" type="Label" parent="FetchInProgress/VBoxContainer" unique_id=944467025]
 custom_minimum_size = Vector2(232, 32)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "<Gato> retornará em <hh:mm:ss> com o item <item>."
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="CancelButton" type="Button" parent="FetchInProgress/VBoxContainer" unique_id=1774202783]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "OK"
 
 [connection signal="item_selected" from="FetchEnabled/VBoxContainer/ChooseItem" to="." method="_on_item_selected"]
 [connection signal="item_selected" from="FetchEnabled/VBoxContainer/ChooseCat" to="." method="_on_cat_selected"]
 [connection signal="pressed" from="FetchEnabled/VBoxContainer/MarginContainerBtn/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="FetchEnabled/VBoxContainer/MarginContainerBtn/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="pressed" from="FetchInProgress/VBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
