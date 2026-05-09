@@ -3,8 +3,8 @@ class_name CatData
 extends Resource
 
 @export var id: String
-@export var icon: SpriteFrames
-@export var walking_sprite: SpriteFrames
+@export var icon: SpriteFrames = preload("res://assets/Pet Cats Pack/cat_2/icon.tres")
+@export var walking_sprite: SpriteFrames = preload("res://assets/Pet Cats Pack/cat_2/walk_animation.tres")
 @export var display_name: String
 @export var rarity: int
 

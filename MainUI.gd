@@ -1,12 +1,14 @@
 extends Control
 
-@onready var inventory_ui: Control = $HBoxContainer/CenterColumn/InventoryUI
-@onready var create_button: TextureButton = $HBoxContainer/CenterColumn/CreateItemButton
-@onready var bowls_container: VBoxContainer = $HBoxContainer/LeftColumn/BowlsContainer
-@onready var selected_grid = $HBoxContainer/CenterColumn/SelectedIngredientsGrid
-@onready var potion_preview = $HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer
+@onready var inventory_ui: Control = $InventoryUI
+@onready var create_button: TextureButton = $CreateItemButton
+@onready var selected_grid = $SelectedIngredientsGrid
+@onready var potion_preview = $PotionPreview
 
-@onready var offline_gains: Panel = $"../OfflineGains"
+var bowl_btn_scene = preload("res://scenes/bowl_button.tscn")
+@onready var bowls_container: VBoxContainer = $BowlsContainer
+
+@onready var offline_gains: PanelContainer = $"../OfflineGains"
 
 var selector : SelectionController
 var selection_slot_scene = preload("res://scenes/selec_slot_ui.tscn")
@@ -23,7 +25,7 @@ func _ready() -> void:
 func _build_bowls_buttons() -> void:
 	var bowls_ids = FoodBowlManager.bowls.keys()
 	for bowl_id in bowls_ids:
-		var bowl_btn = BowlButton.new()
+		var bowl_btn = bowl_btn_scene.instantiate()
 		bowl_btn.bowl_id = bowl_id
 		bowls_container.add_child(bowl_btn)
 

@@ -2,19 +2,19 @@
 # suas chances e regras
 extends Node
 
-var entries: Array[IngredientEntry] = []
+var all_entries: Array[IngredientEntry] = []
 
 func _ready():
 	_populate_entries()
 	
 func _populate_entries():
-	entries = IngDatabase.catalog_data
+	all_entries = IngDatabase.catalog_data
 
 func roll_ingredient(context: Dictionary, rng: RandomNumberGenerator) -> String:
 	var pool: Array[IngredientEntry] = []
 	var weights: Array[float] = []
 
-	for entry in entries:
+	for entry in all_entries:
 		if not _passes_rules(entry, context):
 			continue
 		

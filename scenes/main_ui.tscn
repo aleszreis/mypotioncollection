@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://b2cskkd4jg4vo" path="res://MainUI.gd" id="1_paifj"]
 [ext_resource type="Texture2D" uid="uid://eo01h0maa2qq" path="res://assets/house_background.png" id="2_okuri"]
 [ext_resource type="PackedScene" uid="uid://bx8iqumjwh1kq" path="res://inventory/inventory_ui.tscn" id="3_r8eje"]
-[ext_resource type="Script" uid="uid://hxjjar1es3xg" path="res://potions/PotionPreview.gd" id="4_r8eje"]
+[ext_resource type="Texture2D" uid="uid://ba2j8kmgevwpw" path="res://assets/Theme/side-button-right.png" id="5_82kx8"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
-[ext_resource type="Texture2D" uid="uid://tkg0qe5wik0h" path="res://assets/Pet Cats Pack/cat_3/Cat-3-Sitting.png" id="6_r8eje"]
+[ext_resource type="Texture2D" uid="uid://2ynyatylkrtk" path="res://assets/Theme/side-button-right-focus.png" id="6_jnl7h"]
+[ext_resource type="PackedScene" uid="uid://betdyrvb0rgm8" path="res://scenes/potion_preview.tscn" id="6_r0apq"]
+[ext_resource type="Texture2D" uid="uid://do7716jwc5ms3" path="res://assets/Theme/side-button-disabled.png" id="7_hst8y"]
 [ext_resource type="PackedScene" uid="uid://c2abn0bsaxgbq" path="res://scenes/offline_gains.tscn" id="8_82kx8"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="9_r8eje"]
@@ -32,105 +34,84 @@ grow_vertical = 2
 texture = ExtResource("2_okuri")
 expand_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=113375016]
+[node name="BowlsContainer" type="VBoxContainer" parent="UI" unique_id=405896601]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 62.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 grow_vertical = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
-
-[node name="LeftColumn" type="VBoxContainer" parent="UI/HBoxContainer" unique_id=48061851]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 15
-
-[node name="BowlsContainer" type="VBoxContainer" parent="UI/HBoxContainer/LeftColumn" unique_id=405896601]
-layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.8
+theme_override_constants/separation = 16
 
-[node name="CenterColumn" type="VBoxContainer" parent="UI/HBoxContainer" unique_id=1475215900]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
-
-[node name="InventoryUI" parent="UI/HBoxContainer/CenterColumn" unique_id=1309482004 instance=ExtResource("3_r8eje")]
-layout_mode = 2
-
-[node name="PotionPreview" type="Control" parent="UI/HBoxContainer/CenterColumn" unique_id=1776234330]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="ColorRect" type="ColorRect" parent="UI/HBoxContainer/CenterColumn/PotionPreview" unique_id=1634636677]
+[node name="InventoryUI" parent="UI" unique_id=1309482004 instance=ExtResource("3_r8eje")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.550681, 0.265861, 0.351185, 0.8)
+offset_left = -10.0
+offset_top = 48.0
+offset_right = 10.0
+offset_bottom = 68.0
 
-[node name="PotionPreviewContainer" type="VBoxContainer" parent="UI/HBoxContainer/CenterColumn/PotionPreview" unique_id=1050421505]
-visible = false
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-script = ExtResource("4_r8eje")
-
-[node name="Button" type="Button" parent="UI/HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer" unique_id=882323878]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 10
-text = " X "
-
-[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer" unique_id=1761214149]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-stretch_mode = 5
-
-[node name="NameLabel" type="Label" parent="UI/HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer" unique_id=697733642]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="SelectedIngredientsGrid" type="HBoxContainer" parent="UI/HBoxContainer/CenterColumn" unique_id=1386796305]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="CreateItemButton" type="TextureButton" parent="UI/HBoxContainer/CenterColumn" unique_id=516220625]
+[node name="CreateItemButton" type="TextureButton" parent="UI" unique_id=516220625]
 custom_minimum_size = Vector2(180, 180)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -180.0
+offset_right = 90.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture_normal = ExtResource("8_kyx1g")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="RightColumn" type="VBoxContainer" parent="UI/HBoxContainer" unique_id=64685811]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-
-[node name="OpenFetchItemMenu" type="Button" parent="UI/HBoxContainer/RightColumn" unique_id=1112741378]
-custom_minimum_size = Vector2(64, 48)
-layout_mode = 2
+[node name="OpenFetchItemMenu" type="TextureButton" parent="UI" unique_id=1585364662]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_vertical = 3
-icon = ExtResource("6_r8eje")
-expand_icon = true
+texture_normal = ExtResource("5_82kx8")
+texture_pressed = ExtResource("5_82kx8")
+texture_hover = ExtResource("6_jnl7h")
+texture_disabled = ExtResource("7_hst8y")
+texture_focused = ExtResource("6_jnl7h")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="PotionPreview" parent="UI" unique_id=997995925 instance=ExtResource("6_r0apq")]
+layout_mode = 1
+offset_top = -114.0
+offset_bottom = -114.0
+
+[node name="SelectedIngredientsGrid" type="HBoxContainer" parent="UI" unique_id=1386796305]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
 
 [node name="FoodOptionsMenu" parent="." unique_id=16798039 instance=ExtResource("5_yjiuj")]
 anchors_preset = 15
@@ -150,6 +131,5 @@ script = ExtResource("9_r8eje")
 [node name="FoodBowlManager" type="Node" parent="." unique_id=724167122]
 script = ExtResource("12_wd510")
 
-[connection signal="pressed" from="UI/HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer/Button" to="UI/HBoxContainer/CenterColumn/PotionPreview/PotionPreviewContainer" method="_on_close_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/CenterColumn/CreateItemButton" to="UI" method="_on_create_potion_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/RightColumn/OpenFetchItemMenu" to="UI" method="_on_fetch_item_btn_pressed"]
+[connection signal="pressed" from="UI/CreateItemButton" to="UI" method="_on_create_potion_pressed"]
+[connection signal="pressed" from="UI/OpenFetchItemMenu" to="UI" method="_on_fetch_item_btn_pressed"]

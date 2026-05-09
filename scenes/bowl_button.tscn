@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://lnsthli8evd1"]
+
+[ext_resource type="Texture2D" uid="uid://dh7c5ncy3ht6y" path="res://assets/Theme/side-button.png" id="1_idiyf"]
+[ext_resource type="Texture2D" uid="uid://cfhb7cd7yhcpp" path="res://assets/Theme/side-button-left-focus.png" id="2_2pgcl"]
+[ext_resource type="Texture2D" uid="uid://b3ls8vxjodaee" path="res://assets/Theme/side-button-left-disabled.png" id="3_bv8wc"]
+[ext_resource type="Script" uid="uid://budbjma44jpqu" path="res://bowls/BowlButton.gd" id="4_bv8wc"]
+[ext_resource type="Texture2D" uid="uid://b6vi81efr8sqb" path="res://bowls/sprites/empty.png" id="5_bv8wc"]
+[ext_resource type="SpriteFrames" uid="uid://cu4vhs2oav3bu" path="res://assets/Pet Cats Pack/cat_1/icon.tres" id="6_n8ud0"]
+
+[node name="TextureButton" type="TextureButton" unique_id=879400831]
+custom_minimum_size = Vector2(0, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("1_idiyf")
+texture_pressed = ExtResource("1_idiyf")
+texture_hover = ExtResource("2_2pgcl")
+texture_disabled = ExtResource("3_bv8wc")
+texture_focused = ExtResource("2_2pgcl")
+stretch_mode = 0
+script = ExtResource("4_bv8wc")
+
+[node name="BowlIcon" type="TextureRect" parent="." unique_id=958815295]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -10.0
+offset_right = -2.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_bv8wc")
+expand_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=947334275]
+visible = false
+position = Vector2(43, 16)
+scale = Vector2(0.53125, 0.53125)
+sprite_frames = ExtResource("6_n8ud0")
+frame_progress = 0.021199873

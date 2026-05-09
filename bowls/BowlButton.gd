@@ -1,9 +1,12 @@
 class_name BowlButton
-extends Button
+extends TextureButton
 
 var bowl_id: int
 
 var EMPTY_BOWL_ICON = load("res://bowls/sprites/empty.png")
+
+@onready var bowl_icon: TextureRect = $BowlIcon
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
 	_update_bowl_button()
@@ -18,7 +21,7 @@ func _on_bowl_button_pressed():
 func _update_bowl_button() -> void:
 	var bowl = FoodBowlManager.bowls[bowl_id]
 	if not bowl.food_type or bowl.remaining_amount <= 0:
-		icon = EMPTY_BOWL_ICON
+		bowl_icon.texture = EMPTY_BOWL_ICON
 	else:
 		var food = FoodDatabase.get_by_id(bowl.food_type)
-		icon = food.icon
+		bowl_icon.texture = food.icon

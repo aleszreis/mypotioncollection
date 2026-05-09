@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://betdyrvb0rgm8"]
+
+[ext_resource type="Script" uid="uid://hxjjar1es3xg" path="res://potions/PotionPreview.gd" id="1_ads1d"]
+[ext_resource type="Texture2D" uid="uid://f73oojmicy8i" path="res://potions/sprites/unknown_potion.png" id="2_uyduk"]
+
+[node name="PotionPreview" type="PanelContainer" unique_id=2026836608]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -46.5
+offset_right = 64.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ads1d")
+
+[node name="Panel" type="Panel" parent="." unique_id=1750995068]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1552520872]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PotionPreviewContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1960236834]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 12
+
+[node name="SpritePreview" type="TextureRect" parent="MarginContainer/PotionPreviewContainer" unique_id=280095107]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_uyduk")
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="MarginContainer/PotionPreviewContainer" unique_id=348176231]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+text = "<Nome da Poção>"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/PotionPreviewContainer" unique_id=1647446326]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "Fechar"
+
+[connection signal="pressed" from="MarginContainer/PotionPreviewContainer/Button" to="." method="_on_close_button_pressed"]

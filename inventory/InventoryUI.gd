@@ -1,6 +1,6 @@
-extends Control
+extends PanelContainer
 
-@onready var item_grid: GridContainer = $IngredientGrid
+@onready var item_grid: GridContainer = $MarginContainer/IngredientGrid
 
 var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 var inventory_slots_by_item: Dictionary = {}

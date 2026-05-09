@@ -1,13 +1,13 @@
-extends Panel
+extends PanelContainer
 
-@onready var inventory_display: GridContainer = $VBoxContainer/MarginContainerInv/OfflineInventory
+@onready var inventory_display: GridContainer = $MarginContainer/VBoxContainer/OfflineInventory
 
 var inventory_slot_scene = preload("res://scenes/inv_slot_ui.tscn")
 
 func _ready():
-	var x = get_viewport().size.x
-	var y = x / 2
-	size = Vector2(x, y)
+	#var x = get_viewport().size.x
+	#var y = x / 2
+	#size = Vector2(x, y)
 	
 	_process_offline_progress()
 

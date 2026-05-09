@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://wlalnabo0sc7"]
 
 [ext_resource type="Script" uid="uid://c4xi766ls0ava" path="res://inventory/InventorySlotUI.gd" id="1_uflh6"]
-[ext_resource type="Texture2D" uid="uid://cwf63mijwalao" path="res://inventory/sprites/inventory-bg.png" id="2_7nsvi"]
+[ext_resource type="Texture2D" uid="uid://uapc1xw3s26y" path="res://inventory/sprites/slot-bg.png" id="2_7nsvi"]
 
 [node name="InvSlotUi" type="Button" unique_id=902685428]
 custom_minimum_size = Vector2(24, 24)
@@ -13,7 +13,6 @@ flat = true
 script = ExtResource("1_uflh6")
 
 [node name="InvBackground" type="TextureRect" parent="." unique_id=1804541755]
-custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,21 +30,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+expand_mode = 5
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="." unique_id=217122526]
 layout_direction = 3
-layout_mode = 0
-offset_left = 1.0
-offset_top = 10.0
-offset_right = 29.0
-offset_bottom = 26.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 26.0
+grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0.399912, 0.196376, 0.0542407, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 11

@@ -35,7 +35,9 @@ func _sort_children() -> void:
 		return
 	
 	var click_pos = get_viewport().get_mouse_position()
-	var center: Vector2 = get_viewport().size * 0.5
+	var center: Vector2
+	 #= get_viewport().size * 0.5
+	center.x = click_pos.x + button_radius + 10.0
 	center.y = click_pos.y
 	var angle_step: float = TAU / (count - 1)
 	var angle: float = -PI * 0.5
@@ -81,9 +83,7 @@ func _build_food_options():
 
 func _on_food_button_pressed(button: TextureButton):
 	var food = button.get_meta("associated_food")
-	
 	SignalBus.change_bowl_food.emit(food)
-	
 	close()
 
 func _on_close_button_pressed() -> void:
