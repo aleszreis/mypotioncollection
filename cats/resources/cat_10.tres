@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://s7v7r4c7ufjh"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_8ij6b"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_u0fwx"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_8ij6b"]
+
+[resource]
+script = ExtResource("3_8ij6b")
+id = "cat_10"
+display_name = "Geronimo"
+rarity = 3
+accepted_foods = Array[String](["gem", "premium"])
+favorite_item_id = "ing_15"
+item_types = [4]
+rules = [ExtResource("1_8ij6b"), ExtResource("2_u0fwx")]

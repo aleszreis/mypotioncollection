@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://b5cku2i2xgvnp"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_p7x6r"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_ufq0g"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_p7x6r"]
+
+[resource]
+script = ExtResource("3_p7x6r")
+id = "cat_6"
+display_name = "Lady"
+rarity = 1
+accepted_foods = Array[String](["common", "premium", "flower"])
+favorite_item_id = "ing_2"
+item_types = [1]
+rules = [ExtResource("1_p7x6r"), ExtResource("2_ufq0g")]

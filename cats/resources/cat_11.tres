@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://d4gk41l7f4j4q"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_t3376"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_on0aq"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_t3376"]
+
+[resource]
+script = ExtResource("3_t3376")
+id = "cat_11"
+display_name = "Pescador"
+rarity = 5
+accepted_foods = Array[String](["gem", "premium"])
+food_efficiency = 3.0
+base_travel_time = 4.0
+favorite_item_id = "ing_1"
+item_types = [4, 0]
+rules = [ExtResource("1_t3376"), ExtResource("2_on0aq")]

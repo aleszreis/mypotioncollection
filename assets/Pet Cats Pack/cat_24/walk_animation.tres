@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c288xwejaklei"]
+
+[ext_resource type="Texture2D" uid="uid://coo3iymgkg1ma" path="res://assets/Pet Cats Pack/cat_24/Cat-6-Walk.png" id="1_1ubno"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kep65"]
+atlas = ExtResource("1_1ubno")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7no18"]
+atlas = ExtResource("1_1ubno")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voshl"]
+atlas = ExtResource("1_1ubno")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twreb"]
+atlas = ExtResource("1_1ubno")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44b8i"]
+atlas = ExtResource("1_1ubno")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xdlc"]
+atlas = ExtResource("1_1ubno")
+region = Rect2(250, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atkd0"]
+atlas = ExtResource("1_1ubno")
+region = Rect2(300, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cm6k"]
+atlas = ExtResource("1_1ubno")
+region = Rect2(350, 0, 50, 50)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kep65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7no18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voshl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twreb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44b8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xdlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atkd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cm6k")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]

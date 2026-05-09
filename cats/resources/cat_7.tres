@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://diq1ck0v0vcb5"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_l1ef3"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_l8tvo"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_l1ef3"]
+
+[resource]
+script = ExtResource("3_l1ef3")
+id = "cat_7"
+display_name = "Explorador"
+rarity = 3
+accepted_foods = Array[String](["fruit", "premium", "spice"])
+food_efficiency = 2.0
+favorite_item_id = "ing_18"
+item_types = [2, 3]
+rules = [ExtResource("1_l1ef3"), ExtResource("2_l8tvo")]

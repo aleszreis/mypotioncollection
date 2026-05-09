@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bx8iqumjwh1kq" path="res://inventory/inventory_ui.tscn" id="3_r8eje"]
 [ext_resource type="Script" uid="uid://hxjjar1es3xg" path="res://potions/PotionPreview.gd" id="4_r8eje"]
 [ext_resource type="PackedScene" uid="uid://dcxroxc5hgo8b" path="res://scenes/food_selection_menu.tscn" id="5_yjiuj"]
-[ext_resource type="Texture2D" uid="uid://tkg0qe5wik0h" path="res://assets/Pet Cats Pack/Cat-3/Cat-3-Sitting.png" id="6_r8eje"]
+[ext_resource type="Texture2D" uid="uid://tkg0qe5wik0h" path="res://assets/Pet Cats Pack/cat_3/Cat-3-Sitting.png" id="6_r8eje"]
 [ext_resource type="PackedScene" uid="uid://c2abn0bsaxgbq" path="res://scenes/offline_gains.tscn" id="8_82kx8"]
 [ext_resource type="Texture2D" uid="uid://bhv7gvsjjvmm3" path="res://craft/sprites/cauldron.png" id="8_kyx1g"]
 [ext_resource type="Script" uid="uid://qf03gi6lmk2d" path="res://bowls/FoodAttractionSystem.gd" id="9_r8eje"]

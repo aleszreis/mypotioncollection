@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://dkbub10xfnp5p"]
+
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="1_fmmtu"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="2_fmmtu"]
+
+[resource]
+script = ExtResource("2_fmmtu")
+id = "cat_20"
+display_name = "Monk"
+rarity = 1
+accepted_foods = Array[String](["common", "premium"])
+food_efficiency = 2.0
+item_types = [1]
+rules = [ExtResource("1_fmmtu")]

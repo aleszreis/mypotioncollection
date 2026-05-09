@@ -3,6 +3,8 @@ class_name CatData
 extends Resource
 
 @export var id: String
+@export var icon: SpriteFrames
+@export var walking_sprite: SpriteFrames
 @export var display_name: String
 @export var rarity: int
 
@@ -13,7 +15,7 @@ extends Resource
 @export var favorite_item_id: String
 @export var item_types: Array[int]
 
-@export var rules: Array[IngredientRule] = []
+@export var rules: Array[Rule] = []
 
 func serialize() -> Dictionary:
 	return {

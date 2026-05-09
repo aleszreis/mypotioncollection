@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://2ufdjwmxfv2k"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_nhxd2"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_44uo4"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_nhxd2"]
+
+[resource]
+script = ExtResource("3_nhxd2")
+id = "cat_12"
+display_name = "Pirata"
+rarity = 4
+accepted_foods = Array[String](["gem", "premium"])
+food_efficiency = 2.0
+favorite_item_id = "ing_14"
+item_types = [4, 0, 3]
+rules = [ExtResource("1_nhxd2"), ExtResource("2_44uo4")]

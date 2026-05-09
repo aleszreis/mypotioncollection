@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://culowyh266ua8"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_3pa3t"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_2rmeg"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_3pa3t"]
+[ext_resource type="SpriteFrames" uid="uid://d14mtwy03i6br" path="res://assets/Pet Cats Pack/cat_2/walk_animation.tres" id="4_2rmeg"]
+
+[resource]
+script = ExtResource("3_3pa3t")
+id = "cat_2"
+walking_sprite = ExtResource("4_2rmeg")
+display_name = "Druidinha"
+rarity = 1
+accepted_foods = Array[String](["common", "premium", "flower"])
+favorite_item_id = "ing_16"
+item_types = [1]
+rules = [ExtResource("1_3pa3t"), ExtResource("2_2rmeg")]

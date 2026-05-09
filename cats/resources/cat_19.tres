@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://b5i6hre3necst"]
+
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="1_56tf8"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="2_56tf8"]
+
+[resource]
+script = ExtResource("2_56tf8")
+id = "cat_19"
+display_name = "Buboo"
+rarity = 1
+accepted_foods = Array[String](["common", "premium"])
+item_types = [1]
+rules = [ExtResource("1_56tf8")]

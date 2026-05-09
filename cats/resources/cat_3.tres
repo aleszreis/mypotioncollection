@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://xbhyh5b1hui4"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_uex2m"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_rn3rn"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_uex2m"]
+[ext_resource type="SpriteFrames" uid="uid://csurjjdak5nq0" path="res://assets/Pet Cats Pack/cat_3/walk_animation.tres" id="4_rn3rn"]
+
+[resource]
+script = ExtResource("3_uex2m")
+id = "cat_3"
+walking_sprite = ExtResource("4_rn3rn")
+display_name = "Comilão"
+rarity = 3
+accepted_foods = Array[String](["common", "premium", "fruit", "spice"])
+food_efficiency = 4.0
+base_travel_time = 1.0
+favorite_item_id = "ing_20"
+item_types = [2, 3]
+rules = [ExtResource("1_uex2m"), ExtResource("2_rn3rn")]

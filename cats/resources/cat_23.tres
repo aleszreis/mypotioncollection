@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://dn14p3vfbgijn"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_aik4y"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_lxdvq"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_aik4y"]
+
+[resource]
+script = ExtResource("3_aik4y")
+id = "cat_23"
+display_name = "Aiysha"
+rarity = 5
+accepted_foods = Array[String](["special", "premium", "flower"])
+food_efficiency = 4.0
+favorite_item_id = "ing_4"
+item_types = [1, 0]
+rules = [ExtResource("1_aik4y"), ExtResource("2_lxdvq")]

@@ -6,6 +6,7 @@ extends Resource
 @export var base_weight: float = 1.0
 
 var is_busy := false
+var is_fetching := false
 var next_available_time := 0.0
 var chosen_item := ""
 var target_bowl: int = -1
@@ -31,11 +32,14 @@ func set_exploration(now: float, item: String, bowl: FoodBowlState) -> void:
 	is_busy = true
 	if bowl:
 		target_bowl = bowl.id
+	else:
+		is_fetching = true
 	
 func set_idle() -> void:
 	next_available_time = 0.0
 	chosen_item = ""
 	is_busy = false
+	is_fetching = false
 	target_bowl = -1
 
 # ------------- Transform data to save and load
@@ -45,15 +49,18 @@ func serialize() -> Dictionary:
 		"cat_data": cat_data.id,
 		"base_weight": base_weight,
 		"is_busy": is_busy,
+		"is_fetching": is_fetching,
 		"next_available_time": str(next_available_time),
 		"chosen_item": chosen_item,
 		"target_bowl": target_bowl
 	}
 
 func create_from_dict(data: Dictionary) -> void:
-	cat_data = CatDatabase.get_by_id(data.cat_data)
+	var cat_resource = load("res://cats/resources/%s.tres" % data.cat_data)
+	cat_data = cat_resource
 	base_weight = data.base_weight
 	is_busy = data.is_busy
+	is_fetching = data.is_fetching
 	next_available_time = float(data.next_available_time)
 	chosen_item = data.chosen_item
 	target_bowl = data.target_bowl

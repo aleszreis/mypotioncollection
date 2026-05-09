@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://4snelmnwnei6"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_p81wx"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_21xkt"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_p81wx"]
+[ext_resource type="SpriteFrames" uid="uid://c288xwejaklei" path="res://assets/Pet Cats Pack/cat_24/walk_animation.tres" id="4_21xkt"]
+
+[resource]
+script = ExtResource("3_p81wx")
+id = "cat_24"
+walking_sprite = ExtResource("4_21xkt")
+display_name = "Krishan"
+rarity = 5
+accepted_foods = Array[String](["special", "premium", "fruit"])
+food_efficiency = 4.0
+favorite_item_id = "ing_9"
+item_types = [2, 0]
+rules = [ExtResource("1_p81wx"), ExtResource("2_21xkt")]

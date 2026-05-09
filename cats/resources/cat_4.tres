@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CatData" format=3 uid="uid://dq81bxd3wa1c4"]
+
+[ext_resource type="Resource" uid="uid://oqlyw01ehh25" path="res://regras/fave_item_id_rule.tres" id="1_m3py5"]
+[ext_resource type="Resource" uid="uid://bplv4vi4p7wsm" path="res://regras/item_types_rule.tres" id="2_itdyu"]
+[ext_resource type="Script" uid="uid://dt7ja2hh61laa" path="res://cats/CatData.gd" id="3_m3py5"]
+
+[resource]
+script = ExtResource("3_m3py5")
+id = "cat_4"
+display_name = "Hunter"
+rarity = 5
+accepted_foods = Array[String](["gem", "premium", "special"])
+food_efficiency = 4.0
+base_travel_time = 3.0
+favorite_item_id = "ing_22"
+item_types = [3, 4, 0]
+rules = [ExtResource("1_m3py5"), ExtResource("2_itdyu")]
