@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FaveItemIdRule" format=3 uid="uid://oqlyw01ehh25"]
+
+[ext_resource type="Script" uid="uid://cc6xrlwjr4dtu" path="res://regras/FaveItemIdRule.gd" id="1_rbvsu"]
+
+[resource]
+script = ExtResource("1_rbvsu")
+metadata/_custom_type_script = "uid://cc6xrlwjr4dtu"

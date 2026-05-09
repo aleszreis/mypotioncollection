@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ItemTypesRule" format=3 uid="uid://bplv4vi4p7wsm"]
+
+[ext_resource type="Script" uid="uid://d31k4jd4vbpl0" path="res://regras/ItemTypesRule.gd" id="1_evaq7"]
+
+[resource]
+script = ExtResource("1_evaq7")
+metadata/_custom_type_script = "uid://d31k4jd4vbpl0"

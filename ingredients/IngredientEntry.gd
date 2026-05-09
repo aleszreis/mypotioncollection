@@ -4,4 +4,4 @@ extends Resource
 
 @export var ingredient: IngredientData
 @export var base_weight: float = 1.0
-@export var rules: Array[IngredientRule] = []
+@export var rules: Array[Rule] = []

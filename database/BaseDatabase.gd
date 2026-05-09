@@ -15,7 +15,7 @@ func _format_string_to_array(s: String) -> Array[String]:
 		a.append(part.strip_edges())
 	return a
 
-func _format_rules(rules_as_string: String) -> Array[IngredientRule]:
+func _format_rules(rules_as_string: String) -> Array[Rule]:
 	var rules_arr = _format_string_to_array(rules_as_string)
 	
 	var RULES = {
@@ -25,7 +25,7 @@ func _format_rules(rules_as_string: String) -> Array[IngredientRule]:
 		"fave_item_id_rule": FaveItemIdRule,
 		}
 
-	var rules_formatted: Array[IngredientRule] = []
+	var rules_formatted: Array[Rule] = []
 	for i in rules_arr:
 		if RULES.has(i):
 			rules_formatted.append(RULES[i].new())

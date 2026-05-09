@@ -1,5 +1,5 @@
 # Guarda as regras de aparição/chance de obter cada ingrediente
-class_name IngredientRule
+class_name Rule
 extends Resource
 
 func is_available(context: Dictionary, entry: IngredientEntry) -> bool:
